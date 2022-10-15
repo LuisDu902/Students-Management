@@ -3,10 +3,19 @@
 //
 
 #include "Aula.h"
-Aula::Aula(int codigo_uc,int dia_semana,int hora_inicio,int duracao,std::string tipo){
-        this->codigo_uc = codigo_uc;
-        this->dia_semana = dia_semana;
-        this->hora_inicio = hora_inicio;
-        this->duracao = duracao;
-        this->tipo = tipo;
+Aula::Aula(std::string codigo_class, std::string codigo_uc,std::string dia_semana,double hora_inicio,double duracao,std::string tipo){
+    this->codigo_class = codigo_class;
+    this->codigo_uc = codigo_uc;
+    this->dia_semana = dia_semana;
+    this->hora_inicio = hora_inicio;
+    this->duracao = duracao;
+    this->tipo = tipo;
+}
+
+void Aula::show() {
+    std::cout << codigo_class << " | "<< codigo_uc << " | "<< dia_semana << " | "<< hora_inicio << " | " << duracao << " | "<< tipo << std::endl;
+}
+
+double Aula::get_hora_inicio() {
+    return hora_inicio;
 }

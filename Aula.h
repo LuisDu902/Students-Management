@@ -5,15 +5,18 @@
 #ifndef PROJ_AULA_H
 #define PROJ_AULA_H
 #include <string>
-
+#include <iostream>
 class Aula {
 public:
-    Aula(int codigo_uc,int dia_semana,int hora_inicio,int duracao,std::string tipo);
+    Aula(std::string codigo_class, std::string codigo_uc,std::string dia_semana,double hora_inicio,double duracao,std::string tipo);
+    void show();
+    double get_hora_inicio();
 private:
-    int codigo_uc;
-    int dia_semana;
-    int hora_inicio;
-    int duracao;
+    std::string codigo_class;
+    std::string codigo_uc;
+    std::string dia_semana;
+    double hora_inicio;
+    double duracao;
     std::string tipo;
     //Lista de turmas a que a aula pertence???
 };
