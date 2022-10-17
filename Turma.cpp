@@ -13,3 +13,5 @@ Turma::Turma(std::string codigo_uc,std::string codigo_turma){
 void Turma::show() {
     std::cout << codigo_uc << " | " << codigo_turma << std::endl;
 }
+std::string Turma::get_codigo_uc(){return codigo_uc;}
+std::string Turma::get_codigo_turma(){return codigo_turma;}

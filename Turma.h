@@ -20,6 +20,8 @@ private:
 public:
     Turma(std::string codigo_uc,std::string codigo_turma);
     void show();
+    std::string get_codigo_uc();
+    std::string get_codigo_turma();
 };
 
 
