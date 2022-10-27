@@ -6,23 +6,22 @@
 #define TRABALHO1_TURMA_H
 
 #include <string>
-#include "horario.cpp"
-
+#include "Horario.cpp"
+#include <vector>
 
 
 class Turma {
 private:
-    std::string codigo;
-    Horario horario;
+    std::string codigo_turma;
+    std::string codigo_uc;
+    std::vector<Aula*> aulas;
+    int cap;
 
 public:
-    Turma(std::string codigo, Horario horario);
-    std::string getCodigo();
-    Horario getHorario();
-    void setCodigo(std::string codigo);
-    void setHorario(Horario horario);
-    int get_ano();
-    int get_turma();
+    Turma(std::string codigo_uc,std::string codigo_turma);
+    void show();
+    std::string get_codigo_uc();
+    std::string get_codigo_turma();
 };
 
 

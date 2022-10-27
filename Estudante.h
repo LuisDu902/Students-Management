@@ -5,21 +5,19 @@
 #ifndef PROJETO_AED_ESTUDANTE_H
 #define PROJETO_AED_ESTUDANTE_H
 #include <string>
-#include "Horario.h"
+#include "Turma.h"
 
 
 class Estudante {
     public:
-        Estudante(std::string nome, int numero, Horario &horario);
-        void set_horario(Horario &horario);
-        std::string get_nome();
-        int get_numero();
-        Horario* get_horario();
-
+        Estudante(std::string codigo, std::string nome);
+        void adicionar_turma(Turma turma);
+        std::string get_codigo();
+        void show();
     private:
         std::string nome;
-        int numero;
-        Horario* horario;
+        std::string codigo;
+        std::vector<Turma> turmas;
 };
 
 

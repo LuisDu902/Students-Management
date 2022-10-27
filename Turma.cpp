@@ -5,30 +5,13 @@
 #include "Turma.h"
 
 
-Turma::Turma(std::string codigo, Horario horario){
-    this->codigo = codigo;
-    this->horario = horario;
+Turma::Turma(std::string codigo_uc,std::string codigo_turma){
+    this->codigo_turma = codigo_turma;
+    this->codigo_uc = codigo_uc;
 }
 
-std::string Turma::getCodigo(){
-    return codigo;
+void Turma::show() {
+    std::cout << codigo_uc << " | " << codigo_turma << std::endl;
 }
-
-Horario Turma::getHorario(){
-    return horario;
-}
-
-void Turma::setCodigo(std::string codigo){
-    this->codigo = codigo;
-}
-
-void Turma::setHorario(Horario horario){
-    this->horario = horario;
-}
-
-int Turma::get_ano(){
-    return int(this->codigo[0]);
-}
-int Turma::get_turma(){
-    return (int(this->codigo[5])-48)*10 + int(this->codigo[6])-48;
-}
+std::string Turma::get_codigo_uc(){return codigo_uc;}
+std::string Turma::get_codigo_turma(){return codigo_turma;}
