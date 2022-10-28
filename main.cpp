@@ -7,27 +7,20 @@ std::vector<Aula*>  criacao_aulas(){
     getline(myFile,CurrentLine);
     std::vector<Aula*>  v_global;
     while(getline(myFile,CurrentLine)){
-        std::string x;
         std::istringstream iss(CurrentLine);
-        std::string codigo_class, codigo_uc, dia_semana,tipo;
+        std::string x,codigo_class, codigo_uc, dia_semana,tipo;
         double hora_inicio, duracao;
-        (getline(iss,x,',')) ;
-        codigo_class = x;
-        (getline(iss,x,',')) ;
-        codigo_uc = x;
-        (getline(iss,x,',')) ;
-        dia_semana = x;
+        (getline(iss,codigo_class,',')) ;
+        (getline(iss,codigo_uc,',')) ;
+        (getline(iss,dia_semana,',')) ;
         (getline(iss,x,',')) ;
         hora_inicio = stod(x);
-
         (getline(iss,x,',')) ;
         duracao = stod(x);
-        (getline(iss,x,',')) ;
-        tipo = x;
-        tipo.pop_back();
+        (getline(iss,tipo,',')) ;
+        if (tipo.back() == '\r') tipo.pop_back();
         Aula* ptr = new Aula(codigo_class,codigo_uc,dia_semana,hora_inicio,duracao,tipo);
         v_global.push_back(ptr);
-
     }
     return v_global;
 }
@@ -39,13 +32,11 @@ std::vector<Turma*>  criacao_turmas(std::vector<Aula*> vetor_aulas){
     getline(myFile,CurrentLine);
     std::vector<Turma*> v_global;
     while(getline(myFile,CurrentLine)){
-        std::string x, codigo_uc, codigo_turma;
+        std::string codigo_uc, codigo_turma;
         std::istringstream iss(CurrentLine);
-        (getline(iss,x,',')) ;
-        codigo_uc = x;
-        (getline(iss,x,',')) ;
-        codigo_turma = x;
-        codigo_turma.pop_back();
+        (getline(iss,codigo_uc,',')) ;
+        (getline(iss,codigo_turma,','));
+        if (codigo_turma.back() == '\r') codigo_turma.pop_back();
         Turma* ptr = new Turma(codigo_uc,codigo_turma);
         v_global.push_back(ptr);
     }
@@ -75,17 +66,13 @@ std::vector<Estudante*>  criacao_estudantes(std::vector<Turma *> turmas){
     Estudante* ultimo_estudante = new Estudante("0","0");
     bool first = true;
     while(getline(myFile,CurrentLine)){
-        std::string x, codigo,nome,codigo_uc,codigo_turma;
+        std::string codigo,nome,codigo_uc,codigo_turma;
         std::istringstream iss(CurrentLine);
-        (getline(iss,x,',')) ;
-        codigo = x;
-        (getline(iss,x,',')) ;
-        nome = x;
-        (getline(iss,x,',')) ;
-        codigo_uc = x;
-        (getline(iss,x,',')) ;
-        codigo_turma = x;
-        codigo_turma.pop_back();
+        (getline(iss,codigo,',')) ;
+        (getline(iss,nome,',')) ;
+        (getline(iss,codigo_uc,',')) ;
+        (getline(iss,codigo_turma,',')) ;
+        if (codigo_turma.back() == '\r') codigo_turma.pop_back();
         if (first) {
             first = false;
             Estudante* ptr = new Estudante(codigo,nome);
@@ -115,8 +102,7 @@ int main() {
         aula->show();
     }*/
     std::vector<Turma*>  vetor_turmas = criacao_turmas(vetor_aulas);
-
-
+    
     std::vector<Estudante*> vetor_estudantes = criacao_estudantes(vetor_turmas);
 
     vetor_turmas.at(56)->show_horario_turma();
