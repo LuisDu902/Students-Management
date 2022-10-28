@@ -3,7 +3,7 @@
 std::vector<Aula*>  criacao_aulas(){
     std::ifstream myFile;
     std::string CurrentLine;
-    myFile.open("CSV files/classes.csv");
+    myFile.open("../CSV files/classes.csv");
     getline(myFile,CurrentLine);
     std::vector<Aula*>  v_global;
     while(getline(myFile,CurrentLine)){
@@ -53,7 +53,6 @@ std::vector<Turma*>  criacao_turmas(std::vector<Aula*> vetor_aulas){
         Turma* turma = pesquisa_turma(v_global,aula->get_codigo_uc(),aula->get_codigo_class());
         turma->adicionar_aula(aula);
     }
-
     return v_global;
 }
 
@@ -117,19 +116,15 @@ int main() {
     }*/
     std::vector<Turma*>  vetor_turmas = criacao_turmas(vetor_aulas);
 
+
     std::vector<Estudante*> vetor_estudantes = criacao_estudantes(vetor_turmas);
 
-
-    /*for (auto estudante: vetor_estudantes){
-        estudante->show();
-    }*/
-
-    //vetor_turmas.at(155)->show_horario_turma();
+    vetor_turmas.at(56)->show_horario_turma();
 
     Estudante * es = vetor_estudantes.at(3);
     Turma* t = vetor_turmas.at(56);
 
-    t->show_horario_turma();
+    //t->show_horario_turma();
 
     return 0;
 }
