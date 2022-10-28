@@ -1,18 +1,11 @@
 
-#include <iostream>
-#include <fstream>
-#include "Aula.cpp"
-#include <istream>
-#include <sstream>
-#include <vector>
-#include "Turma.cpp"
-#include "Estudante.cpp"
-std::vector<Aula>  criacao_aulas(){
+#include "main.h"
+std::vector<Aula*>  criacao_aulas(){
     std::ifstream myFile;
     std::string CurrentLine;
-    myFile.open("/home/du/CLionProjects/Projeto_AED-master/classes.csv");
+    myFile.open("CSV files/classes.csv");
     getline(myFile,CurrentLine);
-    std::vector<Aula> v_global;
+    std::vector<Aula*>  v_global;
     while(getline(myFile,CurrentLine)){
         std::string x;
         std::istringstream iss(CurrentLine);
@@ -31,20 +24,20 @@ std::vector<Aula>  criacao_aulas(){
         duracao = stod(x);
         (getline(iss,x,',')) ;
         tipo = x;
-
-        Aula Aula1(codigo_class,codigo_uc,dia_semana,hora_inicio,duracao,tipo);
-        v_global.push_back(Aula1);
+        tipo.pop_back();
+        Aula* ptr = new Aula(codigo_class,codigo_uc,dia_semana,hora_inicio,duracao,tipo);
+        v_global.push_back(ptr);
 
     }
     return v_global;
 }
 
-std::vector<Turma>  criacao_turmas(){
+std::vector<Turma*>  criacao_turmas(std::vector<Aula*> vetor_aulas){
     std::ifstream myFile;
     std::string CurrentLine;
-    myFile.open("/home/du/CLionProjects/Projeto_AED-master/classes_per_uc.csv");
+    myFile.open("../CSV files/classes_per_uc.csv");
     getline(myFile,CurrentLine);
-    std::vector<Turma> v_global;
+    std::vector<Turma*> v_global;
     while(getline(myFile,CurrentLine)){
         std::string x, codigo_uc, codigo_turma;
         std::istringstream iss(CurrentLine);
@@ -52,30 +45,35 @@ std::vector<Turma>  criacao_turmas(){
         codigo_uc = x;
         (getline(iss,x,',')) ;
         codigo_turma = x;
-
-        Turma Turma1(codigo_uc,codigo_turma);
-        v_global.push_back(Turma1);
-
+        codigo_turma.pop_back();
+        Turma* ptr = new Turma(codigo_uc,codigo_turma);
+        v_global.push_back(ptr);
     }
+    for (Aula* aula : vetor_aulas){
+        Turma* turma = pesquisa_turma(v_global,aula->get_codigo_uc(),aula->get_codigo_class());
+        turma->adicionar_aula(aula);
+    }
+
     return v_global;
 }
 
-Turma pesquisa_turma(std::vector<Turma> turmas, std::string codigo_uc, std::string codigo_turma){
-    for (auto turma: turmas){
-        if (turma.get_codigo_turma() == codigo_turma && turma.get_codigo_uc() == codigo_uc){
+Turma* pesquisa_turma( std::vector<Turma*> turmas, std::string codigo_uc, std::string codigo_turma){
+    for (auto turma : turmas){
+        if (turma->get_codigo_turma() == codigo_turma && turma->get_codigo_uc() == codigo_uc){
             return turma;
         }
     }
 
 }
+//std::set<Estudante> estudantes
 
-std::vector<Estudante>  criacao_estudantes(std::vector<Turma> turmas){
+std::vector<Estudante*>  criacao_estudantes(std::vector<Turma *> turmas){
     std::ifstream myFile;
     std::string CurrentLine;
-    myFile.open("/home/du/CLionProjects/Projeto_AED-master/students_classes.csv");
+    myFile.open("../CSV files/students_classes.csv");
     getline(myFile,CurrentLine);
-    std::vector<Estudante> v_global;
-    Estudante ultimo_estudante("0","0");
+    std::vector<Estudante*> v_global;
+    Estudante* ultimo_estudante = new Estudante("0","0");
     bool first = true;
     while(getline(myFile,CurrentLine)){
         std::string x, codigo,nome,codigo_uc,codigo_turma;
@@ -88,42 +86,50 @@ std::vector<Estudante>  criacao_estudantes(std::vector<Turma> turmas){
         codigo_uc = x;
         (getline(iss,x,',')) ;
         codigo_turma = x;
+        codigo_turma.pop_back();
         if (first) {
             first = false;
-            Estudante Estudante1(codigo,nome);
-            Turma turma1 = pesquisa_turma(turmas, codigo_uc,codigo_turma);
-            Estudante1.adicionar_turma(turma1);
-            ultimo_estudante = Estudante1;
-            continue;
+            Estudante* ptr = new Estudante(codigo,nome);
+            Turma * ptr_turma = pesquisa_turma(turmas, codigo_uc,codigo_turma);
+            ptr->adicionar_turma(ptr_turma);
+            ultimo_estudante = ptr;
         }
-        else if (codigo == ultimo_estudante.get_codigo()){
-            Turma turma1 = pesquisa_turma(turmas, codigo_uc,codigo_turma);
-            ultimo_estudante.adicionar_turma(turma1);
-
+        else if (codigo == ultimo_estudante->get_codigo()){
+            Turma * ptr_turma = pesquisa_turma(turmas, codigo_uc,codigo_turma);
+            ultimo_estudante->adicionar_turma(ptr_turma);
         }
         else{
             v_global.push_back(ultimo_estudante);
-            Estudante Estudante1(codigo,nome);
-            Turma turma1 = pesquisa_turma(turmas, codigo_uc,codigo_turma);
-            Estudante1.adicionar_turma(turma1);
-            ultimo_estudante = Estudante1;
+            Estudante* ptr = new Estudante(codigo,nome);
+            Turma * ptr_turma = pesquisa_turma(turmas, codigo_uc,codigo_turma);
+            ptr->adicionar_turma(ptr_turma);
+            ultimo_estudante = ptr;
         }
 
     }
     return v_global;
 }
+
 int main() {
-    std::vector<Aula>  vetor_aulas = criacao_aulas();
+    std::vector<Aula*>  vetor_aulas =  criacao_aulas();
     /*for (auto aula: vetor_aulas){
-        aula.show();
+        aula->show();
     }*/
-    std::vector<Turma>  vetor_turmas = criacao_turmas();
-    /*for (auto turma: vetor_turmas){
-        turma.show();
+    std::vector<Turma*>  vetor_turmas = criacao_turmas(vetor_aulas);
+
+    std::vector<Estudante*> vetor_estudantes = criacao_estudantes(vetor_turmas);
+
+
+    /*for (auto estudante: vetor_estudantes){
+        estudante->show();
     }*/
-    std::vector<Estudante>  vetor_estudantes = criacao_estudantes(vetor_turmas);
-    for (auto estudante: vetor_estudantes){
-        estudante.show();
-    }
+
+    //vetor_turmas.at(155)->show_horario_turma();
+
+    Estudante * es = vetor_estudantes.at(3);
+    Turma* t = vetor_turmas.at(56);
+
+    t->show_horario_turma();
+
     return 0;
 }
