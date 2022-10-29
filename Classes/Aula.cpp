@@ -3,8 +3,10 @@
 //
 
 #include "Aula.h"
-Aula::Aula(std::string codigo_class, std::string codigo_uc,std::string dia_semana,double hora_inicio,double duracao,std::string tipo){
-    this->codigo_class = codigo_class;
+
+//construtor
+Aula::Aula(std::string codigo_turma, std::string codigo_uc,std::string dia_semana,double hora_inicio,double duracao,std::string tipo){
+    this->codigo_turma = codigo_turma;
     this->codigo_uc = codigo_uc;
     this->dia_semana = dia_semana;
     this->hora_inicio = hora_inicio;
@@ -12,18 +14,15 @@ Aula::Aula(std::string codigo_class, std::string codigo_uc,std::string dia_seman
     this->tipo = tipo;
 }
 
-void Aula::show() {
-    std::cout << codigo_class << " | " << codigo_uc << " | " << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
-}
-void Aula::show_horario_turma() {
-    std::cout << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
-}
-double Aula::get_hora_inicio() {
-    return hora_inicio;
-}
+//getters
+std::string Aula::get_codigo_turma() const {return codigo_turma;}
+std::string Aula::get_codigo_uc() const {return codigo_uc;}
+std::string Aula::get_dia_semana() const { return dia_semana; }
+double Aula::get_hora_inicio() const {return hora_inicio;}
+double Aula::get_duracao() const {return duracao;}
+std::string Aula::get_tipo() const {return tipo;}
 
-std::string Aula::get_codigo_class(){return codigo_class;}
-std::string Aula::get_codigo_uc(){return codigo_uc;}
+//compare
 
 bool Aula::APtrComp::operator()(const Aula* lhs, const Aula* rhs) const  {
     std::map<std::string,int> days = {
@@ -32,9 +31,18 @@ bool Aula::APtrComp::operator()(const Aula* lhs, const Aula* rhs) const  {
             std::pair<std::string,int> ("Wednesday",3),
             std::pair<std::string,int> ("Thursday",4),
             std::pair<std::string,int> ("Friday",5),
-                    };
+    };
     if (lhs->dia_semana != rhs->dia_semana){
         return days[lhs->dia_semana] < days[rhs->dia_semana];
     }
     return lhs->hora_inicio < rhs->hora_inicio;
+}
+
+//show
+void Aula::show() {
+    std::cout << codigo_turma << " | " << codigo_uc << " | " << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
+}
+
+void Aula::show_horario_turma() {
+    std::cout << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
 }

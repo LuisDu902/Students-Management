@@ -14,10 +14,10 @@
 #include "Classes/Turma.h"
 #include "Classes/Estudante.h"
 
-
-std::vector<Aula*>  criacao_aulas();
-std::vector<Turma*>  criacao_turmas(std::vector<Aula*> vetor_aulas);
 Turma* pesquisa_turma( std::vector<Turma*> turmas, std::string codigo_uc, std::string codigo_turma);
-std::vector<Estudante*>  criacao_estudantes(std::vector<Turma *> turmas);
+std::vector<Aula*> criacao_aulas();
+std::vector<Turma*> criacao_turmas(std::vector<Aula*> vetor_aulas);
+std::set<Estudante*,Estudante::cmp>  criacao_estudantes(std::vector<Turma *> turmas);
+
 
 #endif //PROJ_MAIN_H

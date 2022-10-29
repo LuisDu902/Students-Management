@@ -10,16 +10,28 @@
 
 class Estudante {
     public:
+        //construtor
         Estudante(std::string codigo, std::string nome);
+
+        //getters
+        std::string get_nome() const;
+        std::string get_codigo() const;
+        std::vector<Turma *> get_turmas() const;
+
+        //operators
         void adicionar_turma(Turma* turma);
         void remover_da_turma(Turma* turma);
-        bool compativel();
+
+        //bool compativel();
         std::set<Aula*,Aula::APtrComp> horario();
 
+        //compare
+        struct cmp{bool operator()(const Estudante* lhs, const Estudante* rhs) const;};
+
+        //show
         void show_horario();
-        std::string get_codigo();
-        void show();
-        std::vector<Turma *> get_turmas() const;
+        void show_turmas();
+
     private:
         std::string nome;
         std::string codigo;

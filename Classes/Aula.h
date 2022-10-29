@@ -9,18 +9,26 @@
 #include <map>
 class Aula {
 public:
-    Aula(std::string codigo_class, std::string codigo_uc,std::string dia_semana,double hora_inicio,double duracao,std::string tipo);
-    void show();
-    struct APtrComp
-    {
-        bool operator()(const Aula* lhs, const Aula* rhs) const;
-    };
-    double get_hora_inicio();
-    std::string get_codigo_class();
-    std::string get_codigo_uc();
+    //construtor
+    Aula(std::string codigo_turma, std::string codigo_uc,std::string dia_semana,double hora_inicio,double duracao,std::string tipo);
+
+    //getters
+    std::string get_codigo_turma() const;
+    std::string get_codigo_uc() const;
+    std::string get_dia_semana() const;
+    double get_hora_inicio() const;
+    double get_duracao() const;
+    std::string get_tipo() const;
+
+    //compare
+    struct APtrComp{bool operator()(const Aula* lhs, const Aula* rhs) const;};
+
+    //show
     void show_horario_turma();
+    void show();
+
 private:
-    std::string codigo_class;
+    std::string codigo_turma;
     std::string codigo_uc;
     std::string dia_semana;
     double hora_inicio;
