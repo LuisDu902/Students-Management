@@ -5,8 +5,8 @@
 #ifndef TRABALHO1_TURMA_H
 #define TRABALHO1_TURMA_H
 
-#include "../../../../../usr/include/c++/11/string"
-#include "../../../../../usr/include/c++/11/vector"
+#include <string>
+#include <vector>
 #include "Aula.h"
 
 class Turma {
@@ -26,6 +26,7 @@ public:
     void adicionar_aula(Aula* aula);
     void show_horario_turma();
     void show();
+    std::vector<Aula*> get_aulas() const;
     std::string get_codigo_uc() const;
     std::string get_codigo_turma() const;
     int get_capacidade_atual();

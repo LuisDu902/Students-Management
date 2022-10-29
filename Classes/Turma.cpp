@@ -25,7 +25,7 @@ void Turma::sub_capacidade() {
 }
 std::string Turma::get_codigo_uc() const {return codigo_uc;}
 std::string Turma::get_codigo_turma() const {return codigo_turma;}
-
+std::vector<Aula*> Turma::get_aulas() const{return aulas;}
 void Turma::adicionar_aula(Aula* aula){
     aulas.push_back(aula);
 }

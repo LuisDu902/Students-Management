@@ -102,15 +102,14 @@ int main() {
         aula->show();
     }*/
     std::vector<Turma*>  vetor_turmas = criacao_turmas(vetor_aulas);
-    
-    std::vector<Estudante*> vetor_estudantes = criacao_estudantes(vetor_turmas);
 
-    vetor_turmas.at(56)->show_horario_turma();
+    std::vector<Estudante*> vetor_estudantes = criacao_estudantes(vetor_turmas);
 
     Estudante * es = vetor_estudantes.at(3);
     Turma* t = vetor_turmas.at(56);
 
-    //t->show_horario_turma();
+    std::set<Aula*,Aula::APtrComp> a = es->horario();
+    es->show_horario();
 
     return 0;
 }

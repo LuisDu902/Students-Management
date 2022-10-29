@@ -24,3 +24,17 @@ double Aula::get_hora_inicio() {
 
 std::string Aula::get_codigo_class(){return codigo_class;}
 std::string Aula::get_codigo_uc(){return codigo_uc;}
+
+bool Aula::APtrComp::operator()(const Aula* lhs, const Aula* rhs) const  {
+    std::map<std::string,int> days = {
+            std::pair<std::string,int> ("Monday",1),
+            std::pair<std::string,int> ("Tuesday",2),
+            std::pair<std::string,int> ("Wednesday",3),
+            std::pair<std::string,int> ("Thursday",4),
+            std::pair<std::string,int> ("Friday",5),
+                    };
+    if (lhs->dia_semana != rhs->dia_semana){
+        return days[lhs->dia_semana] < days[rhs->dia_semana];
+    }
+    return lhs->hora_inicio < rhs->hora_inicio;
+}

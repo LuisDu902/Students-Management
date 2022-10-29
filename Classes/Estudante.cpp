@@ -3,7 +3,7 @@
 //
 
 #include "Estudante.h"
-
+#include "Aula.h"
 Estudante::Estudante(std::string codigo, std::string nome) {
     this->codigo = codigo;
     this-> nome = nome;
@@ -41,3 +41,23 @@ void Estudante::remover_da_turma(Turma* turma){
     }
 }
 
+std::set<Aula*,Aula::APtrComp> Estudante::horario(){
+    std::set<Aula*,Aula::APtrComp> a;
+    for (auto turma: turmas){
+        for (auto aula : turma->get_aulas()){
+            a.insert(aula);
+        }
+    }
+    return a;
+}
+
+std::vector<Turma *> Estudante::get_turmas() const{
+    return turmas;
+}
+
+void Estudante::show_horario(){
+    std::set<Aula*,Aula::APtrComp> horario = Estudante::horario();
+    for (auto x: horario){
+        x->show_horario_turma();
+    }
+}
