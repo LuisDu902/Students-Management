@@ -127,14 +127,12 @@ int main() {
     }*/
 
 
-
-
     Estudante * es = *estudantes.begin();
     Turma* t = turmas.at(56);
     for (auto it = estudantes.begin(); it!= estudantes.end(); it++){
         (*it)->show_turmas();
     }
-   /* std::set<Aula*,Aula::APtrComp> a = es->horario();
+   /* std::set<Aula*,Aula::cmp_dia_semana> a = es->horario();
     es->show_horario();
 */
     return 0;

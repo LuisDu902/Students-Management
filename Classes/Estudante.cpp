@@ -39,8 +39,8 @@ void Estudante::remover_da_turma(Turma* turma){
 }
 
 
-std::set<Aula*,Aula::APtrComp> Estudante::horario(){
-    std::set<Aula*,Aula::APtrComp> a;
+std::set<Aula*,Aula::cmp_dia_semana> Estudante::horario(){
+    std::set<Aula*,Aula::cmp_dia_semana> a;
     for (auto turma: turmas){
         for (auto aula : turma->get_aulas()){
             a.insert(aula);
@@ -50,14 +50,12 @@ std::set<Aula*,Aula::APtrComp> Estudante::horario(){
 }
 
 //compare
-bool Estudante::cmp::operator()(const Estudante* lhs, const Estudante* rhs) const  {
-
-    return lhs->nome < rhs->nome;
-}
+bool Estudante::cmp_nome::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->nome < rhs->nome;}
+bool Estudante::cmp_codigo::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->codigo < rhs->codigo;}
 
 //show
 void Estudante::show_horario(){
-    std::set<Aula*,Aula::APtrComp> horario = Estudante::horario();
+    std::set<Aula*,Aula::cmp_dia_semana> horario = Estudante::horario();
     for (auto x: horario){
         x->show_horario_turma();
     }

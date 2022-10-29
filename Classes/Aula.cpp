@@ -24,7 +24,7 @@ std::string Aula::get_tipo() const {return tipo;}
 
 //compare
 
-bool Aula::APtrComp::operator()(const Aula* lhs, const Aula* rhs) const  {
+bool Aula::cmp_dia_semana::operator()(const Aula* lhs, const Aula* rhs) const  {
     std::map<std::string,int> days = {
             std::pair<std::string,int> ("Monday",1),
             std::pair<std::string,int> ("Tuesday",2),
@@ -32,6 +32,21 @@ bool Aula::APtrComp::operator()(const Aula* lhs, const Aula* rhs) const  {
             std::pair<std::string,int> ("Thursday",4),
             std::pair<std::string,int> ("Friday",5),
     };
+    if (lhs->dia_semana != rhs->dia_semana){
+        return days[lhs->dia_semana] < days[rhs->dia_semana];
+    }
+    return lhs->hora_inicio < rhs->hora_inicio;
+}
+
+bool Aula::cmp_tipo::operator()(const Aula* lhs, const Aula* rhs) const  {
+    std::map<std::string,int> days = {
+            std::pair<std::string,int> ("Monday",1),
+            std::pair<std::string,int> ("Tuesday",2),
+            std::pair<std::string,int> ("Wednesday",3),
+            std::pair<std::string,int> ("Thursday",4),
+            std::pair<std::string,int> ("Friday",5),
+    };
+    if (lhs->tipo != rhs->tipo) return lhs->tipo < rhs->tipo;
     if (lhs->dia_semana != rhs->dia_semana){
         return days[lhs->dia_semana] < days[rhs->dia_semana];
     }

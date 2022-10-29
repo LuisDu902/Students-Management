@@ -23,11 +23,11 @@ class Estudante {
         void remover_da_turma(Turma* turma);
 
         //bool compativel();
-        std::set<Aula*,Aula::APtrComp> horario();
+        std::set<Aula*,Aula::cmp_dia_semana> horario();
 
         //compare
-        struct cmp{bool operator()(const Estudante* lhs, const Estudante* rhs) const;};
-
+        struct cmp_nome{bool operator()(const Estudante* lhs, const Estudante* rhs) const;};
+        struct cmp_codigo{bool operator()(const Estudante* lhs, const Estudante* rhs) const;};
         //show
         void show_horario();
         void show_turmas();

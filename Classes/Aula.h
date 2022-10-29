@@ -21,8 +21,8 @@ public:
     std::string get_tipo() const;
 
     //compare
-    struct APtrComp{bool operator()(const Aula* lhs, const Aula* rhs) const;};
-
+    struct cmp_dia_semana{bool operator()(const Aula* lhs, const Aula* rhs) const;};
+    struct cmp_tipo{bool operator()(const Aula* lhs, const Aula* rhs) const;};
     //show
     void show_horario_turma();
     void show();
