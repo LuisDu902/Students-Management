@@ -1,3 +1,1 @@
-"C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\PROJ.dir/objects.a
-C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\ar.exe qc CMakeFiles\PROJ.dir/objects.a @CMakeFiles\PROJ.dir\objects1.rsp
-C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\PROJ.dir/objects.a -Wl,--no-whole-archive -o PROJ.exe -Wl,--out-implib,libPROJ.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PROJ.dir\linklibs.rsp
+/usr/bin/c++ -g CMakeFiles/PROJ.dir/main.cpp.o CMakeFiles/PROJ.dir/Classes/Turma.cpp.o CMakeFiles/PROJ.dir/Classes/Estudante.cpp.o CMakeFiles/PROJ.dir/Classes/Aula.cpp.o CMakeFiles/PROJ.dir/Classes/Menu.cpp.o CMakeFiles/PROJ.dir/Classes/Gestao.cpp.o CMakeFiles/PROJ.dir/Classes/Pedido.cpp.o -o PROJ 

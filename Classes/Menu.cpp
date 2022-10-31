@@ -5,7 +5,7 @@
 #include "Menu.h"
 
 Menu::Menu(){
-    g = new Gestao();
+    g = new Gestao;
     std::cout << "Bem-vindo!" << '\n';
 }
 

@@ -20,10 +20,6 @@
 class Gestao {
 public:
     Gestao();
-    std::vector<Aula*> criacao_aulas();
-    std::vector<Turma*> criacao_turmas();
-    std::set<Estudante*,Turma::cmp_nome> criacao_estudantes();
-    std::vector<std::vector<Turma*>> criacao_uc();
 
     Turma* pesquisa_turma(std::string codigo_uc, std::string codigo_turma);
     std::vector<Turma*> pesquisa_uc(std::string codigo_uc);
@@ -41,6 +37,11 @@ public:
     std::list<Pedido*> get_pedidos_falhados() const;
 
 private:
+    void criacao_aulas();
+    void criacao_turmas();
+    void criacao_estudantes();
+    void criacao_uc();
+
     std::vector<Aula*> aulas;
     std::vector<Turma*> turmas;
     std::set<Estudante*,Turma::cmp_nome> estudantes;

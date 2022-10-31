@@ -1,7 +1,7 @@
 
 #include "main.h"
 #include "Classes/Menu.h"
-
+#include "Classes/Gestao.h"
 void show_uc(std::vector<Turma*> uc){
     std::set<Estudante*,Turma::cmp_nome> estudantes;
 
@@ -73,8 +73,9 @@ void show_estudantes_mais_que_n_ucs(int n,std::set<Estudante *, Turma::cmp_nome>
     }
 
 int main() {
-    Menu menu1;
-    menu1.init();
+
+    Menu* menu1 = new Menu();
+    menu1->init();
     //std::vector<Turma*> uc = pesquisa_uc("L.EIC001",ucs);
     //show_uc(uc);
     //int max = max_diferenca(uc);
