@@ -14,10 +14,8 @@
 #include "Classes/Turma.h"
 #include "Classes/Estudante.h"
 
-Turma* pesquisa_turma( std::vector<Turma*> turmas, std::string codigo_uc, std::string codigo_turma);
-std::vector<Aula*> criacao_aulas();
-std::vector<Turma*> criacao_turmas(std::vector<Aula*> vetor_aulas);
-std::set<Estudante*,Estudante::cmp>  criacao_estudantes(std::vector<Turma *> turmas);
 
-
+void show_uc(std::vector<Turma*> uc);
+void show_ano(std::string ano, std::set<Estudante *, Turma::cmp_nome> estudantes);
+void show_estudantes_mais_que_n_ucs(int n,std::set<Estudante *, Turma::cmp_nome> estudantes, std::string modo_de_ordenacao);
 #endif //PROJ_MAIN_H

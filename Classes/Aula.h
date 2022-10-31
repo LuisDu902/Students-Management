@@ -23,9 +23,11 @@ public:
     //compare
     struct cmp_dia_semana{bool operator()(const Aula* lhs, const Aula* rhs) const;};
     struct cmp_tipo{bool operator()(const Aula* lhs, const Aula* rhs) const;};
+    static bool cmp(Aula* aula, Aula* aula2);
     //show
     void show_horario_turma();
     void show();
+    bool overload(Aula* aula);
 
 private:
     std::string codigo_turma;

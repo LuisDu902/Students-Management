@@ -16,22 +16,14 @@ std::string Estudante::get_codigo() const {return codigo;}
 std::vector<Turma *> Estudante::get_turmas() const{return turmas;}
 
 //operators
-void Estudante::adicionar_turma(Turma* turma){
 
-    for (auto a: turmas){
-        if (a->get_codigo_uc() == turma->get_codigo_uc() && a->get_codigo_turma() == turma->get_codigo_turma()) {
-            return;
-        }
-    }
-    turma->set_capacidade(turma->get_capacidade_atual()+1);
-    turmas.push_back(turma);
-}
 
 void Estudante::remover_da_turma(Turma* turma){
 
     for (auto it = turmas.begin();it != turmas.end();it++){
         if ((*it)->get_codigo_turma() == turma->get_codigo_turma() && (*it)->get_codigo_uc() == turma->get_codigo_uc()){
             turmas.erase(it);
+            (*it)->remover_estudante(this);
             turma->set_capacidade(turma->get_capacidade_atual()-1);
             return;
         }
@@ -48,10 +40,34 @@ std::set<Aula*,Aula::cmp_dia_semana> Estudante::horario(){
     }
     return a;
 }
-
-//compare
-bool Estudante::cmp_nome::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->nome < rhs->nome;}
-bool Estudante::cmp_codigo::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->codigo < rhs->codigo;}
+bool Estudante::compativel(Turma* turma){
+    std::set<Aula*,Aula::cmp_dia_semana> h = horario();
+    for (auto aula_turma : turma->get_aulas()){
+        for (auto aula_estudante: h){
+            if (aula_turma->overload(aula_estudante)) return false;
+        }
+    }
+    return true;
+}
+void Estudante::adicionar_turma(Turma* turma){
+    if (!compativel(turma)) return;
+    for (auto a: turmas){
+        if (a->get_codigo_uc() == turma->get_codigo_uc() && a->get_codigo_turma() == turma->get_codigo_turma()) {
+            return;
+        }
+    }
+    turma->set_capacidade(turma->get_capacidade_atual()+1);
+    turma->adicionar_estudante(this);
+    turmas.push_back(turma);
+}
+void Estudante::alterar_turma(Turma* turma){
+    turmas.push_back(turma);
+    for (auto t=turmas.begin();t!=turmas.end();t++){
+        if ((*t)->get_codigo_uc() == turma->get_codigo_uc()){
+            turmas.erase(t);
+        }
+    }
+}
 
 //show
 void Estudante::show_horario(){

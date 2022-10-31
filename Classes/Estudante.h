@@ -7,7 +7,7 @@
 #include <string>
 #include <set>
 #include "Turma.h"
-
+class Turma;
 class Estudante {
     public:
         //construtor
@@ -21,13 +21,11 @@ class Estudante {
         //operators
         void adicionar_turma(Turma* turma);
         void remover_da_turma(Turma* turma);
+        void alterar_turma(Turma* turma);
 
-        //bool compativel();
+        bool compativel(Turma* turma);
         std::set<Aula*,Aula::cmp_dia_semana> horario();
 
-        //compare
-        struct cmp_nome{bool operator()(const Estudante* lhs, const Estudante* rhs) const;};
-        struct cmp_codigo{bool operator()(const Estudante* lhs, const Estudante* rhs) const;};
         //show
         void show_horario();
         void show_turmas();
@@ -35,7 +33,7 @@ class Estudante {
     private:
         std::string nome;
         std::string codigo;
-        std::vector<Turma *> turmas;
+        std::vector<Turma*> turmas;
 };
 
 

@@ -26,4 +26,4 @@ else(DOXYGEN_FOUND)
 endif(DOXYGEN_FOUND)
 
 
-add_executable(PROJ main.cpp Classes/Turma.cpp Classes/Estudante.cpp Classes/Aula.cpp)
+add_executable(PROJ main.cpp Classes/Turma.cpp Classes/Estudante.cpp Classes/Aula.cpp Classes/Menu.cpp Classes/Gestao.cpp Classes/Pedido.cpp)

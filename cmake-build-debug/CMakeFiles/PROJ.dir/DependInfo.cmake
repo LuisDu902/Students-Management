@@ -8,10 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto/Classes/Aula.cpp" "CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj.d"
-  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto/Classes/Estudante.cpp" "CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj.d"
-  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto/Classes/Turma.cpp" "CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj.d"
-  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto/main.cpp" "CMakeFiles/PROJ.dir/main.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/main.cpp.obj.d"
+  "C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/Classes/Aula.cpp" "CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj.d"
+  "C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/Classes/Estudante.cpp" "CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj.d"
+  "C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/Classes/Gestao.cpp" "CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj.d"
+  "C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/Classes/Menu.cpp" "CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj.d"
+  "C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/Classes/Pedido.cpp" "CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj.d"
+  "C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/Classes/Turma.cpp" "CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj.d"
+  "C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/main.cpp" "CMakeFiles/PROJ.dir/main.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.

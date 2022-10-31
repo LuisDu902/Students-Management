@@ -1,139 +1,141 @@
 
 #include "main.h"
-std::vector<Aula*>  criacao_aulas(){
+#include "Classes/Menu.h"
 
-    std::vector<Aula*> aulas;
-    std::string CurrentLine, x, codigo_turma, codigo_uc, dia_semana, tipo;
-    double hora_inicio, duracao;
-    std::ifstream myFile;
+void show_uc(std::vector<Turma*> uc){
+    std::set<Estudante*,Turma::cmp_nome> estudantes;
 
-    myFile.open("../CSV files/classes.csv");
-    getline(myFile,CurrentLine);
+    for (auto turma: uc){
+        for (auto es:turma->get_estudantes()) estudantes.insert(es);}
 
-    while(getline(myFile,CurrentLine)){
-
-        std::istringstream iss(CurrentLine);
-
-        getline(iss,codigo_turma,',');
-        getline(iss,codigo_uc,',');
-        getline(iss,dia_semana,',');
-        getline(iss,x,',');     hora_inicio = stod(x);
-        getline(iss,x,',');     duracao = stod(x);
-        getline(iss,tipo,',');  if (tipo.back() == '\r') tipo.pop_back();
-
-        Aula* ptr = new Aula(codigo_turma,codigo_uc,dia_semana,hora_inicio,duracao,tipo);
-        aulas.push_back(ptr);
-    }
-
-    return aulas;
-}
-
-std::vector<Turma*> criacao_turmas(std::vector<Aula*> vetor_aulas){
-
-    std::vector<Turma*> turmas;
-    std::string CurrentLine, codigo_uc, codigo_turma;
-    std::ifstream myFile;
-
-    myFile.open("../CSV files/classes_per_uc.csv");
-    getline(myFile,CurrentLine);
-
-    while(getline(myFile,CurrentLine)){
-
-        std::istringstream iss(CurrentLine);
-
-        getline(iss,codigo_uc,',');
-        getline(iss,codigo_turma,',');  if (codigo_turma.back() == '\r') codigo_turma.pop_back();
-
-        Turma* ptr = new Turma(codigo_uc,codigo_turma);
-        turmas.push_back(ptr);
-    }
-
-    for (Aula* aula : vetor_aulas){
-        Turma* turma = pesquisa_turma(turmas,aula->get_codigo_uc(),aula->get_codigo_turma());
-        turma->adicionar_aula(aula);
-    }
-
-    return turmas;
-}
-
-Turma* pesquisa_turma( std::vector<Turma*> turmas, std::string codigo_uc, std::string codigo_turma){
-
-    for (auto turma : turmas){
-        if (turma->get_codigo_turma() == codigo_turma && turma->get_codigo_uc() == codigo_uc){
-            return turma;
+    std::cout << estudantes.size();
+    for (auto x: estudantes){
+        std::cout << x->get_nome() << std::endl;
+}}
+void show_ano(std::string ano, std::set<Estudante *, Turma::cmp_nome> estudantes){
+    std::set<Estudante*,Turma::cmp_nome> es;
+    int count = 0;
+    for (Estudante* estudante: estudantes){
+        if (estudante->get_codigo().substr(0,4) == ano){
+            count++;
+            es.insert(estudante);
         }
     }
-
-}
-
-std::set<Estudante*,Estudante::cmp> criacao_estudantes(std::vector<Turma *> turmas){
-
-    std::set<Estudante*,Estudante::cmp> estudantes;
-    std::ifstream myFile;
-    std::string CurrentLine, codigo, nome, codigo_uc, codigo_turma;;
-
-    myFile.open("../CSV files/students_classes.csv");
-    getline(myFile,CurrentLine);
-
-    Estudante* estudante_atual = new Estudante("0","0");
-    bool first = true;
-
-    while(getline(myFile,CurrentLine)){
-
-        std::istringstream iss(CurrentLine);
-
-        getline(iss,codigo,',');
-        getline(iss,nome,',');
-        getline(iss,codigo_uc,',');
-        getline(iss,codigo_turma,',');  if (codigo_turma.back() == '\r') codigo_turma.pop_back();
-
-        if (first) {
-            first = false;
-
-            Estudante* estudante_novo = new Estudante(codigo,nome);
-            estudante_atual = estudante_novo;
-
-            Turma * turma = pesquisa_turma(turmas, codigo_uc,codigo_turma);
-            estudante_novo->adicionar_turma(turma);
-        }
-
-        else if (codigo == estudante_atual->get_codigo()){
-            Turma * turma = pesquisa_turma(turmas, codigo_uc,codigo_turma);
-            estudante_atual->adicionar_turma(turma);
-        }
-
-        else{
-            estudantes.insert(estudante_atual);
-
-            Estudante* estudante_novo = new Estudante(codigo,nome);
-            estudante_atual = estudante_novo;
-
-            Turma * turma = pesquisa_turma(turmas, codigo_uc, codigo_turma);
-            estudante_novo->adicionar_turma(turma);
-        }
-
+    for (auto estudante: es){
+        std::cout << estudante->get_nome() << std::endl;
     }
-    return estudantes;
+    std::cout << count;
 }
+void show_estudantes_mais_que_n_ucs(int n,std::set<Estudante *, Turma::cmp_nome> estudantes, std::string modo_de_ordenacao = "ordem alfabética"){
+    int count = 0;
+    if (modo_de_ordenacao == "numero de ucs") {
+        std::set<Estudante*, Turma::cmp_nr_uc> es;
+        for (Estudante* estudante: estudantes) {
+            if (estudante->get_turmas().size() >= n) {
+                count++;
+                es.insert(estudante);
+                std::cout << estudante->get_nome() << std::endl;
+            }
+        }
+        for (auto estudante: es) {
+            std::cout << estudante->get_nome() << std::endl;
+        }
+        std::cout << count;
+    }
+
+    else if (modo_de_ordenacao == "codigo") {
+        std::set<Estudante*, Turma::cmp_codigo> es1;
+        for (Estudante* estudante: estudantes) {
+            if (estudante->get_turmas().size() >= n) {
+                count++;
+                es1.insert(estudante);
+            }
+        }
+        for (auto estudante: es1) {
+            std::cout << estudante->get_nome() << std::endl;
+        }
+        std::cout << count;
+    }
+
+    else {
+        std::set<Estudante*, Turma::cmp_nome> es1;
+        for (Estudante* estudante: estudantes) {
+            if (estudante->get_turmas().size() >= n) {
+                count++;
+                es1.insert(estudante);
+            }
+        }
+        for (auto estudante: es1) {
+            std::cout << estudante->get_nome() << std::endl;
+        }
+        std::cout << count;
+    }
+    }
 
 int main() {
-    std::vector<Aula*>  aulas =  criacao_aulas();
-    std::vector<Turma*>  turmas = criacao_turmas(aulas);
-    std::set<Estudante*,Estudante::cmp>  estudantes = criacao_estudantes(turmas);
-
+    Menu menu1;
+    menu1.init();
+    //std::vector<Turma*> uc = pesquisa_uc("L.EIC001",ucs);
+    //show_uc(uc);
+    //int max = max_diferenca(uc);
+    //for (auto t: turmas) t->show();
+    //for (auto t: uc){
+    //    t->show();
+    //}
+    //for (auto t: ucs){std::cout << t.back()->get_codigo_uc() << " : " << max_diferenca(t) << std::endl;}
 
     /*for (auto aula: vetor_aulas){
         aula->show();
     }*/
 
+    //Estudante * es = *estudantes.begin();
+    //es->show_turmas();
+    //es->show_horario();
+    //std::cout << "\n..........\n";
+    //es->get_turmas().front()->show_horario_turma();
+    //Turma* t = turmas.at(18);
+    //Turma* t1 = turmas.at(5);
+    //Turma* t2 = turmas.at(76); //dá para alterar turmas
+    //std::cout << pode_alterar_turma(es,t2,ucs);
 
-    Estudante * es = *estudantes.begin();
-    Turma* t = turmas.at(56);
-    for (auto it = estudantes.begin(); it!= estudantes.end(); it++){
+    /*for (auto it = estudantes.begin(); it!= estudantes.end(); it++){
         (*it)->show_turmas();
-    }
-   /* std::set<Aula*,Aula::cmp_dia_semana> a = es->horario();
-    es->show_horario();
-*/
+    }*/
+    //t1->show_horario_turma();
+    //t->show_horario_turma();
+    //t2->show_horario_turma();
+    //es->show_horario();
+    //std::cout << es->compativel(t); // é compatível
+    //std::cout << es->compativel(t1); //não é compatível
+    //std::cout << max_diferenca(pesquisa_uc(t->get_codigo_uc(),ucs));
+    //std::cout << pode_adicionar_turma(es,t,ucs);
+    //t->show();
+    //t->show_estudantes();
+    //std::set<Aula*,Aula::cmp_dia_semana> a = es->horario();
+    //es->show_horario();
+    //es->adicionar_turma(t);
+    //t->show_horario_turma();
+    /*t->show_estudantes();
+    es->remover_da_turma(t);
+    t->show();
+    t->show_estudantes();*/
+    /*for (auto x: turmas){
+        x->show();
+    }*/
+    //std::cout << ".......\n";
+    //es->show_horario();
+    //es->adicionar_turma(t1);
+    //std::cout << ".......\n";
+    //es->show_horario();
+    //Turma* turma1 = turmas.at(120);
+    //std::cout<< turma1->get_capacidade_atual() << std::endl;;
+    //std::cout << es->compativel(turma1) << std::endl;
+    //std::cout << es->compativel(t) << std::endl;
+    //show_uc("L.EIC001",turmas);
+    //show_ano("2019",estudantes);
+
+    //show_estudantes_mais_que_n_ucs(6,estudantes, "numero de ucs");
+    //show_estudantes_mais_que_n_ucs(6,estudantes, "codigo");
+    //show_estudantes_mais_que_n_ucs(6,estudantes);
     return 0;
 }

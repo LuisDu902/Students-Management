@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto"
+CMAKE_SOURCE_DIR = C:\AED\projeto\Projeto_AED-set_estudantes-em-Turma
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto\cmake-build-debug"
+CMAKE_BINARY_DIR = C:\AED\projeto\Projeto_AED-set_estudantes-em-Turma\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto\cmake-b
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto\cmake-build-debug\CMakeFiles" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto\cmake-build-debug\\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\AED\projeto\Projeto_AED-set_estudantes-em-Turma\cmake-build-debug\CMakeFiles C:\AED\projeto\Projeto_AED-set_estudantes-em-Turma\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\AED\projeto\Projeto_AED-set_estudantes-em-Turma\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -189,6 +189,78 @@ Classes/Estudante.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Estudante.cpp.s
 .PHONY : Classes/Estudante.cpp.s
 
+Classes/Gestao.obj: Classes/Gestao.cpp.obj
+.PHONY : Classes/Gestao.obj
+
+# target to build an object file
+Classes/Gestao.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj
+.PHONY : Classes/Gestao.cpp.obj
+
+Classes/Gestao.i: Classes/Gestao.cpp.i
+.PHONY : Classes/Gestao.i
+
+# target to preprocess a source file
+Classes/Gestao.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Gestao.cpp.i
+.PHONY : Classes/Gestao.cpp.i
+
+Classes/Gestao.s: Classes/Gestao.cpp.s
+.PHONY : Classes/Gestao.s
+
+# target to generate assembly for a file
+Classes/Gestao.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Gestao.cpp.s
+.PHONY : Classes/Gestao.cpp.s
+
+Classes/Menu.obj: Classes/Menu.cpp.obj
+.PHONY : Classes/Menu.obj
+
+# target to build an object file
+Classes/Menu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj
+.PHONY : Classes/Menu.cpp.obj
+
+Classes/Menu.i: Classes/Menu.cpp.i
+.PHONY : Classes/Menu.i
+
+# target to preprocess a source file
+Classes/Menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Menu.cpp.i
+.PHONY : Classes/Menu.cpp.i
+
+Classes/Menu.s: Classes/Menu.cpp.s
+.PHONY : Classes/Menu.s
+
+# target to generate assembly for a file
+Classes/Menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Menu.cpp.s
+.PHONY : Classes/Menu.cpp.s
+
+Classes/Pedido.obj: Classes/Pedido.cpp.obj
+.PHONY : Classes/Pedido.obj
+
+# target to build an object file
+Classes/Pedido.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj
+.PHONY : Classes/Pedido.cpp.obj
+
+Classes/Pedido.i: Classes/Pedido.cpp.i
+.PHONY : Classes/Pedido.i
+
+# target to preprocess a source file
+Classes/Pedido.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Pedido.cpp.i
+.PHONY : Classes/Pedido.cpp.i
+
+Classes/Pedido.s: Classes/Pedido.cpp.s
+.PHONY : Classes/Pedido.s
+
+# target to generate assembly for a file
+Classes/Pedido.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/Classes/Pedido.cpp.s
+.PHONY : Classes/Pedido.cpp.s
+
 Classes/Turma.obj: Classes/Turma.cpp.obj
 .PHONY : Classes/Turma.obj
 
@@ -253,6 +325,15 @@ help:
 	@echo ... Classes/Estudante.obj
 	@echo ... Classes/Estudante.i
 	@echo ... Classes/Estudante.s
+	@echo ... Classes/Gestao.obj
+	@echo ... Classes/Gestao.i
+	@echo ... Classes/Gestao.s
+	@echo ... Classes/Menu.obj
+	@echo ... Classes/Menu.i
+	@echo ... Classes/Menu.s
+	@echo ... Classes/Pedido.obj
+	@echo ... Classes/Pedido.i
+	@echo ... Classes/Pedido.s
 	@echo ... Classes/Turma.obj
 	@echo ... Classes/Turma.i
 	@echo ... Classes/Turma.s

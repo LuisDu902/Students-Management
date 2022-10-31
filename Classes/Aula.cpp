@@ -52,7 +52,19 @@ bool Aula::cmp_tipo::operator()(const Aula* lhs, const Aula* rhs) const  {
     }
     return lhs->hora_inicio < rhs->hora_inicio;
 }
-
+bool Aula::cmp(Aula* lhs, Aula* rhs){
+    std::map<std::string,int> days = {
+            std::pair<std::string,int> ("Monday",1),
+            std::pair<std::string,int> ("Tuesday",2),
+            std::pair<std::string,int> ("Wednesday",3),
+            std::pair<std::string,int> ("Thursday",4),
+            std::pair<std::string,int> ("Friday",5),
+    };
+    if (lhs->dia_semana != rhs->dia_semana){
+        return days[lhs->dia_semana] < days[rhs->dia_semana];
+    }
+    return lhs->hora_inicio < rhs->hora_inicio;
+}
 //show
 void Aula::show() {
     std::cout << codigo_turma << " | " << codigo_uc << " | " << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
@@ -60,4 +72,15 @@ void Aula::show() {
 
 void Aula::show_horario_turma() {
     std::cout << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
+}
+bool Aula::overload(Aula* aula){
+    if (dia_semana == aula->dia_semana){
+        if (hora_inicio < aula->hora_inicio){
+            if (duracao+hora_inicio > aula->hora_inicio) return true;
+        }
+        else if (aula->hora_inicio < hora_inicio){
+            if (aula->duracao+aula->hora_inicio > hora_inicio) return true;
+        }
+    }
+    return false;
 }
