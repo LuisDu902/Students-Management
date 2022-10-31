@@ -1,8 +1,8 @@
 CMakeFiles/PROJ.dir/Classes/Pedido.cpp.o: \
- /home/du/CLionProjects/Projeto_AED-master/Classes/Pedido.cpp \
+ /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Pedido.cpp \
  /usr/include/stdc-predef.h \
- /home/du/CLionProjects/Projeto_AED-master/Classes/Pedido.h \
- /home/du/CLionProjects/Projeto_AED-master/Classes/Estudante.h \
+ /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Pedido.h \
+ /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Estudante.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -134,7 +134,7 @@ CMakeFiles/PROJ.dir/Classes/Pedido.cpp.o: \
  /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
  /usr/include/c++/11/bits/erase_if.h \
- /home/du/CLionProjects/Projeto_AED-master/Classes/Turma.h \
+ /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Turma.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
@@ -145,7 +145,7 @@ CMakeFiles/PROJ.dir/Classes/Pedido.cpp.o: \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/du/CLionProjects/Projeto_AED-master/Classes/Aula.h \
+ /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/exception \
  /usr/include/c++/11/bits/exception_ptr.h \

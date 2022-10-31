@@ -22,11 +22,13 @@ class Estudante {
         void adicionar_turma(Turma* turma);
         void remover_da_turma(Turma* turma);
         void alterar_turma(Turma* turma);
+        void trocar_turma_com_estudante(Turma* turma, Estudante* estudante_troca);
 
         bool compativel(Turma* turma);
-        std::set<Aula*,Aula::cmp_dia_semana> horario();
+        std::vector<Aula*>  horario();
 
         //show
+        void show();
         void show_horario();
         void show_turmas();
 
@@ -35,6 +37,5 @@ class Estudante {
         std::string codigo;
         std::vector<Turma*> turmas;
 };
-
 
 #endif //PROJETO_AED_ESTUDANTE_H

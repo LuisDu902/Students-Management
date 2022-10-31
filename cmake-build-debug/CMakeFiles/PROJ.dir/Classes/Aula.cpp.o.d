@@ -1,7 +1,7 @@
 CMakeFiles/PROJ.dir/Classes/Aula.cpp.o: \
- /home/du/CLionProjects/Projeto_AED-master/Classes/Aula.cpp \
+ /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.cpp \
  /usr/include/stdc-predef.h \
- /home/du/CLionProjects/Projeto_AED-master/Classes/Aula.h \
+ /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

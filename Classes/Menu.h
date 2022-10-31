@@ -17,6 +17,7 @@ public:
     void show_uc(std::vector<Turma*> uc);
     void show_ano(std::string ano, std::set<Estudante *, Turma::cmp_nome> estudantes);
     void show_estudantes_mais_que_n_ucs(int n,std::set<Estudante *, Turma::cmp_nome> estudantes, std::string modo_de_ordenacao);
+    void show_pedidos();
 private:
     Gestao* g;
     void ver_estatisticas();

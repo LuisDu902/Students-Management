@@ -5,6 +5,7 @@
 #ifndef PROJ_GESTAO_H
 #define PROJ_GESTAO_H
 
+#include <set>
 #include <queue>
 #include <list>
 #include <iostream>
@@ -38,6 +39,14 @@ public:
     std::list<Pedido*> get_pedidos_falhados() const;
 
     void show_pedidos();
+    void set_pedidos(std::queue<Pedido*> pedidos);
+
+//gestão de pedidos
+    void gerir_pedidos();
+    void pedido_adicionar(Pedido*);
+    void pedido_remover(Pedido*);
+    void pedido_trocar(Pedido*);
+    void pedido_alterar(Pedido*);
 
 private:
     void criacao_aulas();

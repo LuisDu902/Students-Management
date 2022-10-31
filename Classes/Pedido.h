@@ -10,7 +10,12 @@
 class Pedido {
 public:
 // construtores
-    Pedido(Turma* turma, Estudante* estudante1, Estudante* estudante2 = nullptr);
+    Pedido(std::string tipo, Turma* turma, Estudante* estudante1, Estudante* estudante2 = nullptr);
+
+    std::string get_tipo();
+    Estudante* get_estudante1();
+    Estudante* get_estudante2();
+    Turma* get_turma();
 
 private:
     Estudante* estudante1;

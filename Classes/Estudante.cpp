@@ -31,17 +31,17 @@ void Estudante::remover_da_turma(Turma* turma){
 }
 
 
-std::set<Aula*,Aula::cmp_dia_semana> Estudante::horario(){
-    std::set<Aula*,Aula::cmp_dia_semana> a;
+std::vector<Aula*> Estudante::horario(){
+    std::vector<Aula*> a;
     for (auto turma: turmas){
         for (auto aula : turma->get_aulas()){
-            a.insert(aula);
+            a.push_back(aula);
         }
     }
     return a;
 }
 bool Estudante::compativel(Turma* turma){
-    std::set<Aula*,Aula::cmp_dia_semana> h = horario();
+    std::vector<Aula*> h = horario();
     for (auto aula_turma : turma->get_aulas()){
         for (auto aula_estudante: h){
             if (aula_turma->overload(aula_estudante)) return false;
@@ -69,9 +69,19 @@ void Estudante::alterar_turma(Turma* turma){
     }
 }
 
+
+void Estudante::trocar_turma_com_estudante(Turma *turma, Estudante *estudante_troca) {
+
+}
+
+
 //show
+void Estudante::show(){
+    std::cout << nome << " - up" << codigo;
+}
+
 void Estudante::show_horario(){
-    std::set<Aula*,Aula::cmp_dia_semana> horario = Estudante::horario();
+    std::vector<Aula*> horario = Estudante::horario();
     for (auto x: horario){
         x->show_horario_turma();
     }

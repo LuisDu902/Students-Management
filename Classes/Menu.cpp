@@ -1,7 +1,5 @@
-//
-// Created by athos on 31/10/2022.
-//
 
+#include <climits>
 #include "Menu.h"
 
 Menu::Menu(){
@@ -40,7 +38,6 @@ void Menu::init() {
             }
         }
     }
-
 }
 
 void Menu::ver_estatisticas(){
@@ -50,34 +47,66 @@ void Menu::ver_estatisticas(){
                      "[1] Nº de estudantes numa turma\n"
                      "[2] Nº de estudantes numa UC\n"
                      "[3] Nº de estudantes num ano\n"
-                     "[4] Nª de estudantes com mais de n UC's\n"
-                     "[5] Nº de turmas por UC\n"
-                     "[6] Nº de pedidos efetuados\n"
-                     "[7] Voltar atrás\n";
+                     "[4] Nº de turmas numa UC\n"
+                     "[5] Nº de pedidos efetuados\n"
+                     "[6] Voltar atrás\n";
         std::cin >> input;
-        int numero;
         switch (input) {
             case 1: {
-                std::cout<< "Insira o número da turma:";
-
+                std::string cod_turma, cod_uc;
+                std::cout<< "Insira o código da turma:";
+                std::cin >> cod_turma;
+                std::cout<< "Insira o código da UC:";
+                std::cin >> cod_uc;
+                Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
+                std::cout<< "Estão inscritos " << turma->get_capacidade_atual() << " alunos nesta turma\n";
+                std::cout << "\n---------------------------------------------------\n";
                 break;
             }
             case 2: {
-                for (auto turma: g->get_turmas()) {
-                    turma->show();
+                std::string cod_uc;
+                std::cout<< "Insira o código da UC:";
+                std::cin >> cod_uc;
+                std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
+                int total_alunos = 0;
+                for (auto turma: uc){
+                    total_alunos += turma->get_capacidade_atual();
                 }
+                std::cout<< "Estão inscritos " << total_alunos << " alunos nesta UC\n";
+                std::cout << "\n---------------------------------------------------\n";
                 break;
             }
             case 3: {
-
+                std::string ano;
+                std::cout << "Insira o ano:";
+                std::cin >> ano;
+                int total_alunos = 0;
+                for (Estudante* estudante: g->get_estudantes()){
+                    if (estudante->get_codigo().substr(0,4) == ano){
+                        total_alunos++;
+                    }
+                }
+                std::cout<< "Estão inscritos " << total_alunos << " alunos no " << ano <<"º ano\n";
+                std::cout << "\n---------------------------------------------------\n";
+                break;
+            }
+            case 4: {
+                std::string cod_uc;
+                std::cout<< "Insira o código da UC:";
+                std::cin >> cod_uc;
+                std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
+                std::cout<< "Existem " << uc.size() << " turmas nesta UC\n";
+                std::cout << "\n---------------------------------------------------\n";
+                break;
+            }
+            case 5: {
+                int numero = g->get_pedidos().size();
+                if (numero == 1) std::cout<< "Foi efetuado " << numero << " pedido\n";
+                else std::cout<< "Foram efetuados " << numero << " pedidos\n";
+                std::cout << "\n---------------------------------------------------\n";
                 break;
             }
             case 6: {
-                numero = g->get_pedidos().size();
-                if (numero == 1) std::cout<< "Foi efetuado " << numero << " pedido\n";
-                else std::cout<< "Foram efetuados " << numero << " pedidos\n";
-            }
-            case 7: {
                 return;
             }
             default: {
@@ -86,9 +115,7 @@ void Menu::ver_estatisticas(){
                 std::cin.ignore(INT_MAX, '\n');
                 break;
             }
-
         }
-
     }
 }
 
@@ -113,7 +140,8 @@ void Menu::ver_conteudos(){
             case 3: {
                 std::set<Estudante *, Turma::cmp_nome> vetor_estudantes = g->get_estudantes();
                 for (auto estudante: vetor_estudantes) {
-                    std::cout << estudante->get_nome() << '\n';
+                    estudante->show();
+                    std::cout << std::endl;
                 }
                 break;
             }
@@ -126,14 +154,9 @@ void Menu::ver_conteudos(){
                 std::cin.ignore(INT_MAX, '\n');
                 break;
             }
-
         }
-
     }
 }
-
-
-
 
 void Menu::fazer_pedido(){
     std::cout <<"Selecione um estudante:\n";
@@ -154,7 +177,7 @@ void Menu::fazer_pedido(){
         Turma* turma = g->pesquisa_turma(codigo_uc,codigo_turma);
 
         if (g->pode_adicionar_turma(estudante,turma)){
-            Pedido* pedido = new Pedido(turma,estudante);
+            Pedido* pedido = new Pedido("adicionar", turma,estudante);
             g->get_pedidos().push(pedido);
             std::cout<< "Pedido válido\n";
         }
@@ -181,6 +204,7 @@ void Menu::show_uc(std::vector<Turma*> uc){
     for (auto x: estudantes){
         std::cout << x->get_nome() << std::endl;
     }}
+
 void Menu::show_ano(std::string ano, std::set<Estudante *, Turma::cmp_nome> estudantes){
     std::set<Estudante*,Turma::cmp_nome> es;
     int count = 0;
@@ -191,7 +215,8 @@ void Menu::show_ano(std::string ano, std::set<Estudante *, Turma::cmp_nome> estu
         }
     }
     for (auto estudante: es){
-        std::cout << estudante->get_nome() << std::endl;
+        estudante->show();
+        std::cout << std::endl;
     }
     std::cout << count;
 }
@@ -207,7 +232,8 @@ void Menu::show_estudantes_mais_que_n_ucs(int n,std::set<Estudante *, Turma::cmp
             }
         }
         for (auto estudante: es) {
-            std::cout << estudante->get_nome() << std::endl;
+            estudante->show();
+            std::cout << std::endl;
         }
         std::cout << count;
     }
@@ -221,7 +247,8 @@ void Menu::show_estudantes_mais_que_n_ucs(int n,std::set<Estudante *, Turma::cmp
             }
         }
         for (auto estudante: es1) {
-            std::cout << estudante->get_nome() << std::endl;
+            estudante->show();
+            std::cout << std::endl;
         }
         std::cout << count;
     }
@@ -235,8 +262,21 @@ void Menu::show_estudantes_mais_que_n_ucs(int n,std::set<Estudante *, Turma::cmp
             }
         }
         for (auto estudante: es1) {
-            std::cout << estudante->get_nome() << std::endl;
+            estudante->show();
+            std::cout << std::endl;
         }
         std::cout << count;
     }
+}
+
+//testar show_pedidos
+void Menu::show_pedidos(){
+    std::queue<Pedido*> fila_temp;
+    unsigned initial_size = g->get_pedidos().size();
+    for (unsigned i = 0; i< initial_size;i++){
+        Pedido* p = g->get_pedidos().front();
+        std::cout << p->get_tipo();
+        fila_temp.push(g->get_pedidos().front());
+    }
+    g->set_pedidos(fila_temp);
 }
