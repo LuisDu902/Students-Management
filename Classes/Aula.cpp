@@ -5,6 +5,15 @@
 #include "Aula.h"
 
 //construtor
+/**
+ * Construtor da classe Aula
+ * @param codigo_turma
+ * @param codigo_uc
+ * @param dia_semana
+ * @param hora_inicio
+ * @param duracao
+ * @param tipo
+ */
 Aula::Aula(std::string codigo_turma, std::string codigo_uc,std::string dia_semana,double hora_inicio,double duracao,std::string tipo){
     this->codigo_turma = codigo_turma;
     this->codigo_uc = codigo_uc;
@@ -15,15 +24,45 @@ Aula::Aula(std::string codigo_turma, std::string codigo_uc,std::string dia_seman
 }
 
 //getters
+
+/**
+ * Obter o código_turma da aula
+ * @return
+ */
 std::string Aula::get_codigo_turma() const {return codigo_turma;}
+/**
+ * Obter o código_uc da aula
+ * @return
+ */
 std::string Aula::get_codigo_uc() const {return codigo_uc;}
+/**
+ * Obter o dia da semana da aula
+ * @return
+ */
 std::string Aula::get_dia_semana() const { return dia_semana; }
+/**
+ * Obter a hora de início da aula
+ * @return
+ */
 double Aula::get_hora_inicio() const {return hora_inicio;}
+/**
+ * Obter a duração da aula
+ * @return
+ */
 double Aula::get_duracao() const {return duracao;}
+/**
+ * Obter o tipo da aula (T - teórica, TP - teórico-prática, PL - prática-laboratorial)
+ * @return
+ */
 std::string Aula::get_tipo() const {return tipo;}
 
 //compare
-
+/**
+ * Método de ordenação entre duas aulas;
+ * @param lhs
+ * @param rhs
+ * @return
+ */
 bool Aula::cmp_dia_semana::operator()(const Aula* lhs, const Aula* rhs) const  {
     std::map<std::string,int> days = {
             std::pair<std::string,int> ("Monday",1),

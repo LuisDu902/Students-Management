@@ -16,7 +16,7 @@ void Gestao::criacao_aulas(){
     double hora_inicio, duracao;
     std::ifstream myFile;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED-master/CSV files/classes.csv");
+    myFile.open("C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/CSV files/classes.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -38,7 +38,7 @@ void Gestao::criacao_turmas(){
     std::string CurrentLine, codigo_uc, codigo_turma;
     std::ifstream myFile;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED-master/CSV files/classes_per_uc.csv");
+    myFile.open("C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/CSV files/classes_per_uc.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -61,7 +61,7 @@ void Gestao::criacao_estudantes(){
     std::ifstream myFile;
     std::string CurrentLine, codigo, nome, codigo_uc, codigo_turma;;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED-master/CSV files/students_classes.csv");
+    myFile.open("C:/AED/projeto/Projeto_AED-set_estudantes-em-Turma/CSV files/students_classes.csv");
     getline(myFile,CurrentLine);
     getline(myFile,CurrentLine);
     std::istringstream iss(CurrentLine);
@@ -137,13 +137,20 @@ std::vector<Turma*> Gestao::pesquisa_uc(std::string codigo_uc){
     }
     return {};
 }
-
+Estudante* Gestao::pesquisa_estudante(std::string nome){
+    for (auto e: estudantes){
+        if (e->get_nome() == nome){
+            return e;
+        }
+    }
+}
 bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
     t->set_capacidade(t->get_capacidade_atual()+1);
     if (t->get_capacidade_atual() > Turma::capacidade_maxima || max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= 4) {
         t->set_capacidade(t->get_capacidade_atual()-1);
         return false;
     }
+    t->set_capacidade(t->get_capacidade_atual()-1);
     return es->compativel(t);
 }
 bool Gestao::pode_alterar_turma(Estudante* es, Turma* turma){
@@ -172,6 +179,18 @@ int Gestao::max_diferenca(std::vector<Turma*> uc){
     sort(difs.begin(),difs.end());
     return difs.back();
 }
+/*
+void Gestao::show_pedidos(){
+    std::queue<Pedido*> fila_temp;
+    unsigned initial_size = pedidos.size();
+    for (unsigned i = 0; i< initial_size;i++){
+        Pedido* p = pedidos.front();
+        std::cout << *p;
+        fila_temp.push(pedidos.front());
+
+    }
+}
+*/
 
 std::vector<Aula*> Gestao::get_aulas() const{ return aulas; }
 std::vector<Turma*> Gestao::get_turmas() const{ return turmas; }

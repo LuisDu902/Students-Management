@@ -4,14 +4,8 @@
 
 #include "Pedido.h"
 
-Pedido::Pedido(Estudante* estudante1,Turma* turma1){
-    this->estudante1 = estudante1;
-    this->turma1 = turma1;
-}
-
-Pedido::Pedido(Estudante* estudante1,Estudante* estudante2,Turma* turma1){
+Pedido::Pedido(Turma* turma, Estudante* estudante1, Estudante* estudante2){
     this->estudante1 = estudante1;
     this->estudante2 = estudante2;
-    this->turma1 = turma1;
+    this->turma1 = turma;
 }
-

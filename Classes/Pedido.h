@@ -10,16 +10,12 @@
 class Pedido {
 public:
 // construtores
-    Pedido(Estudante* estudante1,Turma* turma1);
-    Pedido(Estudante* estudante1,Estudante* estudante2,Turma* turma1);
-
-
+    Pedido(Turma* turma, Estudante* estudante1, Estudante* estudante2 = nullptr);
 
 private:
     Estudante* estudante1;
-    Estudante* estudante2 = nullptr;
+    Estudante* estudante2;
     Turma* turma1;
+    std::string tipo;
 };
-
-
-#endif //PROJ_PEDIDO_H
+#endif

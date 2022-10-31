@@ -23,6 +23,7 @@ public:
 
     Turma* pesquisa_turma(std::string codigo_uc, std::string codigo_turma);
     std::vector<Turma*> pesquisa_uc(std::string codigo_uc);
+    Estudante* pesquisa_estudante(std::string nome);
 
     bool pode_adicionar_turma(Estudante* es, Turma* t);
     bool pode_alterar_turma(Estudante* es, Turma* turma);
@@ -35,6 +36,8 @@ public:
     std::vector<std::vector<Turma*>> get_ucs() const;
     std::queue<Pedido*> get_pedidos() const;
     std::list<Pedido*> get_pedidos_falhados() const;
+
+    void show_pedidos();
 
 private:
     void criacao_aulas();
