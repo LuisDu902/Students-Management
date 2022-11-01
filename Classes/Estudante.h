@@ -12,7 +12,7 @@ class Estudante {
     public:
         //construtor
         Estudante(std::string codigo, std::string nome);
-
+        Estudante(std::string codigo);
         //getters
         std::string get_nome() const;
         std::string get_codigo() const;

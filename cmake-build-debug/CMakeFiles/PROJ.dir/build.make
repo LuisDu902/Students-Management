@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\AED\proj\Projeto_AED-master
+CMAKE_SOURCE_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\AED\proj\Projeto_AED-master\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/PROJ.dir/depend.make
@@ -71,100 +71,100 @@ include CMakeFiles/PROJ.dir/flags.make
 CMakeFiles/PROJ.dir/main.cpp.obj: CMakeFiles/PROJ.dir/flags.make
 CMakeFiles/PROJ.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/PROJ.dir/main.cpp.obj: CMakeFiles/PROJ.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PROJ.dir/main.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/main.cpp.obj -MF CMakeFiles\PROJ.dir\main.cpp.obj.d -o CMakeFiles\PROJ.dir\main.cpp.obj -c C:\AED\proj\Projeto_AED-master\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PROJ.dir/main.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/main.cpp.obj -MF CMakeFiles\PROJ.dir\main.cpp.obj.d -o CMakeFiles\PROJ.dir\main.cpp.obj -c "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\main.cpp"
 
 CMakeFiles/PROJ.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJ.dir/main.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\AED\proj\Projeto_AED-master\main.cpp > CMakeFiles\PROJ.dir\main.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\main.cpp" > CMakeFiles\PROJ.dir\main.cpp.i
 
 CMakeFiles/PROJ.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJ.dir/main.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\AED\proj\Projeto_AED-master\main.cpp -o CMakeFiles\PROJ.dir\main.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\main.cpp" -o CMakeFiles\PROJ.dir\main.cpp.s
 
 CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj: CMakeFiles/PROJ.dir/flags.make
 CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj: ../Classes/Turma.cpp
 CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj: CMakeFiles/PROJ.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Turma.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Turma.cpp.obj -c C:\AED\proj\Projeto_AED-master\Classes\Turma.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Turma.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Turma.cpp.obj -c "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Turma.cpp"
 
 CMakeFiles/PROJ.dir/Classes/Turma.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJ.dir/Classes/Turma.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\AED\proj\Projeto_AED-master\Classes\Turma.cpp > CMakeFiles\PROJ.dir\Classes\Turma.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Turma.cpp" > CMakeFiles\PROJ.dir\Classes\Turma.cpp.i
 
 CMakeFiles/PROJ.dir/Classes/Turma.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJ.dir/Classes/Turma.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\AED\proj\Projeto_AED-master\Classes\Turma.cpp -o CMakeFiles\PROJ.dir\Classes\Turma.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Turma.cpp" -o CMakeFiles\PROJ.dir\Classes\Turma.cpp.s
 
 CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj: CMakeFiles/PROJ.dir/flags.make
 CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj: ../Classes/Estudante.cpp
 CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj: CMakeFiles/PROJ.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Estudante.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Estudante.cpp.obj -c C:\AED\proj\Projeto_AED-master\Classes\Estudante.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Estudante.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Estudante.cpp.obj -c "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Estudante.cpp"
 
 CMakeFiles/PROJ.dir/Classes/Estudante.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJ.dir/Classes/Estudante.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\AED\proj\Projeto_AED-master\Classes\Estudante.cpp > CMakeFiles\PROJ.dir\Classes\Estudante.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Estudante.cpp" > CMakeFiles\PROJ.dir\Classes\Estudante.cpp.i
 
 CMakeFiles/PROJ.dir/Classes/Estudante.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJ.dir/Classes/Estudante.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\AED\proj\Projeto_AED-master\Classes\Estudante.cpp -o CMakeFiles\PROJ.dir\Classes\Estudante.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Estudante.cpp" -o CMakeFiles\PROJ.dir\Classes\Estudante.cpp.s
 
 CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj: CMakeFiles/PROJ.dir/flags.make
 CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj: ../Classes/Aula.cpp
 CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj: CMakeFiles/PROJ.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Aula.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Aula.cpp.obj -c C:\AED\proj\Projeto_AED-master\Classes\Aula.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Aula.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Aula.cpp.obj -c "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Aula.cpp"
 
 CMakeFiles/PROJ.dir/Classes/Aula.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJ.dir/Classes/Aula.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\AED\proj\Projeto_AED-master\Classes\Aula.cpp > CMakeFiles\PROJ.dir\Classes\Aula.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Aula.cpp" > CMakeFiles\PROJ.dir\Classes\Aula.cpp.i
 
 CMakeFiles/PROJ.dir/Classes/Aula.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJ.dir/Classes/Aula.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\AED\proj\Projeto_AED-master\Classes\Aula.cpp -o CMakeFiles\PROJ.dir\Classes\Aula.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Aula.cpp" -o CMakeFiles\PROJ.dir\Classes\Aula.cpp.s
 
 CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj: CMakeFiles/PROJ.dir/flags.make
 CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj: ../Classes/Menu.cpp
 CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj: CMakeFiles/PROJ.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Menu.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Menu.cpp.obj -c C:\AED\proj\Projeto_AED-master\Classes\Menu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Menu.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Menu.cpp.obj -c "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Menu.cpp"
 
 CMakeFiles/PROJ.dir/Classes/Menu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJ.dir/Classes/Menu.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\AED\proj\Projeto_AED-master\Classes\Menu.cpp > CMakeFiles\PROJ.dir\Classes\Menu.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Menu.cpp" > CMakeFiles\PROJ.dir\Classes\Menu.cpp.i
 
 CMakeFiles/PROJ.dir/Classes/Menu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJ.dir/Classes/Menu.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\AED\proj\Projeto_AED-master\Classes\Menu.cpp -o CMakeFiles\PROJ.dir\Classes\Menu.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Menu.cpp" -o CMakeFiles\PROJ.dir\Classes\Menu.cpp.s
 
 CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj: CMakeFiles/PROJ.dir/flags.make
 CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj: ../Classes/Gestao.cpp
 CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj: CMakeFiles/PROJ.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Gestao.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Gestao.cpp.obj -c C:\AED\proj\Projeto_AED-master\Classes\Gestao.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Gestao.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Gestao.cpp.obj -c "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Gestao.cpp"
 
 CMakeFiles/PROJ.dir/Classes/Gestao.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJ.dir/Classes/Gestao.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\AED\proj\Projeto_AED-master\Classes\Gestao.cpp > CMakeFiles\PROJ.dir\Classes\Gestao.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Gestao.cpp" > CMakeFiles\PROJ.dir\Classes\Gestao.cpp.i
 
 CMakeFiles/PROJ.dir/Classes/Gestao.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJ.dir/Classes/Gestao.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\AED\proj\Projeto_AED-master\Classes\Gestao.cpp -o CMakeFiles\PROJ.dir\Classes\Gestao.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Gestao.cpp" -o CMakeFiles\PROJ.dir\Classes\Gestao.cpp.s
 
 CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj: CMakeFiles/PROJ.dir/flags.make
 CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj: ../Classes/Pedido.cpp
 CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj: CMakeFiles/PROJ.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Pedido.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Pedido.cpp.obj -c C:\AED\proj\Projeto_AED-master\Classes\Pedido.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj -MF CMakeFiles\PROJ.dir\Classes\Pedido.cpp.obj.d -o CMakeFiles\PROJ.dir\Classes\Pedido.cpp.obj -c "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Pedido.cpp"
 
 CMakeFiles/PROJ.dir/Classes/Pedido.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJ.dir/Classes/Pedido.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\AED\proj\Projeto_AED-master\Classes\Pedido.cpp > CMakeFiles\PROJ.dir\Classes\Pedido.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Pedido.cpp" > CMakeFiles\PROJ.dir\Classes\Pedido.cpp.i
 
 CMakeFiles/PROJ.dir/Classes/Pedido.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJ.dir/Classes/Pedido.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\AED\proj\Projeto_AED-master\Classes\Pedido.cpp -o CMakeFiles\PROJ.dir\Classes\Pedido.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\Classes\Pedido.cpp" -o CMakeFiles\PROJ.dir\Classes\Pedido.cpp.s
 
 # Object files for target PROJ
 PROJ_OBJECTS = \
@@ -190,7 +190,7 @@ PROJ.exe: CMakeFiles/PROJ.dir/build.make
 PROJ.exe: CMakeFiles/PROJ.dir/linklibs.rsp
 PROJ.exe: CMakeFiles/PROJ.dir/objects1.rsp
 PROJ.exe: CMakeFiles/PROJ.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable PROJ.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable PROJ.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\PROJ.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -202,6 +202,6 @@ CMakeFiles/PROJ.dir/clean:
 .PHONY : CMakeFiles/PROJ.dir/clean
 
 CMakeFiles/PROJ.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\AED\proj\Projeto_AED-master C:\AED\proj\Projeto_AED-master C:\AED\proj\Projeto_AED-master\cmake-build-debug C:\AED\proj\Projeto_AED-master\cmake-build-debug C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles\PROJ.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles\PROJ.dir\DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/PROJ.dir/depend
 

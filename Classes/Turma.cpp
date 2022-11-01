@@ -102,33 +102,69 @@ void Turma::show() {
 /**
  * Mostra todos os estudantes pertencentes à turma
  */
-void Turma::show_estudantes(int ordem){
+void Turma::show_estudantes(int ordem, int ordem_c){
     if (ordem == 2){
         std::set<Estudante*, Turma::cmp_codigo> es;
         for (auto estudante: estudantes){
             es.insert(estudante);
         }
-        for (auto estudante: es){
-            estudante->show(ordem);
-            std::cout << std::endl;
+        if (ordem_c == 2){
+            for (auto it = es.rbegin(); it != es.rend(); it++){
+                (*it)->show(ordem);
+                std::cout << std::endl;
+            }
+        }
+        else {
+            for (auto estudante: es) {
+                estudante->show(ordem);
+                std::cout << std::endl;
+            }
         }
     }
     else{
-    for (auto estudante: estudantes){
-        estudante->show(ordem);
-        std::cout << std::endl;
-    }}
+        if (ordem_c == 2){
+            for (auto it = estudantes.rbegin(); it != estudantes.rend(); it++){
+                (*it)->show(ordem);
+                std::cout << std::endl;
+            }
+        }
+        else {
+            for (auto estudante: estudantes){
+                estudante->show(ordem);
+                std::cout << std::endl;
+            }
+        }
+    }
 }
 /**
  * Mostra todas as aulas associadas à turma
  */
 void Turma::show_horario_turma(){
-
+    std::map<std::string,int> days = {
+            std::pair<std::string,int> ("Monday",1),
+            std::pair<std::string,int> ("Tuesday",2),
+            std::pair<std::string,int> ("Wednesday",3),
+            std::pair<std::string,int> ("Thursday",4),
+            std::pair<std::string,int> ("Friday",5),
+    };
     sort(aulas.begin(),aulas.end(),Aula::cmp);
-    for (auto aula: aulas){
-        aula->show_horario_turma();
+    auto it = aulas.begin();
+    int dia_atual = days[(*it)->get_dia_semana()];
+    std::cout << (*it)->get_dia_semana() << ":\n";
+    while (it != aulas.end()){
+        if (days[(*it)->get_dia_semana()] == dia_atual){
+            (*it)->show_horario_turma();
+            it++;
+        }
+        else {
+            dia_atual = days[(*it)->get_dia_semana()];
+            std::cout << (*it)->get_dia_semana() << ":\n";
+            (*it)->show_horario_turma();
+            it++;
+        }
+        }
     }
-}
+
 
 
 

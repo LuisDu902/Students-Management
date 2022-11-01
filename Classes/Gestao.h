@@ -44,6 +44,8 @@ public:
     void show_pedidos();
     void set_pedidos(std::queue<Pedido*> pedidos);
 
+
+
 //gestão de pedidos
     void gerir_pedidos();
     void pedido_adicionar(Pedido*);

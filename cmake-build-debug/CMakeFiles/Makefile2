@@ -44,19 +44,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\AED\proj\Projeto_AED-master
+CMAKE_SOURCE_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\AED\proj\Projeto_AED-master\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -82,14 +82,14 @@ clean: CMakeFiles/PROJ.dir/clean
 CMakeFiles/Doxygen.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Doxygen.dir\build.make CMakeFiles/Doxygen.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Doxygen.dir\build.make CMakeFiles/Doxygen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=1 "Built target Doxygen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=1 "Built target Doxygen"
 .PHONY : CMakeFiles/Doxygen.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Doxygen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Doxygen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" 0
 .PHONY : CMakeFiles/Doxygen.dir/rule
 
 # Convenience name for target.
@@ -108,14 +108,14 @@ CMakeFiles/Doxygen.dir/clean:
 CMakeFiles/PROJ.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=2,3,4,5,6,7,8,9 "Built target PROJ"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=2,3,4,5,6,7,8,9 "Built target PROJ"
 .PHONY : CMakeFiles/PROJ.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/PROJ.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/PROJ.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\AED\proj\Projeto_AED-master\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" 0
 .PHONY : CMakeFiles/PROJ.dir/rule
 
 # Convenience name for target.

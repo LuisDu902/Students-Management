@@ -15,6 +15,9 @@ Estudante::Estudante(std::string codigo, std::string nome) {
     this-> nome = nome;
 }
 
+Estudante::Estudante(std::string codigo) {
+    this->codigo = codigo;
+}
 //getters
 /**
  * Retorna o nome do estudante
@@ -72,7 +75,9 @@ bool Estudante::compativel(Turma* turma){
     std::vector<Aula*> h = horario();
     for (auto aula_turma : turma->get_aulas()){
         for (auto aula_estudante: h){
-            if (aula_turma->overload(aula_estudante)) return false;
+            if (aula_turma->overload(aula_estudante)) {
+                return false;
+            }
         }
     }
     return true;
@@ -135,9 +140,30 @@ void Estudante::show(int ordem){
  * Mostra o horário do estudante
  */
 void Estudante::show_horario(){
-    std::vector<Aula*> horario = Estudante::horario();
-    for (auto x: horario){
-        x->show_horario_turma();
+    std::vector<Aula*> aulas = Estudante::horario();
+
+    std::map<std::string,int> days = {
+            std::pair<std::string,int> ("Monday",1),
+            std::pair<std::string,int> ("Tuesday",2),
+            std::pair<std::string,int> ("Wednesday",3),
+            std::pair<std::string,int> ("Thursday",4),
+            std::pair<std::string,int> ("Friday",5),
+    };
+    sort(aulas.begin(),aulas.end(),Aula::cmp);
+    auto it = aulas.begin();
+    int dia_atual = days[(*it)->get_dia_semana()];
+    std::cout << (*it)->get_dia_semana() << ":\n";
+    while (it != aulas.end()){
+        if (days[(*it)->get_dia_semana()] == dia_atual){
+            (*it)->show_horario_turma();
+            it++;
+        }
+        else {
+            dia_atual = days[(*it)->get_dia_semana()];
+            std::cout << (*it)->get_dia_semana() << ":\n";
+            (*it)->show_horario_turma();
+            it++;
+        }
     }
 }
 /**

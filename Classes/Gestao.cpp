@@ -21,7 +21,7 @@ void Gestao::criacao_aulas(){
     double hora_inicio, duracao;
     std::ifstream myFile;
 
-    myFile.open("C:/AED/proj/Projeto_AED-master/CSV files/classes.csv");
+    myFile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/classes.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -47,7 +47,7 @@ void Gestao::criacao_turmas(){
     std::string CurrentLine, codigo_uc, codigo_turma;
     std::ifstream myFile;
 
-    myFile.open("C:/AED/proj/Projeto_AED-master/CSV files/classes_per_uc.csv");
+    myFile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/classes_per_uc.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -74,7 +74,7 @@ void Gestao::criacao_estudantes(){
     std::ifstream myFile;
     std::string CurrentLine, codigo, nome, codigo_uc, codigo_turma;;
 
-    myFile.open("C:/AED/proj/Projeto_AED-master/CSV files/students_classes.csv");
+    myFile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/students_classes.csv");
     getline(myFile,CurrentLine);
     getline(myFile,CurrentLine);
     std::istringstream iss(CurrentLine);
@@ -183,12 +183,10 @@ Estudante* Gestao::pesquisa_estudante(std::string numero){
  * @return
  */
 bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
-    t->set_capacidade(t->get_capacidade_atual()+1);
-    if (t->get_capacidade_atual() > Turma::capacidade_maxima || max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= 4) {
-        t->set_capacidade(t->get_capacidade_atual()-1);
+    int cap = (t->get_capacidade_atual()+1);
+    if (cap > Turma::capacidade_maxima || max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= 40) {
         return false;
     }
-    t->set_capacidade(t->get_capacidade_atual()-1);
     return es->compativel(t);
 }
 /**
@@ -251,8 +249,7 @@ bool Gestao::verifica_mesma_uc(Estudante* es1, Estudante* es2, std::vector<Turma
 }
 
 bool Gestao::pode_trocar_turma(Estudante* es1, Turma* turma1, Estudante* es2){
-    //turma 6 -> es1
-    //turma 7 -> es2
+
 
     std::vector<Turma*> uc = pesquisa_uc(turma1->get_codigo_uc()); //BD
     bool v1 = verifica_mesma_uc(es1,es2,uc);
@@ -261,12 +258,14 @@ bool Gestao::pode_trocar_turma(Estudante* es1, Turma* turma1, Estudante* es2){
     for (auto turma: es2->get_turmas()){
         if (turma->get_codigo_uc() == turma1->get_codigo_uc() && turma != turma1){
             turma2 = turma;
+
             break;
         }
     }
 
     es1->remover_da_turma(turma1);
     es2->remover_da_turma(turma2);
+
     bool v2 = pode_adicionar_turma(es1,turma2) && pode_adicionar_turma(es2, turma1);
     es1->adicionar_turma(turma1);
     es2->remover_da_turma(turma2);

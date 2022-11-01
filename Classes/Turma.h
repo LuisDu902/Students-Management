@@ -16,7 +16,7 @@ class Turma {
 
 
 public:
-    static const int capacidade_maxima = 26;
+    static const int capacidade_maxima = 30;
     //construtor
     Turma(std::string codigo_uc,std::string codigo_turma);
 
@@ -41,7 +41,7 @@ public:
 
     //show
     void show_horario_turma();
-    void show_estudantes(int ordem);
+    void show_estudantes(int ordem, int ordem_c);
     void show();
 
 private:

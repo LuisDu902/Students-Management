@@ -9,6 +9,7 @@
 #include <map>
 class Aula {
 public:
+
     //construtor
     Aula(std::string codigo_turma, std::string codigo_uc,std::string dia_semana,double hora_inicio,double duracao,std::string tipo);
 
@@ -21,7 +22,9 @@ public:
     std::string get_tipo() const;
 
     //compare
+
     static bool cmp(Aula* aula, Aula* aula2);
+    struct cmp_nome{bool operator()(Aula* aula, Aula* aula2) const;};
     //show
     void show_horario_turma();
     void show();
