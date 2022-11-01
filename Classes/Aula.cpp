@@ -77,13 +77,23 @@ bool Aula::cmp(Aula* lhs, Aula* rhs){
     return lhs->hora_inicio < rhs->hora_inicio;
 }
 //show
+/**
+ * Mostra o código_turma, o código_uc, o dia da semana, a hora de início, a duração e o tipo da aula
+ */
 void Aula::show() {
     std::cout << codigo_turma << " | " << codigo_uc << " | " << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
 }
-
+/**
+ * Mostra o dia da semana, a hora de início, a duração e o tipo da aula
+ */
 void Aula::show_horario_turma() {
     std::cout << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
 }
+/**
+ * Verifica se duas aulas ocorrem em simultâneo
+ * @param aula
+ * @return
+ */
 bool Aula::overload(Aula* aula){
     if (dia_semana == aula->dia_semana){
         if (hora_inicio < aula->hora_inicio){

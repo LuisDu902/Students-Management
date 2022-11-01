@@ -3,13 +3,18 @@
 //
 
 #include "Gestao.h"
+/**
+ * Construtor da classe Gestao. Criação dos vetores aulas, turmas, uc e da BST estudantes
+ */
 Gestao::Gestao(){
     criacao_aulas();
     criacao_turmas();
     criacao_estudantes();
     criacao_uc();
 }
-
+/**
+ * Leitura do ficheiro classes.csv e criação das aulas, armazenando-os no vetor aulas
+ */
 void Gestao::criacao_aulas(){
 
     std::string CurrentLine, x, codigo_turma, codigo_uc, dia_semana, tipo;
@@ -34,6 +39,10 @@ void Gestao::criacao_aulas(){
         aulas.push_back(ptr);
     }
 }
+/**
+ * Leitura do ficheiro classes_per_uc.csv e criação das turmas, armazenando-os no vetor turmas.
+ * Atribuição das aulas à sua respetiva turma.
+ */
 void Gestao::criacao_turmas(){
     std::string CurrentLine, codigo_uc, codigo_turma;
     std::ifstream myFile;
@@ -57,6 +66,10 @@ void Gestao::criacao_turmas(){
     }
 
 }
+/**
+ * Leitura do ficheiro students_classes.csv e criação dos estudantes, armazenando-os na BST estudantes.
+ * Atribuição das turmas a cada estudante.
+ */
 void Gestao::criacao_estudantes(){
     std::ifstream myFile;
     std::string CurrentLine, codigo, nome, codigo_uc, codigo_turma;;
@@ -102,6 +115,9 @@ void Gestao::criacao_estudantes(){
     estudantes.insert(estudante_atual);
     }
 }
+/**
+ * Criação de todas as ucs existentes
+ */
 void Gestao::criacao_uc(){
 
     std::vector<Turma*> uc;
@@ -119,7 +135,12 @@ void Gestao::criacao_uc(){
     }
     ucs.push_back(uc);
 }
-
+/**
+ * Procura no vetor turmas a turma que apresenta código_uc e código_turma ...
+ * @param codigo_uc
+ * @param codigo_turma
+ * @return
+ */
 Turma* Gestao::pesquisa_turma(std::string codigo_uc, std::string codigo_turma){
     for (auto turma : turmas){
         if (turma->get_codigo_turma() == codigo_turma && turma->get_codigo_uc() == codigo_uc){
@@ -129,6 +150,11 @@ Turma* Gestao::pesquisa_turma(std::string codigo_uc, std::string codigo_turma){
     return turmas.at(0);
 
 }
+/**
+ * Procura no vetor ucs a uc (vetor de turmas) que apresenta código_uc ...
+ * @param codigo_uc
+ * @return
+ */
 std::vector<Turma*> Gestao::pesquisa_uc(std::string codigo_uc){
     for (auto uc: ucs){
         if (uc.front()->get_codigo_uc() == codigo_uc){
@@ -137,6 +163,11 @@ std::vector<Turma*> Gestao::pesquisa_uc(std::string codigo_uc){
     }
     return {};
 }
+/**
+ * Procura na BST estudantes o estudante que apresenta nome ...
+ * @param nome
+ * @return
+ */
 Estudante* Gestao::pesquisa_estudante(std::string nome){
     for (auto e: estudantes){
         if (e->get_nome() == nome){
@@ -145,6 +176,12 @@ Estudante* Gestao::pesquisa_estudante(std::string nome){
     }
     return nullptr;
 }
+/**
+ * Verifica se se pode adicionar a turma t ao estudante es
+ * @param es
+ * @param t
+ * @return
+ */
 bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
     t->set_capacidade(t->get_capacidade_atual()+1);
     if (t->get_capacidade_atual() > Turma::capacidade_maxima || max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= 4) {
@@ -154,6 +191,12 @@ bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
     t->set_capacidade(t->get_capacidade_atual()-1);
     return es->compativel(t);
 }
+/**
+ * Verifica se o estudante es se pode alterar para a turma ...
+ * @param es
+ * @param turma
+ * @return
+ */
 bool Gestao::pode_alterar_turma(Estudante* es, Turma* turma){
     Turma* turma_removida;
     for (auto t=es->get_turmas().begin();t!=es->get_turmas().end();t++){
@@ -169,7 +212,11 @@ bool Gestao::pode_alterar_turma(Estudante* es, Turma* turma){
         return false;
     }
 }
-
+/**
+ * Calcula o maior desiquilíbrio existente entre as turmas de uma uc
+ * @param uc
+ * @return
+ */
 int Gestao::max_diferenca(std::vector<Turma*> uc){
     std::vector<int> difs;
     for (auto it = uc.begin(); it != uc.end()-1;it++){
@@ -180,9 +227,14 @@ int Gestao::max_diferenca(std::vector<Turma*> uc){
     sort(difs.begin(),difs.end());
     return difs.back();
 }
-
+/**
+ * ???
+ * @param pedidos
+ */
 void Gestao::set_pedidos(std::queue<Pedido*> pedidos){ this->pedidos = pedidos; }
-
+/**
+ * Gestão dos pedidos
+ */
 void Gestao::gerir_pedidos() {
     while (!pedidos.empty()){
         if (pedidos.front()->get_tipo() == "adicionar") pedido_adicionar(pedidos.front());
@@ -191,15 +243,54 @@ void Gestao::gerir_pedidos() {
         if (pedidos.front()->get_tipo() == "trocar") pedido_trocar(pedidos.front());
     }
 }
+/**
+ * Pedido para adicionar um estudante a uma turma
+ * @param pedido
+ */
 void Gestao::pedido_adicionar(Pedido * pedido) {pedido->get_estudante1()->adicionar_turma(pedido->get_turma()); }
+/**
+ * Pedido para alterar um estudante para uma turma
+ * @param pedido
+ */
 void Gestao::pedido_alterar(Pedido * pedido) {pedido->get_estudante1()->alterar_turma(pedido->get_turma()); }
+/**
+ * Pedido para remover um estudante de uma turma
+ * @param pedido
+ */
 void Gestao::pedido_remover(Pedido * pedido) {pedido->get_estudante1()->remover_da_turma(pedido->get_turma());}
+/**
+ * Pedido para trocar dois estudantes de turma
+ * @param pedido
+ */
 void Gestao::pedido_trocar(Pedido * pedido) {pedido->get_estudante1()->trocar_turma_com_estudante(pedido->get_turma(), pedido->get_estudante2());}
 
-
+/**
+ * Retorna o vetor de todas as aulas
+ * @return
+ */
 std::vector<Aula*> Gestao::get_aulas() const{ return aulas; }
+/**
+ * Retorna o vetor de todas as turmas
+ * @return
+ */
 std::vector<Turma*> Gestao::get_turmas() const{ return turmas; }
+/**
+ * Retorna a BST de todos os estudantes
+ * @return
+ */
 std::set<Estudante*,Turma::cmp_nome> Gestao::get_estudantes() const{ return estudantes; }
+/**
+ * Retorna o vetor de todas as ucs
+ * @return
+ */
 std::vector<std::vector<Turma*>> Gestao::get_ucs() const{ return ucs;}
+/**
+ * Retorna a fila de todos os pedidos
+ * @return
+ */
 std::queue<Pedido*> Gestao::get_pedidos() const{return pedidos;}
+/**
+ * Retorna a lista de todos os pedidos falhados
+ * @return
+ */
 std::list<Pedido*> Gestao::get_pedidos_falhados() const{return pedidos_falhados;}

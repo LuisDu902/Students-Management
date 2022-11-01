@@ -1,7 +1,9 @@
 
 #include <climits>
 #include "Menu.h"
-
+/**
+ * Construtor da classe Menu
+ */
 Menu::Menu(){
     g = new Gestao;
     std::cout << "Bem-vindo!" << '\n';
