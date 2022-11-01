@@ -21,7 +21,7 @@ void Gestao::criacao_aulas(){
     double hora_inicio, duracao;
     std::ifstream myFile;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED-erro-run/CSV files/classes.csv");
+    myFile.open("C:/AED/proj/Projeto_AED-master/CSV files/classes.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -47,7 +47,7 @@ void Gestao::criacao_turmas(){
     std::string CurrentLine, codigo_uc, codigo_turma;
     std::ifstream myFile;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED-erro-run/CSV files/classes_per_uc.csv");
+    myFile.open("C:/AED/proj/Projeto_AED-master/CSV files/classes_per_uc.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -74,7 +74,7 @@ void Gestao::criacao_estudantes(){
     std::ifstream myFile;
     std::string CurrentLine, codigo, nome, codigo_uc, codigo_turma;;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED-erro-run/CSV files/students_classes.csv");
+    myFile.open("C:/AED/proj/Projeto_AED-master/CSV files/students_classes.csv");
     getline(myFile,CurrentLine);
     getline(myFile,CurrentLine);
     std::istringstream iss(CurrentLine);
@@ -147,7 +147,7 @@ Turma* Gestao::pesquisa_turma(std::string codigo_uc, std::string codigo_turma){
             return turma;
         }
     }
-    return turmas.at(0);
+    return nullptr;
 
 }
 /**
@@ -164,13 +164,13 @@ std::vector<Turma*> Gestao::pesquisa_uc(std::string codigo_uc){
     return {};
 }
 /**
- * Procura na BST estudantes o estudante que apresenta nome ...
+ * Procura na BST estudantes o estudante que apresenta numero up ...
  * @param nome
  * @return
  */
-Estudante* Gestao::pesquisa_estudante(std::string nome){
+Estudante* Gestao::pesquisa_estudante(std::string numero){
     for (auto e: estudantes){
-        if (e->get_nome() == nome){
+        if (e->get_codigo() == numero){
             return e;
         }
     }
@@ -212,6 +212,68 @@ bool Gestao::pode_alterar_turma(Estudante* es, Turma* turma){
         return false;
     }
 }
+
+bool Gestao::pode_remover_turma(Estudante* es, Turma* turma){
+    bool check = false;
+    for (auto t=es->get_turmas().begin();t!=es->get_turmas().end();t++){
+        if ((*t) == turma){
+            check = true;
+        }
+    }
+    if (!check) return false;
+    turma->set_capacidade(turma->get_capacidade_atual()-1);
+    if (turma->get_capacidade_atual() > Turma::capacidade_maxima || max_diferenca(pesquisa_uc(turma->get_codigo_uc())) >= 4) {
+        turma->set_capacidade(turma->get_capacidade_atual()+1);
+        return false;
+    }
+    turma->set_capacidade(turma->get_capacidade_atual()+1);
+    return true;
+}
+
+bool Gestao::verifica_mesma_uc(Estudante* es1, Estudante* es2, std::vector<Turma*> uc){
+    bool v1 = false;
+    bool v2 = false;
+    Turma* turma1;
+    Turma* turma2;
+    for (auto turma: uc){
+        for (auto estudante : turma->get_estudantes()){
+            if (es1 == estudante){
+                v1 = true;
+                turma1 = turma;
+            }
+            if (es2 == estudante){
+                v2 = true;
+                turma2 = turma;
+            }
+        }
+    }
+    return (v1 && v2) && (turma1 != turma2);
+}
+
+bool Gestao::pode_trocar_turma(Estudante* es1, Turma* turma1, Estudante* es2){
+    //turma 6 -> es1
+    //turma 7 -> es2
+
+    std::vector<Turma*> uc = pesquisa_uc(turma1->get_codigo_uc()); //BD
+    bool v1 = verifica_mesma_uc(es1,es2,uc);
+
+    Turma* turma2;
+    for (auto turma: es2->get_turmas()){
+        if (turma->get_codigo_uc() == turma1->get_codigo_uc() && turma != turma1){
+            turma2 = turma;
+            break;
+        }
+    }
+
+    es1->remover_da_turma(turma1);
+    es2->remover_da_turma(turma2);
+    bool v2 = pode_adicionar_turma(es1,turma2) && pode_adicionar_turma(es2, turma1);
+    es1->adicionar_turma(turma1);
+    es2->remover_da_turma(turma2);
+    return v1 && v2;
+
+}
+
 /**
  * Calcula o maior desiquilíbrio existente entre as turmas de uma uc
  * @param uc
@@ -278,7 +340,7 @@ std::vector<Turma*> Gestao::get_turmas() const{ return turmas; }
  * Retorna a BST de todos os estudantes
  * @return
  */
-std::set<Estudante*,Turma::cmp_nome> Gestao::get_estudantes() const{ return estudantes; }
+std::set<Estudante*,Turma::cmp_codigo> Gestao::get_estudantes() const{ return estudantes; }
 /**
  * Retorna o vetor de todas as ucs
  * @return

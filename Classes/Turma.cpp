@@ -6,7 +6,7 @@
 
 //construtor
 /**
- * Construtor da classe Turma, recebe um código_uc e um código_turma (a capacidade atual da turma é iniciada a 0, sendo o vetor de aulas corresponde a um vetor vazio, e o BST de estudantes a um BST vazio
+ * Construtor da classe Turma, recebe um código_uc e um código_turma (a capacidade atual da turma é iniciada a 0, sendo o vetor de aulas corresponde a um vetor vazio, e o BST de estudantes a uma BST vazio
  * @param codigo_uc
  * @param codigo_turma
  */
@@ -102,10 +102,22 @@ void Turma::show() {
 /**
  * Mostra todos os estudantes pertencentes à turma
  */
-void Turma::show_estudantes(){
-    for (auto estudante: estudantes){
-        std::cout << estudante->get_nome() << std::endl;
+void Turma::show_estudantes(int ordem){
+    if (ordem == 2){
+        std::set<Estudante*, Turma::cmp_codigo> es;
+        for (auto estudante: estudantes){
+            es.insert(estudante);
+        }
+        for (auto estudante: es){
+            estudante->show(ordem);
+            std::cout << std::endl;
+        }
     }
+    else{
+    for (auto estudante: estudantes){
+        estudante->show(ordem);
+        std::cout << std::endl;
+    }}
 }
 /**
  * Mostra todas as aulas associadas à turma

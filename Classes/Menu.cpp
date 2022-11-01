@@ -6,13 +6,17 @@
  */
 Menu::Menu(){
     g = new Gestao;
-    std::cout << "Bem-vindo!" << '\n';
+    std::cout << "Bem-vindo!\n";
 }
 
 void Menu::init() {
     int input;
     while (true) {
-        std::cout << "O que pretende fazer?\n[1] Ver estatísticas\n[2] Visualizar conteúdos\n[3] Realizar pedido\n[4] Terminar\n";
+        std::cout << "O que pretende fazer?\n"
+                     "[1] Ver estatísticas\n"
+                     "[2] Visualizar conteúdos\n"
+                     "[3] Realizar pedido\n"
+                     "[4] Terminar\n";
         std::cin >> input;
         switch (input) {
             case 1: {
@@ -29,7 +33,7 @@ void Menu::init() {
             }
             case 4: {
                 // fim();
-                std::cout << "Até à próxima!";
+                std::cout << "Até à próxima!\nAss: G67";
                 return;
             }
             default: {
@@ -55,20 +59,16 @@ void Menu::ver_estatisticas(){
         std::cin >> input;
         switch (input) {
             case 1: {
-                std::string cod_turma, cod_uc;
-                std::cout<< "Insira o código da turma:";
-                std::cin >> cod_turma;
-                std::cout<< "Insira o código da UC:";
-                std::cin >> cod_uc;
+                std::string cod_uc = validar_codigo_uc();
+                std::string cod_turma = validar_codigo_turma(cod_uc);
+
                 Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
                 std::cout<< "Estão inscritos " << turma->get_capacidade_atual() << " alunos nesta turma\n";
                 std::cout << "\n---------------------------------------------------\n";
                 break;
             }
             case 2: {
-                std::string cod_uc;
-                std::cout<< "Insira o código da UC:";
-                std::cin >> cod_uc;
+                std::string cod_uc = validar_codigo_uc();
                 std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
                 int total_alunos = 0;
                 for (auto turma: uc){
@@ -79,23 +79,21 @@ void Menu::ver_estatisticas(){
                 break;
             }
             case 3: {
-                std::string ano;
-                std::cout << "Insira o ano:";
-                std::cin >> ano;
+                char ano = validar_numero("Insira o ano:");
+
                 int total_alunos = 0;
-                for (Estudante* estudante: g->get_estudantes()){
-                    if (estudante->get_codigo().substr(0,4) == ano){
-                        total_alunos++;
-                    }
-                }
+                for (auto uc : g->get_ucs()){
+                    if (uc.front()->get_codigo_turma().at(0) == ano){
+                        for (auto turma : uc){
+                            for (auto estudante : turma->get_estudantes()){
+                                total_alunos++;}}}}
                 std::cout<< "Estão inscritos " << total_alunos << " alunos no " << ano <<"º ano\n";
                 std::cout << "\n---------------------------------------------------\n";
                 break;
             }
             case 4: {
-                std::string cod_uc;
-                std::cout<< "Insira o código da UC:";
-                std::cin >> cod_uc;
+                std::string cod_uc = validar_codigo_uc();
+
                 std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
                 std::cout<< "Existem " << uc.size() << " turmas nesta UC\n";
                 std::cout << "\n---------------------------------------------------\n";
@@ -112,7 +110,7 @@ void Menu::ver_estatisticas(){
                 return;
             }
             default: {
-                std::cout << "Caractere Invalido\n";
+                std::cout << "Caractere Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -124,34 +122,37 @@ void Menu::ver_estatisticas(){
 void Menu::ver_conteudos(){
     int input;
     while (true) {
-        std::cout << "Selecione o que pretende ver:\n[1] Aulas\n[2] Turmas\n[3] Estudantes\n[4] Voltar atrás\n";
+        std::cout << "Selecione o que pretende ver:\n[1] Horários\n[2] Estudantes\n[3] Pedidos\n[4] Voltar atrás\n";
         std::cin >> input;
 
         switch (input) {
             case 1: {
-                for (auto aula: g->get_aulas())
-                    aula->show();
+                ver_horarios();
                 break;
             }
             case 2: {
-                for (auto turma: g->get_turmas()) {
-                    turma->show();
-                }
+                int ordem;
+                std::cout << "Por que ordem prefere ver os estudantes?\n[1] Alfabética\n[2] Numérica\n";
+                std::cin >> ordem;
+                while(std::cin.fail() || (ordem != 1 && ordem != 2)) {
+                        std::cout << "Input inválido" << std::endl;
+                        std::cout << "Por que ordem prefere ver os estudantes?\n[1] Alfabética\n[2] Numérica\n";
+                        std::cin.clear();
+                        std::cin.ignore(INT_MAX, '\n');
+                        std::cin >> ordem;
+                    }
+                ver_estudantes(ordem);
                 break;
             }
             case 3: {
-                std::set<Estudante *, Turma::cmp_nome> vetor_estudantes = g->get_estudantes();
-                for (auto estudante: vetor_estudantes) {
-                    estudante->show();
-                    std::cout << std::endl;
-                }
+                ver_pedidos();
                 break;
             }
             case 4: {
                 return;
             }
             default: {
-                std::cout << "Caractere Invalido\n";
+                std::cout << "Caractere Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -160,115 +161,316 @@ void Menu::ver_conteudos(){
     }
 }
 
-void Menu::fazer_pedido(){
-    std::cout <<"Selecione um estudante:\n";
-    std::string nome;
-    std::cin >> nome;
-    std::cout << "Que pedido pretende fazer:\n[1] Adicionar a uma turma\n";
-    int input;
-    std::cin >> input;
-    if (input == 1){
-        std::cout << "Escolha uma turma:\n";
-        std::string codigo_uc,codigo_turma;
-        std::cout << "Codigo_uc:";
-        std::cin >> codigo_uc;
-        std::cout << "Codigo_turma:";
-        std::cin>> codigo_turma;
-        Estudante* estudante = g->pesquisa_estudante(nome);
-        estudante->show_turmas();
-        Turma* turma = g->pesquisa_turma(codigo_uc,codigo_turma);
 
-        if (g->pode_adicionar_turma(estudante,turma)){
-            Pedido* pedido = new Pedido("adicionar", turma,estudante);
-            g->get_pedidos().push(pedido);
-            std::cout<< "Pedido válido\n";
-        }
-        else{
-            std::cout << "Pedido inválido\n";
+//FALTA MUDAR O LAYOUT DOS HORÁRIOS
+void Menu::ver_horarios(){
+    int input;
+    while (true) {
+        std::cout << "Pretende ver o horário de:\n[1] Uma turma\n[2] Uma UC\n[3] Um estudante\n[4] Voltar atrás\n";
+        std::cin >> input;
+
+        switch (input) {
+            case 1: {
+                std::string cod_uc = validar_codigo_uc();
+                std::string cod_turma = validar_codigo_turma(cod_uc);
+
+                Turma* turma = g->pesquisa_turma(cod_uc,cod_turma);
+                turma->show_horario_turma();
+                std::cout << "\n---------------------------------------------------\n";
+                break;
+            }
+            case 2: {
+                std::string cod_uc = validar_codigo_uc();
+
+                std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
+                //uc->show_horario
+                std::cout << "\n---------------------------------------------------\n";
+                break;
+            }
+            case 3: {
+                std::string cod_estudante = validar_numero_estudante("Insira o número up:");
+
+                Estudante* estudante = g->pesquisa_estudante(cod_estudante);
+                estudante->show_horario();
+                std::cout << "\n---------------------------------------------------\n";
+                break;
+            }
+            case 4: {
+                return;
+            }
+            default: {
+                std::cout << "Caractere Inválido\n";
+                std::cin.clear();
+                std::cin.ignore(INT_MAX, '\n');
+                break;
+            }
         }
     }
+}
+
+void Menu::ver_estudantes(int ordem){
+    int input;
+    while (true) {
+        std::cout << "Pretende ver os estudantes:\n"
+                     "[1] De uma turma\n"
+                     "[2] De uma UC\n"
+                     "[3] De um ano\n"
+                     "[4] Com mais de n UC's\n"
+                     "[5] Voltar atrás";
+        std::cin >> input;
+
+        switch (input) {
+            case 1: {
+                std::string cod_uc = validar_codigo_uc();
+                std::string cod_turma = validar_codigo_turma(cod_uc);
+
+                Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
+                turma->show_estudantes(ordem);
+                std::cout << "\n---------------------------------------------------\n";
+                break;
+            }
+            case 2: {
+                std::string cod_uc = validar_codigo_uc();
+                std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
+                show_uc(uc, ordem);
+                std::cout << "\n---------------------------------------------------\n";
+                break;
+            }
+            case 3: {
+                char ano = validar_numero("Insira o ano:");
+                show_ano(ano, ordem);
+                std::cout << "\n---------------------------------------------------\n";
+                break;
+            }
+            case 4:{
+
+                char o = validar_numero("\"Deseja ordenar os estudantes pelo número de UC's?\n"
+                                        "[1] Sim, por ordem crescente\n"
+                                        "[2] Sim, por ordem decrescente\n"
+                                        "[3] Não\n");
+                char n;
+                std::cout << "Insira o n:";
+                std::cin >> n;
+                //FALTA ALTERAR ESTA FUNÇAO
+                while(std::cin.fail() || (n < 0)) {
+                    std::cout << "Input inválido" << std::endl;
+                    std::cout << "Insira o n:";
+                    std::cin.clear();
+                    std::cin.ignore(INT_MAX, '\n');
+                    std::cin >> ordem;
+                }
+
+                show_estudantes_mais_que_n_ucs(n, ordem);
+                break;
+            }
+            case 5: {
+                return;
+            }
+            default: {
+                std::cout << "Caractere Inválido\n";
+                std::cin.clear();
+                std::cin.ignore(INT_MAX, '\n');
+                break;
+            }
+        }
+    }
+}
+
+void Menu::ver_pedidos(){
+    show_pedidos();
+}
+
+void Menu::fazer_pedido(){
+    while(true) {
+        std::string numero = validar_numero_estudante("Selecione um estudante:");
+        std::cout
+                << "Que pedido pretende fazer:\n"
+                   "[1] Adicionar a uma turma\n"
+                   "[2] Remover de uma turma\n"
+                   "[3] Alterar a turma de uma UC\n"
+                   "[4] Trocar de turma com outro estudante\n"
+                   "[5] Voltar atrás\n";
+        int input;
+        std::cin >> input;
+
+        switch (input) {
+            case 1: {
+                std::cout << "Escolha uma turma:\n";
+                std::string cod_uc = validar_codigo_uc();
+                std::string cod_turma = validar_codigo_turma(cod_uc);
+                Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
+
+                Estudante *estudante = g->pesquisa_estudante(numero);
+                estudante->show_turmas();
+
+                if (g->pode_adicionar_turma(estudante, turma)) {
+                    Pedido *pedido = new Pedido("adicionar", turma, estudante);
+                    g->get_pedidos().push(pedido);
+                    std::cout << "Pedido válido";
+                    std::cout << "\n---------------------------------------------------\n";
+                } else {
+                    std::cout << "Pedido inválido";
+                    std::cout << "\n---------------------------------------------------\n";
+                }
+                return;
+            }
+            case 2: {
+                std::cout << "Escolha uma turma:\n";
+                std::string cod_uc = validar_codigo_uc();
+                std::string cod_turma = validar_codigo_turma(cod_uc);
+                Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
+
+                Estudante *estudante = g->pesquisa_estudante(numero);
+
+                if (g->pode_remover_turma(estudante, turma)) {
+                    Pedido *pedido = new Pedido("remover", turma, estudante);
+                    g->get_pedidos().push(pedido);
+                    std::cout << "Pedido válido";
+                } else {
+                    std::cout << "Pedido inválido";
+                }
+                std::cout << "\n---------------------------------------------------\n";
+
+                return;
+            }
+            case 3: {
+                std::cout << "Escolha uma turma:\n";
+                std::string cod_uc = validar_codigo_uc();
+                std::string cod_turma = validar_codigo_turma(cod_uc);
+                Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
+
+                Estudante *estudante = g->pesquisa_estudante(numero);
+
+                if (g->pode_alterar_turma(estudante, turma)) {
+                    Pedido *pedido = new Pedido("alterar", turma, estudante);
+                    g->get_pedidos().push(pedido);
+                    std::cout << "Pedido válido";
+                } else {
+                    std::cout << "Pedido inválido";
+                }
+                std::cout << "\n---------------------------------------------------\n";
+                return;
+            }
+            case 4: {
+                std::string numero_troca = validar_numero_estudante("Selecione o estudante com quem pretende trocar:\n");
+
+                std::cout << "Escolha a turma que pretende trocar:\n";
+                std::string cod_uc = validar_codigo_uc();
+                std::string cod_turma = validar_codigo_turma(cod_uc);
+
+                Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
+                Estudante *estudante_troca = g->pesquisa_estudante(numero_troca);
+                Estudante *estudante = g->pesquisa_estudante(numero);
+
+                if (g->pode_trocar_turma(estudante, turma, estudante_troca)) {
+                    Pedido *pedido = new Pedido("trocar", turma, estudante, estudante_troca);
+                    g->get_pedidos().push(pedido);
+                    std::cout << "Pedido válido";
+                    std::cout << "\n---------------------------------------------------\n";
+                } else {
+                    std::cout << "Pedido inválido";
+                    std::cout << "\n---------------------------------------------------\n";
+                }
+                return;
+            }
+            case 5: {
+                return;
+            }
+            default: {
+                std::cout << "Caractere Inválido\n";
+                std::cin.clear();
+                std::cin.ignore(INT_MAX, '\n');
+                break;
+            }
+        }
+    }
+
 };
 
 void Menu::fim(){
-    //se existirem pedidos -> efetua-los
-    // se comprimento de pedidos falhados == 0: std::cout << "Todos os pedidos foram efetuados com sucesso!"
-    //else:
+    if (g->get_pedidos().size() != 0){
+        g->gerir_pedidos();
+        if (g->get_pedidos_falhados().size() == 0) std::cout << "Todos os pedidos foram efetuados com sucesso!\n" << std::endl;
+        else std::cout << "Pedidos por realizar: " << g->get_pedidos_falhados().size() << std::endl;
+    }
 }
 
-//CENAS QUE ESTAVAM NO MAIN
-void Menu::show_uc(std::vector<Turma*> uc){
+void Menu::show_uc(std::vector<Turma*> uc, int ordem){
     std::set<Estudante*,Turma::cmp_nome> estudantes;
 
     for (auto turma: uc){
         for (auto es:turma->get_estudantes()) estudantes.insert(es);}
 
     std::cout << estudantes.size();
-    for (auto x: estudantes){
-        std::cout << x->get_nome() << std::endl;
+    for (auto estudante: estudantes){
+        estudante->show(ordem);
+        std::cout << std::endl;
     }}
 
-void Menu::show_ano(std::string ano, std::set<Estudante *, Turma::cmp_nome> estudantes){
-    std::set<Estudante*,Turma::cmp_nome> es;
-    int count = 0;
-    for (Estudante* estudante: estudantes){
-        if (estudante->get_codigo().substr(0,4) == ano){
-            count++;
-            es.insert(estudante);
-        }
-    }
-    for (auto estudante: es){
-        estudante->show();
+void Menu::show_ano(char ano, int ordem){
+    std::set<Estudante*,Turma::cmp_nome> estudantes;
+    for (auto uc : g->get_ucs()){
+        if (uc.front()->get_codigo_turma().at(0) == ano){
+            for (auto turma : uc){
+                for (auto estudante : turma->get_estudantes()){
+                    estudantes.insert(estudante);}}}}
+    for (auto estudante: estudantes){
+        estudante->show(ordem);
         std::cout << std::endl;
     }
-    std::cout << count;
+
 }
-void Menu::show_estudantes_mais_que_n_ucs(int n,std::set<Estudante *, Turma::cmp_nome> estudantes, std::string modo_de_ordenacao = "ordem alfabética"){
+void Menu::show_estudantes_mais_que_n_ucs(int n, int ordem){
     int count = 0;
-    if (modo_de_ordenacao == "numero de ucs") {
-        std::set<Estudante*, Turma::cmp_nr_uc> es;
-        for (Estudante* estudante: estudantes) {
-            if (estudante->get_turmas().size() >= n) {
-                count++;
-                es.insert(estudante);
-                std::cout << estudante->get_nome() << std::endl;
+    switch (ordem) {
+        case 1: {
+            std::set<Estudante*, Turma::cmp_nome> es1;
+            for (Estudante* estudante: g->get_estudantes()) {
+                if (estudante->get_turmas().size() >= n) {
+                    count++;
+                    es1.insert(estudante);
+                }
             }
+            for (auto estudante: es1) {
+                estudante->show();
+                std::cout << std::endl;
+            }
+            std::cout << count;
+            break;
         }
-        for (auto estudante: es) {
-            estudante->show();
-            std::cout << std::endl;
+        case 2:{
+            std::set<Estudante*, Turma::cmp_codigo> es1;
+            for (Estudante* estudante: g->get_estudantes()) {
+                if (estudante->get_turmas().size() >= n) {
+                    count++;
+                    es1.insert(estudante);
+                }
+            }
+            for (auto estudante: es1) {
+                estudante->show();
+                std::cout << std::endl;
+            }
+            std::cout << count;
+            break;
         }
-        std::cout << count;
+        case 3:{
+            std::set<Estudante*, Turma::cmp_nr_uc> es;
+            for (Estudante* estudante: g->get_estudantes()) {
+                if (estudante->get_turmas().size() >= n) {
+                    count++;
+                    es.insert(estudante);
+                    std::cout << estudante->get_nome() << std::endl;
+                }
+            }
+            for (auto estudante: es) {
+                estudante->show();
+                std::cout << std::endl;
+            }
+            std::cout << count;
+            break;
+        }
     }
 
-    else if (modo_de_ordenacao == "codigo") {
-        std::set<Estudante*, Turma::cmp_codigo> es1;
-        for (Estudante* estudante: estudantes) {
-            if (estudante->get_turmas().size() >= n) {
-                count++;
-                es1.insert(estudante);
-            }
-        }
-        for (auto estudante: es1) {
-            estudante->show();
-            std::cout << std::endl;
-        }
-        std::cout << count;
-    }
-
-    else {
-        std::set<Estudante*, Turma::cmp_nome> es1;
-        for (Estudante* estudante: estudantes) {
-            if (estudante->get_turmas().size() >= n) {
-                count++;
-                es1.insert(estudante);
-            }
-        }
-        for (auto estudante: es1) {
-            estudante->show();
-            std::cout << std::endl;
-        }
-        std::cout << count;
-    }
 }
 
 //testar show_pedidos
@@ -277,8 +479,68 @@ void Menu::show_pedidos(){
     unsigned initial_size = g->get_pedidos().size();
     for (unsigned i = 0; i< initial_size;i++){
         Pedido* p = g->get_pedidos().front();
-        std::cout << p->get_tipo();
+        std::cout << p->get_tipo() << std::endl;
         fila_temp.push(g->get_pedidos().front());
     }
     g->set_pedidos(fila_temp);
+}
+
+std::string Menu::validar_codigo_uc(){
+    std::string cod_uc;
+    std::cout<< "Insira o código da UC:";
+    std::cin >> cod_uc;
+
+    while(std::cin.fail() || g->pesquisa_uc(cod_uc).empty()) {
+        std::cout << "Input inválido" << std::endl;
+        std::cout << "Insira o código da UC:";
+        std::cin.clear();
+        std::cin.ignore(INT_MAX, '\n');
+        std::cin >> cod_uc;
+    }
+    return cod_uc;
+}
+
+std::string Menu::validar_codigo_turma(std::string cod_uc){
+    std::string cod_turma;
+    std::cout<< "Insira o código da turma:";
+    std::cin >> cod_turma;
+
+    while(std::cin.fail() || g->pesquisa_turma(cod_uc,cod_turma) == nullptr) {
+        std::cout << "Input inválido" << std::endl;
+        std::cout << "Insira o código da turma:";
+        std::cin.clear();
+        std::cin.ignore(INT_MAX, '\n');
+        std::cin >> cod_turma;
+    }
+    return cod_turma;
+}
+
+std::string Menu::validar_numero_estudante(std::string mensagem){
+    std::string numero;
+    std::cout<< mensagem;
+    std::cin >> numero;
+
+    while(std::cin.fail() || g->pesquisa_estudante(numero) == nullptr) {
+        std::cout << "Input inválido" << std::endl;
+        std::cout << mensagem;
+        std::cin.clear();
+        std::cin.ignore(INT_MAX, '\n');
+        std::cin >> numero;
+    }
+    return numero;
+}
+
+char Menu::validar_numero(std::string mensagem){
+    char numero;
+    std::cout<< mensagem;
+    std::cin >> numero;
+
+    while(std::cin.fail() || numero > 3 || numero < 1) {
+        std::cout << "Input inválido" << std::endl;
+        std::cout << mensagem;
+        std::cin.clear();
+        std::cin.ignore(INT_MAX, '\n');
+        std::cin >> numero;
+    }
+    return numero;
 }

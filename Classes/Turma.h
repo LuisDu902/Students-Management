@@ -41,7 +41,7 @@ public:
 
     //show
     void show_horario_turma();
-    void show_estudantes();
+    void show_estudantes(int ordem);
     void show();
 
 private:

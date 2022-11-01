@@ -28,7 +28,7 @@ class Estudante {
         std::vector<Aula*>  horario();
 
         //show
-        void show();
+        void show(int ordem = 1);
         void show_horario();
         void show_turmas();
 

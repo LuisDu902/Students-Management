@@ -111,16 +111,25 @@ void Estudante::alterar_turma(Turma* turma){
  * @param estudante_troca
  */
 void Estudante::trocar_turma_com_estudante(Turma *turma, Estudante *estudante_troca) {
-
-}
+if (!estudante_troca->compativel(turma)) return;
+    estudante_troca->get_turmas().push_back(turma);
+    for (auto t=estudante_troca->get_turmas().begin();t!=estudante_troca->get_turmas().end();t++){
+        if ((*t)->get_codigo_uc() == turma->get_codigo_uc()){
+            if (!this->compativel(*t)) {
+                estudante_troca->get_turmas().pop_back();
+            }
+            else {
+                this->alterar_turma(*t);
+                estudante_troca->get_turmas().erase(t);}}}}
 
 
 //show
 /**
  * Mostra o nome e o código do estudante
  */
-void Estudante::show(){
-    std::cout << nome << " - up" << codigo;
+void Estudante::show(int ordem){
+    if (ordem == 2) std::cout << "up" << codigo << " - " << nome;
+    else std::cout << nome << " - up" << codigo;
 }
 /**
  * Mostra o horário do estudante
