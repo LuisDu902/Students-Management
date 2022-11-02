@@ -64,12 +64,12 @@ std::string Aula::get_tipo() const {return tipo;}
  * @return
  */
 bool Aula::cmp(Aula* lhs, Aula* rhs){
-    std::map<std::string,int> days = {
-            std::pair<std::string,int> ("Monday",1),
-            std::pair<std::string,int> ("Tuesday",2),
-            std::pair<std::string,int> ("Wednesday",3),
-            std::pair<std::string,int> ("Thursday",4),
-            std::pair<std::string,int> ("Friday",5),
+    std::map<std::string,int> days  = {
+        std::pair<std::string,int> ("Monday",1),
+                std::pair<std::string,int> ("Tuesday",2),
+                std::pair<std::string,int> ("Wednesday",3),
+                std::pair<std::string,int> ("Thursday",4),
+                std::pair<std::string,int> ("Friday",5),
     };
     if (lhs->dia_semana != rhs->dia_semana){
         return days[lhs->dia_semana] < days[rhs->dia_semana];
@@ -78,17 +78,12 @@ bool Aula::cmp(Aula* lhs, Aula* rhs){
 }
 //show
 /**
- * Mostra o código_turma, o código_uc, o dia da semana, a hora de início, a duração e o tipo da aula
+ * Mostra a hora de início, a duração e o tipo da aula
  */
 void Aula::show() {
-    std::cout << codigo_turma << " | " << codigo_uc << " | " << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
+    std::cout << "   " << hora_inicio << " - " << hora_inicio+duracao << " | " << tipo;
 }
-/**
- * Mostra o dia da semana, a hora de início, a duração e o tipo da aula
- */
-void Aula::show_horario_turma() {
-    std::cout << dia_semana << " | " << hora_inicio << " | " << duracao << " | " << tipo << std::endl;
-}
+
 /**
  * Verifica se duas aulas ocorrem em simultâneo
  * @param aula
@@ -105,3 +100,21 @@ bool Aula::overload(Aula* aula){
     }
     return false;
 }
+/**
+ * Overload do operador () ??
+ * @param lhs
+ * @param rhs
+ * @return
+ */
+bool Aula::cmp_nome::operator()(Aula* lhs, Aula* rhs) const{
+    //std::map<std::string,int> days = Aula::dias;
+    if (lhs->dia_semana != rhs->dia_semana){
+        return dias[lhs->dia_semana] < dias[rhs->dia_semana];
+    }
+    return lhs->hora_inicio < rhs->hora_inicio;
+}
+/**
+ *
+ */
+Aula::OpMap Aula::dias = init_map();
+Aula::OpMap1 Aula::pt= init_map1();

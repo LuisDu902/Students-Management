@@ -6,7 +6,7 @@
 
 //construtor
 /**
- * Construtor da classe Turma, recebe um código_uc e um código_turma (a capacidade atual da turma é iniciada a 0, sendo o vetor de aulas corresponde a um vetor vazio, e o BST de estudantes a um BST vazio
+ * Construtor da classe Turma, recebe um código_uc e um código_turma (a capacidade atual da turma é iniciada a 0, sendo o vetor de aulas corresponde a um vetor vazio, e o BST de estudantes a uma BST vazio
  * @param codigo_uc
  * @param codigo_turma
  */
@@ -94,29 +94,70 @@ bool Turma::cmp_nr_uc::operator()(const Estudante* lhs, const Estudante* rhs) co
 
 //show
 /**
- * Mostra o código_uc, o código_turma e a capacidade atual da turma
+ * Mostra a turma
  */
 void Turma::show() {
-    std::cout << codigo_uc << " | " << codigo_turma << " | numero de alunos: " << capacidade_atual << std::endl;
+    std::cout << codigo_uc << " | " << codigo_turma << '\n';
 }
+
 /**
  * Mostra todos os estudantes pertencentes à turma
  */
-void Turma::show_estudantes(){
-    for (auto estudante: estudantes){
-        std::cout << estudante->get_nome() << std::endl;
+void Turma::show_estudantes(int ordem, int ordem_c){
+    if (ordem == 2){
+        std::set<Estudante*, Turma::cmp_codigo> es;
+        for (auto estudante: estudantes){
+            es.insert(estudante);
+        }
+        if (ordem_c == 2){
+            for (auto it = es.rbegin(); it != es.rend(); it++){
+                (*it)->show(ordem);
+                std::cout << '\n';
+            }
+        }
+        else {
+            for (auto estudante: es) {
+                estudante->show(ordem);
+                std::cout << '\n';
+            }
+        }
+    }
+    else{
+        if (ordem_c == 2){
+            for (auto it = estudantes.rbegin(); it != estudantes.rend(); it++){
+                (*it)->show(ordem);
+                std::cout << '\n';
+            }
+        }
+        else {
+            for (auto estudante: estudantes){
+                estudante->show(ordem);
+                std::cout << '\n';
+            }
+        }
     }
 }
 /**
  * Mostra todas as aulas associadas à turma
  */
 void Turma::show_horario_turma(){
-
+    std::map<std::string,int> dias = Aula::dias;
+    std::map<std::string,std::string> pt = Aula::pt;
     sort(aulas.begin(),aulas.end(),Aula::cmp);
-    for (auto aula: aulas){
-        aula->show_horario_turma();
+    auto it = aulas.begin();
+    int dia_atual = dias[(*it)->get_dia_semana()];
+    std::cout << pt[(*it)->get_dia_semana()] << ":\n";
+    while (it != aulas.end()){
+        if (dias[(*it)->get_dia_semana()] != dia_atual){
+            dia_atual = dias[(*it)->get_dia_semana()];
+            std::cout << pt[(*it)->get_dia_semana()] << ":\n";
+        }
+        (*it)->show();
+        std::cout << '\n';
+        it++;
+        }
     }
-}
+
 
 
 

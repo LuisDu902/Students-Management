@@ -32,3 +32,8 @@ Estudante* Pedido::get_estudante2() {return estudante2; }
  * @return
  */
 Turma* Pedido::get_turma() {return turma1; }
+
+bool Pedido::cmp(Pedido* pedido1, Pedido* pedido2){
+
+    return (pedido1->tipo < pedido2->tipo);
+}

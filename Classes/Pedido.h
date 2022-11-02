@@ -12,6 +12,8 @@ public:
 // construtores
     Pedido(std::string tipo, Turma* turma, Estudante* estudante1, Estudante* estudante2 = nullptr);
 
+    static bool cmp(Pedido* pedido1, Pedido* pedido2);
+
     std::string get_tipo();
     Estudante* get_estudante1();
     Estudante* get_estudante2();
