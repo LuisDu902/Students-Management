@@ -62,7 +62,6 @@ CMAKE_BINARY_DIR = C:\AED\Projeto_AED-master\cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Doxygen.dir/all
 all: CMakeFiles/PROJ.dir/all
 .PHONY : all
 
@@ -71,35 +70,8 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Doxygen.dir/clean
 clean: CMakeFiles/PROJ.dir/clean
 .PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/Doxygen.dir
-
-# All Build rule for target.
-CMakeFiles/Doxygen.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Doxygen.dir\build.make CMakeFiles/Doxygen.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Doxygen.dir\build.make CMakeFiles/Doxygen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\AED\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=1 "Built target Doxygen"
-.PHONY : CMakeFiles/Doxygen.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Doxygen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\AED\Projeto_AED-master\cmake-build-debug\CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Doxygen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\AED\Projeto_AED-master\cmake-build-debug\CMakeFiles 0
-.PHONY : CMakeFiles/Doxygen.dir/rule
-
-# Convenience name for target.
-Doxygen: CMakeFiles/Doxygen.dir/rule
-.PHONY : Doxygen
-
-# clean rule for target.
-CMakeFiles/Doxygen.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Doxygen.dir\build.make CMakeFiles/Doxygen.dir/clean
-.PHONY : CMakeFiles/Doxygen.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/PROJ.dir
@@ -108,7 +80,7 @@ CMakeFiles/Doxygen.dir/clean:
 CMakeFiles/PROJ.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROJ.dir\build.make CMakeFiles/PROJ.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\AED\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=2,3,4,5,6,7,8,9 "Built target PROJ"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\AED\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target PROJ"
 .PHONY : CMakeFiles/PROJ.dir/all
 
 # Build rule for subdir invocation for target.

@@ -1,39 +1,56 @@
 #include "Pedido.h"
+
 /**
- * Construtor da classe Pedido, recebe o tipo (adicionar, alterar,remover, trocar), estudante 1, turma 1 e estudante 2(caso apenas receba três parâmetros, o estudante 2 é um nullptr)
- * @param tipo
- * @param turma
- * @param estudante1
- * @param estudante2
+ * Construtor da classe Pedido
+ * @param tipo (1) Adicionar / (2) Remover / (3) Alterar / (4) Trocar
+ * @param turma pointer para a turma do pedido
+ * @param estudante1 pointer para o estudante que fez o pedido
+ * @param estudante2 pointer para o estudante com quem o estudante 1 quer trocar / nullpointer
  */
-Pedido::Pedido(std::string tipo, Turma* turma, Estudante* estudante1, Estudante* estudante2){
+Pedido::Pedido(int tipo, Turma* turma, Estudante* estudante1, Estudante* estudante2){
     this->estudante1 = estudante1;
     this->estudante2 = estudante2;
     this->turma1 = turma;
     this->tipo = tipo;
 }
 /**
- * Retorna o tipo do pedido
- * @return
+ * Obtém o tipo do pedido
+ * Complexidade: O(1)
+ * @return tipo do pedido
  */
-std::string Pedido::get_tipo() {return tipo; }
-/**
- * Retorna o estudante 1 que fez o pedido
- * @return
- */
-Estudante* Pedido::get_estudante1() {return estudante1; }
-/**
- * Retorna o estudante 2 que fez o pedido
- * @return
- */
-Estudante* Pedido::get_estudante2() {return estudante2; }
-/**
- * Retorna a turma do pedido
- * @return
- */
-Turma* Pedido::get_turma() {return turma1; }
+int Pedido::get_tipo() const {return tipo; }
 
-bool Pedido::cmp(Pedido* pedido1, Pedido* pedido2){
+/**
+ * Obtém o estudante que fez o pedido
+ * Complexidade: O(1)
+ * @return pointer para o estudante que fez o pedido
+ */
+Estudante* Pedido::get_estudante1() const {return estudante1; }
 
-    return (pedido1->tipo < pedido2->tipo);
-}
+/**
+ * Obtém o estudante com quem o estudante 1 quer trocar
+ * Complexidade: O(1)
+ * @return pointer para o estudante com quem o estudante 1 quer trocar
+ */
+Estudante* Pedido::get_estudante2() const {return estudante2; }
+
+/**
+ * Obtém a turma do pedido
+ * Complexidade: O(1)
+ * @return pointer para a turma do pedido
+ */
+Turma* Pedido::get_turma() const {return turma1; }
+
+/**
+ * Método de comparação entre dois pedidos de acordo com o seu tipo
+ * Complexidade: O(1)
+ * @param pedido1 pointer para o pedido 1
+ * @param pedido2 pointer para o pedido 2
+ * @return true se o tipo do pedido 1 for menor que o tipo do pedido 2, caso contrário false
+ */
+bool Pedido::cmp(Pedido* pedido1, Pedido* pedido2){return (pedido1->tipo < pedido2->tipo);}
+
+/**
+ * Dicionário de conversão entre número inteiro e tipo de pedido
+ */
+Pedido::OpMap Pedido::tipos = init_map();

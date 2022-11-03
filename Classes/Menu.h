@@ -10,7 +10,8 @@ class Menu {
 public:
     Menu();
     void init();
-
+    template <typename T>
+    static void show_ordem_c(T es, int ordem, int ordem_c);
 private:
     Gestao* g;
     void ver_estatisticas();
@@ -22,19 +23,18 @@ private:
     void cancelar_pedido();
     void fim();
 
-    void show_uc(std::vector<Turma*> uc, int ordem, int ordem_c);
+    void show_uc(const std::vector<Turma*>& uc, int ordem, int ordem_c);
     void show_ano(char ano, int ordem, int ordem_c);
     void show_estudantes_mais_que_n_ucs(int n, int ordem, int ordem_c);
-    void show_horario_uc(std::vector<Turma*> uc);
+    void show_horario_uc(const std::vector<Turma*>& uc);
     void show_pedidos(int ordem);
-    template <typename T>
-    void show_ordem_c(T es, int ordem, int ordem_c);
+
 
     std::string validar_codigo_uc();
-    std::string validar_codigo_turma(std::string cod_uc);
-    std::string validar_numero_estudante(std::string mensagem);
-    int validar_numero(std::string mensagem);
-    int validar_opcao(std::string mensagem);
+    std::string validar_codigo_turma(const std::string& cod_uc);
+    std::string validar_numero_estudante(const std::string& mensagem);
+    int validar_numero(const std::string& mensagem);
+    int validar_opcao(const std::string& mensagem);
 };
 
 

@@ -1,7 +1,3 @@
-//
-// Created by athos on 31/10/2022.
-//
-
 #ifndef PROJ_PEDIDO_H
 #define PROJ_PEDIDO_H
 
@@ -9,20 +5,34 @@
 
 class Pedido {
 public:
-// construtores
-    Pedido(std::string tipo, Turma* turma, Estudante* estudante1, Estudante* estudante2 = nullptr);
+    Pedido(int, Turma*, Estudante*, Estudante* = nullptr);
 
-    static bool cmp(Pedido* pedido1, Pedido* pedido2);
+    typedef std::map<int, std::string> OpMap;
+    static OpMap tipos;
 
-    std::string get_tipo();
-    Estudante* get_estudante1();
-    Estudante* get_estudante2();
-    Turma* get_turma();
+    static bool cmp(Pedido*, Pedido*);
+
+    int get_tipo() const;
+    Estudante* get_estudante1() const;
+    Estudante* get_estudante2() const;
+    Turma* get_turma() const;
 
 private:
     Estudante* estudante1;
     Estudante* estudante2;
     Turma* turma1;
-    std::string tipo;
+    int tipo;
+
+    static OpMap init_map(){
+        std::map<int, std::string> tipos = {
+                std::pair<int, std::string> (1,"Adicionar"),
+                std::pair<int, std::string> (2,"Remover"),
+                std::pair<int, std::string> (3,"Alterar"),
+                std::pair<int, std::string> (4,"Trocar"),
+        };
+        return tipos;
+    }
+
+
 };
 #endif

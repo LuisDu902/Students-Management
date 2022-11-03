@@ -1,162 +1,138 @@
-//
-// Created by athos on 13/10/2022.
-//
-
 #include "Turma.h"
 
-//construtor
+#include <utility>
+#include "Menu.h"
 /**
- * Construtor da classe Turma, recebe um código_uc e um código_turma (a capacidade atual da turma é iniciada a 0, sendo o vetor de aulas corresponde a um vetor vazio, e o BST de estudantes a uma BST vazio
- * @param codigo_uc
- * @param codigo_turma
+ * Construtor da classe Turma
+ * @param codigo_uc _L.EIC0__ / UP001
+ * @param codigo_turma _LEIC__
  */
 Turma::Turma(std::string codigo_uc,std::string codigo_turma){
-    this->codigo_turma = codigo_turma;
-    this->codigo_uc = codigo_uc;
-    capacidade_atual = 0;
+    this->codigo_turma = std::move(codigo_turma);
+    this->codigo_uc = std::move(codigo_uc);
 }
 
-//getters
 /**
- * Retorna o código_uc da turma
- * @return
+ * Obtém o código_uc da turma
+ * Complexidade: O(1)
+ * @return codigo_uc da turma
  */
 std::string Turma::get_codigo_uc() const {return codigo_uc;}
+
 /**
- * Retorna o código_turma da turma
- * @return
+ * Obtém o código_turma da turma
+ * Complexidade: O(1)
+ * @return código_turma da turma
  */
 std::string Turma::get_codigo_turma() const {return codigo_turma;}
+
 /**
- * Retorna o vetor de todas as aulas associadas à turma
- * @return
+ * Obtém o vetor de todas as aulas associadas à turma
+ * Complexidade: O(1)
+ * @return vetor de aulas da turma
  */
 std::vector<Aula*> Turma::get_aulas() const{return aulas;}
+
 /**
- * Retorna a BST de todos os estudantes da turma
- * @return
+ * Obtém a BST de todos os estudantes da turma
+ * Complexidade: O(1)
+ * @return BST de todos os estudantes da turma
  */
 std::set<Estudante*,Turma::cmp_nome> Turma::get_estudantes() const{return estudantes;}
-/**
- * Retorna o número atual de estudantes da turma
- * @return
- */
-int Turma::get_capacidade_atual() const{return capacidade_atual;}
 
-//operators
-/**
- * Modifica o valor da capacidade atual da turma para cap
- * @param capacidade
- */
-void Turma::set_capacidade(int capacidade) {capacidade_atual=capacidade;}
 /**
  * Adiciona a aula no fim do vetor de aulas da turma
- * @param aula
+ * Complexidade: O(1)
+ * @param aula pointer para a aula a adicionar
  */
 void Turma::adicionar_aula(Aula* aula){aulas.push_back(aula);}
+
 /**
  * Adiciona um estudante à BST de estudantes da turma
- * @param estudante
+ * Complexidade: O(log(n)), n -> tamanho da BST de estudantes
+ * @param estudante pointer para o estudante a adicionar
  */
 void Turma::adicionar_estudante(Estudante* estudante){estudantes.insert(estudante);}
+
 /**
  * Remove um estudante da BST de estudantes da turma
- * @param estudante
+ * Complexidade: O(log(n)), n -> tamanho da BST de estudantes
+ * @param estudante pointer para o estudante a remover
  */
 void Turma::remover_estudante(Estudante* estudante){estudantes.erase(estudantes.find(estudante));}
 
-//compare
 /**
- * Método de ordenação entre dois estudantes pela ordem alfabética
- * @param lhs
- * @param rhs
- * @return
+ * Método de comparação entre dois estudantes pela ordem alfabética
+ * Complexidade: O(1)
+ * @param lhs pointer para estudante 1
+ * @param rhs pointer para estudante 2
+ * @return true se o nome do estudante 1 for anterior ao nome do estudante 2, caso contrário false
  */
 bool Turma::cmp_nome::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->get_nome() < rhs->get_nome();}
 
 /**
- * Método de ordenação entre dois estudantes de acordo com o código do estudante
- * @param lhs
- * @param rhs
- * @return
+ * Método de comparação entre dois estudantes de acordo com o código do estudante
+ * Complexidade: O(1)
+ * @param lhs pointer para estudante 1
+ * @param rhs pointer para estudante 2
+ * @return true se o código do estudante 1 for menor que o do estudante 2, caso contrário false
  */
 bool Turma::cmp_codigo::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->get_codigo() < rhs->get_codigo();}
 
 /**
- * Método de ordenação entre dois estudantes de acordo com o número de ucs que frequenta. Se os estudantes frequentarem o mesmo número de ucs, a ordenação é feita alfabeticamente
- * @param lhs
- * @param rhs
- * @return
+ * Método de comparação entre dois estudantes de acordo com o número de ucs que frequenta.
+ * Se os estudantes frequentarem o mesmo número de ucs, a comparação é feita alfabeticamente
+ * Complexidade: O(1)
+ * @param lhs pointer para estudante 1
+ * @param rhs pointer para estudante 2
+ * @return true se o estudante 1 estiver inscrito em menos uc's que o estudante 2, ou inscrito no mesmo número de uc's mas tiver nome anterior, caso contrário false
  */
 bool Turma::cmp_nr_uc::operator()(const Estudante* lhs, const Estudante* rhs) const  {
-    if (lhs->get_turmas().size() != rhs->get_turmas().size()) return lhs->get_turmas().size() < rhs->get_turmas().size();
-    return lhs->get_nome() < rhs->get_nome();}
+    return (lhs->get_turmas().size() < rhs->get_turmas().size()) ||
+     (lhs->get_turmas().size() == rhs->get_turmas().size() && lhs->get_nome() < rhs->get_nome());}
 
-//show
 /**
- * Mostra a turma
+ * Mostra o codigo_uc e o codigo_turma da turma
+ * Complexidade: O(1)
  */
-void Turma::show() {
+void Turma::show() const{
     std::cout << codigo_uc << " | " << codigo_turma << '\n';
 }
 
 /**
  * Mostra todos os estudantes pertencentes à turma
+ * Complexidade: O(n log(n)), n -> tamanho da BST de estudantes
  */
-void Turma::show_estudantes(int ordem, int ordem_c){
+void Turma::show_estudantes(int ordem, int ordem_c) const{
     if (ordem == 2){
         std::set<Estudante*, Turma::cmp_codigo> es;
-        for (auto estudante: estudantes){
+        for (Estudante* estudante: estudantes){
             es.insert(estudante);
         }
-        if (ordem_c == 2){
-            for (auto it = es.rbegin(); it != es.rend(); it++){
-                (*it)->show(ordem);
-                std::cout << '\n';
-            }
-        }
-        else {
-            for (auto estudante: es) {
-                estudante->show(ordem);
-                std::cout << '\n';
-            }
-        }
+        Menu::show_ordem_c(es,ordem,ordem_c);
     }
-    else{
-        if (ordem_c == 2){
-            for (auto it = estudantes.rbegin(); it != estudantes.rend(); it++){
-                (*it)->show(ordem);
-                std::cout << '\n';
-            }
+    else Menu::show_ordem_c(estudantes,ordem,ordem_c);
+}
+
+/**
+ * Mostra todas as aulas associadas à turma em ordem cronológica
+ * Complexidade: O(n log(n)), n-> tamanho do vetor das aulas da turma
+ */
+void Turma::show_horario_turma() {
+
+    sort(aulas.begin(),aulas.end(),Aula::cmp);
+
+    int dia_atual = 0;
+
+    for (Aula* aula: aulas){
+        if (Aula::dias[aula->get_dia_semana()] != dia_atual){
+            dia_atual = Aula::dias[aula->get_dia_semana()];
+            std::cout << Aula::portugues[aula->get_dia_semana()] << ":\n";
         }
-        else {
-            for (auto estudante: estudantes){
-                estudante->show(ordem);
-                std::cout << '\n';
-            }
-        }
+        aula->show();
+        std::cout << '\n';
     }
 }
-/**
- * Mostra todas as aulas associadas à turma
- */
-void Turma::show_horario_turma(){
-    std::map<std::string,int> dias = Aula::dias;
-    std::map<std::string,std::string> pt = Aula::pt;
-    sort(aulas.begin(),aulas.end(),Aula::cmp);
-    auto it = aulas.begin();
-    int dia_atual = dias[(*it)->get_dia_semana()];
-    std::cout << pt[(*it)->get_dia_semana()] << ":\n";
-    while (it != aulas.end()){
-        if (dias[(*it)->get_dia_semana()] != dia_atual){
-            dia_atual = dias[(*it)->get_dia_semana()];
-            std::cout << pt[(*it)->get_dia_semana()] << ":\n";
-        }
-        (*it)->show();
-        std::cout << '\n';
-        it++;
-        }
-    }
 
 
 

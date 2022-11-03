@@ -1,81 +1,79 @@
-//
-// Created by Sofia Pinto on 13/10/2022.
-//
-
 #include "Estudante.h"
 
-//construtor
+#include <utility>
+
 /**
- * Construtor da classe Estudante(), recebe o código e o nome de um estudante (sendo o vetor de aulas corresponde inicialmente a um vetor vazio)
- * @param codigo
- * @param nome
+ * Construtor da classe Estudante
+ * @param codigo número up do estudante
+ * @param nome nome do estudante
  */
 Estudante::Estudante(std::string codigo, std::string nome) {
-    this->codigo = codigo;
-    this-> nome = nome;
+    this->codigo = std::move(codigo);
+    this-> nome = std::move(nome);
 }
 
-Estudante::Estudante(std::string codigo) {
-    this->codigo = codigo;
-}
-//getters
 /**
- * Retorna o nome do estudante
- * @return
+ * Obtém o nome do estudante
+ * Complexidade: O(1)
+ * @return nome do estudante
  */
 std::string Estudante::get_nome() const{return nome;}
+
 /**
- * Retorna o codigo do estudante
- * @return
+ * Obtém o número up do estudante
+ * Complexidade: O(1)
+ * @return número up do estudante
  */
 std::string Estudante::get_codigo() const {return codigo;}
+
 /**
- * Retorna o vetor de todas as turmas do estudante
- * @return
+ * Obtém o vetor de todas as turmas do estudante
+ * Complexidade: O(1)
+ * @return vetor de todas as turmas do estudante
  */
 std::vector<Turma *> Estudante::get_turmas() const{return turmas;}
 
-//operators
-
 /**
- * Remove o estudante da turma, retirando a turma do vetor de turmas do estudantes, e decrementando a capacidade atual da turma
- * @param turma
+ * Remove o estudante da turma t
+ * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
+ * @param turma pointer para a turma a ser removida
  */
-void Estudante::remover_da_turma(Turma* turma){
-
+void Estudante::remover_da_turma(Turma* t){
     for (auto it = turmas.begin();it != turmas.end();it++){
-        if ((*it)->get_codigo_turma() == turma->get_codigo_turma() && (*it)->get_codigo_uc() == turma->get_codigo_uc()){
+        if ((*it)->get_codigo_turma() == t->get_codigo_turma() && (*it)->get_codigo_uc() == t->get_codigo_uc()){
             turmas.erase(it);
             (*it)->remover_estudante(this);
-            turma->set_capacidade(turma->get_capacidade_atual()-1);
             return;
         }
     }
 }
 
 /**
- * Retorna o horário do estudante, isto é, uma BST de todas as aulas do estudante
- * @return
+ * Obtém o horário do estudante
+ * Complexidade: O(n*m), n -> tamanho do vetor das turmas do estudante, m -> tamanho do vetor das aulas de cada turma
+ * @return vetor de todas as aulas do estudante
  */
 std::vector<Aula*> Estudante::horario(){
     std::vector<Aula*> a;
-    for (auto turma: turmas){
-        for (auto aula : turma->get_aulas()){
+    for (Turma* turma: turmas){
+        for (Aula* aula : turma->get_aulas()){
             a.push_back(aula);
         }
     }
     return a;
 }
+
 /**
  * Verifica se o horário da turma é compatível com o horário do estudante
- * @param turma
- * @return
+ * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
+ * @param turma pointer para a turma
+ * @return true se o horário da turma é compatível com o horário do estudante, caso contrário false
  */
-bool Estudante::compativel(Turma* turma){
+bool Estudante::compativel(Turma* t){
     std::vector<Aula*> h = horario();
-    for (auto aula_turma : turma->get_aulas()){
-        for (auto aula_estudante: h){
-            if (aula_turma->overload(aula_estudante)) {
+    for (Aula* aula_turma : t->get_aulas()){
+        for (Aula* aula_estudante: h){
+            if (aula_turma->sobrepoe(aula_estudante)) {
                 return false;
             }
         }
@@ -84,39 +82,35 @@ bool Estudante::compativel(Turma* turma){
 }
 /**
  * Adicionar a turma no fim do vetor de turmas do estudante
- * @param turma
+ * Complexidade: O(log(n)), n -> tamanho da BST de estudantes da turma t
+ * @param turma pointer para a turma a adicionar
  */
-void Estudante::adicionar_turma(Turma* turma){
-    if (!compativel(turma)) return;
-    for (auto a: turmas){
-        if (a->get_codigo_uc() == turma->get_codigo_uc() && a->get_codigo_turma() == turma->get_codigo_turma()) {
-            return;
-        }
-    }
-    turma->set_capacidade(turma->get_capacidade_atual()+1);
-    turma->adicionar_estudante(this);
-    turmas.push_back(turma);
+void Estudante::adicionar_turma(Turma* t){
+    t->adicionar_estudante(this);
+    turmas.push_back(t);
 }
 /**
- * Remove o estudante da turma, adicionando a turma no fim do vetor de turma do estudante
- * @param turma
+ * Altera o estudante para a turma t de uma mesma UC
+ * Complexidade: O(n) -> tamanho do vetor das turmas do estudante
+ * @param turma pointer para a turma que o estudante vai
  */
-void Estudante::alterar_turma(Turma* turma){
-    for (auto t=turmas.begin();t!=turmas.end();t++){
-        if ((*t)->get_codigo_uc() == turma->get_codigo_uc()){
-            turmas.erase(t);
+void Estudante::alterar_turma(Turma* t){
+    for (Turma* turma: turmas){
+        if ((turma)->get_codigo_uc() == t->get_codigo_uc()){
+            remover_da_turma(turma);
+            break;
         }
     }
-    turmas.push_back(turma);
+    adicionar_turma(t);
 }
 
 /**
- * ???
- * @param turma
- * @param estudante_troca
+ * Troca dois estudantes de turma um com o outro
+ * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante com mais turmas
+ * @param turma pointer para a turma
+ * @param estudante_troca pointer para estudante com o qual se pretende trocar de turma
  */
 void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_troca) {
-
 
     Turma* turma2;
     for (auto t: estudante_troca->get_turmas()){
@@ -130,41 +124,45 @@ void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_t
     estudante_troca->remover_da_turma(turma2);
 
     adicionar_turma(turma2);
-    estudante_troca->adicionar_turma(turma1);}
-//show
+    estudante_troca->adicionar_turma(turma1);
+}
+
 /**
- * Mostra o nome e o código do estudante
- */
-void Estudante::show(int ordem){
+  * Mostra o nome e o código do estudante
+  * Complexidade: O(1)
+  * @param ordem (1) nome - número  / (2) número - nome
+  */
+void Estudante::show(int ordem) const{
     if (ordem == 2) std::cout << "up" << codigo << " - " << nome;
     else std::cout << nome << " - up" << codigo;
 }
+
 /**
- * Mostra o horário do estudante
+ * Mostra o horário do estudante em ordem cronológica
+ * Complexidade: O(n log(n)), n -> tamanho do vetor das aulas do estudante
  */
 void Estudante::show_horario(){
     std::vector<Aula*> aulas = Estudante::horario();
-    std::map<std::string,int> dias = Aula::dias;
-    std::map<std::string,std::string> pt = Aula::pt;
+
     sort(aulas.begin(),aulas.end(),Aula::cmp);
-    auto it = aulas.begin();
-    int dia_atual = dias[(*it)->get_dia_semana()];
-    std::cout << pt[(*it)->get_dia_semana()] << ":\n";
-    while (it != aulas.end()){
-        if (dias[(*it)->get_dia_semana()] != dia_atual){
-            dia_atual = dias[(*it)->get_dia_semana()];
-            std::cout << pt[(*it)->get_dia_semana()] << ":\n";
+
+    int dia_atual = 0;
+
+    for (Aula* aula: aulas){
+        if (Aula::dias[aula->get_dia_semana()] != dia_atual){
+            dia_atual = Aula::dias[aula->get_dia_semana()];
+            std::cout << Aula::portugues[aula->get_dia_semana()] << ":\n";
         }
-        (*it)->show();
-        std::cout << " | " << (*it)->get_codigo_uc() << " | " << (*it)->get_codigo_turma() << '\n';
-        it++;
-        }
+        aula->show();
+        std::cout << '\n';
     }
+}
 
 /**
  * Mostra todas as turmas do estudante
+ * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
  */
-void Estudante::show_turmas(){
+void Estudante::show_turmas() const{
     std::cout << nome << " está nas turmas: \n";
     for (auto turma: turmas){
         std::cout << "\t";
