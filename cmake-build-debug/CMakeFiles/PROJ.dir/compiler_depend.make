@@ -135,13 +135,13 @@ CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj: ../Classes/Aula.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/map \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_tree.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/aligned_buffer.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_map.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/tuple \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/array \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/uses_allocator.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/invoke.h \
@@ -254,6 +254,8 @@ CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj: ../Classes/Estudante.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/functional_hash.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/hash_bytes.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/set \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_tree.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/aligned_buffer.h \
@@ -267,8 +269,6 @@ CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj: ../Classes/Estudante.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/algorithm \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algo.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/algorithmfwd.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_heap.h \
@@ -313,20 +313,23 @@ CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj: ../Classes/Estudante.cpp \
 
 CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj: ../Classes/Gestao.cpp \
   ../Classes/Gestao.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/set \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_tree.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algobase.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_pair.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/move.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/type_traits \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/initializer_list \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/set \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_tree.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algobase.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/functexcept.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/exception_defines.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/cpp_type_traits.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/type_traits.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/numeric_traits.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_pair.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/move.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/type_traits \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_iterator_base_types.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_iterator_base_funcs.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/concept_check.h \
@@ -348,7 +351,6 @@ CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj: ../Classes/Gestao.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_construct.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/aligned_buffer.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_set.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/initializer_list \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_multiset.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/range_access.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/erase_if.h \
@@ -478,8 +480,6 @@ CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj: ../Classes/Gestao.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/map \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_map.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/tuple \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/array \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/invoke.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_multimap.h \
@@ -628,6 +628,8 @@ CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj: ../Classes/Menu.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
   ../Classes/Estudante.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/set \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_tree.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/aligned_buffer.h \
@@ -641,8 +643,6 @@ CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj: ../Classes/Menu.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/algorithm \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algo.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/algorithmfwd.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_heap.h \
@@ -782,6 +782,8 @@ CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj: ../Classes/Pedido.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/functional_hash.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/hash_bytes.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/set \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_tree.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/aligned_buffer.h \
@@ -795,8 +797,6 @@ CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj: ../Classes/Pedido.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/algorithm \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algo.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/algorithmfwd.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_heap.h \
@@ -1000,7 +1000,26 @@ CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj: ../Classes/Turma.cpp \
   ../Classes/Estudante.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/set \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_set.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_multiset.h
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_multiset.h \
+  ../Classes/Menu.h \
+  ../Classes/Gestao.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/queue \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/deque \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_deque.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/deque.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_queue.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/list \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_list.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/allocated_ptr.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/list.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/fstream \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/codecvt.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fstream.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/sstream \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/sstream.tcc \
+  ../Classes/Pedido.h
 
 CMakeFiles/PROJ.dir/main.cpp.obj: ../main.cpp \
   ../Classes/Menu.h \
@@ -1137,6 +1156,8 @@ CMakeFiles/PROJ.dir/main.cpp.obj: ../main.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
   ../Classes/Estudante.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/set \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_tree.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/aligned_buffer.h \
@@ -1150,8 +1171,6 @@ CMakeFiles/PROJ.dir/main.cpp.obj: ../main.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/algorithm \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algo.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/algorithmfwd.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_heap.h \
@@ -1479,6 +1498,10 @@ C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc:
 
+C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility:
+
+C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h:
+
 C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/map:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_tree.h:
@@ -1488,10 +1511,6 @@ C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_map.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/tuple:
-
-C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility:
-
-C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/array:
 
