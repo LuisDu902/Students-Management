@@ -1,5 +1,5 @@
 CMakeFiles/PROJ.dir/Classes/Menu.cpp.o: \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Menu.cpp \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Menu.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/climits \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -22,7 +22,7 @@ CMakeFiles/PROJ.dir/Classes/Menu.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Menu.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Menu.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/c++/11/bits/stringfwd.h \
@@ -154,30 +154,30 @@ CMakeFiles/PROJ.dir/Classes/Menu.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Estudante.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Estudante.h \
+ /usr/include/c++/11/utility /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/set /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
  /usr/include/c++/11/bits/erase_if.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Turma.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Turma.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/algorithm \
- /usr/include/c++/11/utility /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Aula.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/tuple /usr/include/c++/11/array \
  /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Gestao.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Gestao.h \
  /usr/include/c++/11/queue /usr/include/c++/11/deque \
  /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
  /usr/include/c++/11/bits/stl_queue.h /usr/include/c++/11/list \
@@ -189,4 +189,4 @@ CMakeFiles/PROJ.dir/Classes/Menu.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/sstream \
  /usr/include/c++/11/bits/sstream.tcc \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Pedido.h
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Pedido.h

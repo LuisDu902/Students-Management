@@ -12,4 +12,5 @@ int main() {
     //nao esquecer do desiquilibrio
     //problema se for L.EIC00
     //trocar numa uc que não está, dá erro
+    //horario uc mal feito 
 }

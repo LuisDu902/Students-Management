@@ -337,7 +337,7 @@ std::list<Pedido*> Gestao::get_pedidos_falhados() const{return pedidos_falhados;
 void Gestao::atualiza_estudantes(){
 
     std::ofstream myfile;
-    myfile.open ("../CSV files/new_students_classes.csv");
+    myfile.open ("/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/CSV files/new_students_classes.csv");
     myfile << "StudentCode,StudentName,UcCode,ClassCode\n";
     for (Estudante* es: estudantes){
         std::string StudentCode = es->get_codigo();
@@ -359,7 +359,7 @@ void Gestao::atualiza_estudantes(){
  */
 void Gestao::arquivo_pedidos(){
     std::ofstream myfile;
-    myfile.open("../CSV files/arquivo.csv");
+    myfile.open("/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/CSV files/arquivo.csv");
     myfile << "Tipo,Estudante1,Estudante2,CodigoUC,CodigoTurma\n";
     for (Pedido* pedido: pedidos_falhados){
         std::string tipo = Pedido::tipos[pedido->get_tipo()];
@@ -386,7 +386,7 @@ void Gestao::criacao_aulas(){
     double hora_inicio, duracao;
     std::ifstream myFile;
 
-    myFile.open("../CSV files/classes.csv");
+    myFile.open("/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/CSV files/classes.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -414,7 +414,7 @@ void Gestao::criacao_turmas(){
     std::string CurrentLine, codigo_uc, codigo_turma;
     std::ifstream myFile;
 
-    myFile.open("../CSV files/classes_per_uc.csv");
+    myFile.open("/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/CSV files/classes_per_uc.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -442,8 +442,8 @@ void Gestao::criacao_turmas(){
 void Gestao::criacao_estudantes(int n){
     std::ifstream myFile;
     std::string CurrentLine, codigo, nome, codigo_uc, codigo_turma;
-    if (n == 2) myFile.open("../CSV files/new_students_classes.csv");
-    else myFile.open("../CSV files/students_classes.csv");
+    if (n == 2) myFile.open("/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/new_students_classes.csv");
+    else myFile.open("/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/CSV files/students_classes.csv");
     getline(myFile,CurrentLine);
     getline(myFile,CurrentLine);
     std::istringstream iss(CurrentLine);

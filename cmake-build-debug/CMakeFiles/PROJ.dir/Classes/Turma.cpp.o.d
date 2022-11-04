@@ -1,7 +1,7 @@
 CMakeFiles/PROJ.dir/Classes/Turma.cpp.o: \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Turma.cpp \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Turma.cpp \
  /usr/include/stdc-predef.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Turma.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Turma.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -138,7 +138,7 @@ CMakeFiles/PROJ.dir/Classes/Turma.cpp.o: \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Aula.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/exception \
  /usr/include/c++/11/bits/exception_ptr.h \
@@ -168,6 +168,20 @@ CMakeFiles/PROJ.dir/Classes/Turma.cpp.o: \
  /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/stl_multimap.h \
  /usr/include/c++/11/bits/erase_if.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Estudante.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Estudante.h \
  /usr/include/c++/11/set /usr/include/c++/11/bits/stl_set.h \
- /usr/include/c++/11/bits/stl_multiset.h
+ /usr/include/c++/11/bits/stl_multiset.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Menu.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Gestao.h \
+ /usr/include/c++/11/queue /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /usr/include/c++/11/bits/stl_queue.h /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/bits/list.tcc /usr/include/c++/11/fstream \
+ /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/sstream \
+ /usr/include/c++/11/bits/sstream.tcc \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Pedido.h

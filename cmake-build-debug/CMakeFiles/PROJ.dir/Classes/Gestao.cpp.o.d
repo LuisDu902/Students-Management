@@ -1,9 +1,8 @@
 CMakeFiles/PROJ.dir/Classes/Gestao.cpp.o: \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Gestao.cpp \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Gestao.cpp \
  /usr/include/stdc-predef.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Gestao.h \
- /usr/include/c++/11/set /usr/include/c++/11/bits/stl_tree.h \
- /usr/include/c++/11/bits/stl_algobase.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Gestao.h \
+ /usr/include/c++/11/utility \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -14,13 +13,16 @@ CMakeFiles/PROJ.dir/Classes/Gestao.cpp.o: \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
+ /usr/include/c++/11/bits/stl_relops.h \
+ /usr/include/c++/11/bits/stl_pair.h /usr/include/c++/11/bits/move.h \
+ /usr/include/c++/11/type_traits /usr/include/c++/11/initializer_list \
+ /usr/include/c++/11/set /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/c++/11/bits/functexcept.h \
  /usr/include/c++/11/bits/exception_defines.h \
  /usr/include/c++/11/bits/cpp_type_traits.h \
  /usr/include/c++/11/ext/type_traits.h \
  /usr/include/c++/11/ext/numeric_traits.h \
- /usr/include/c++/11/bits/stl_pair.h /usr/include/c++/11/bits/move.h \
- /usr/include/c++/11/type_traits \
  /usr/include/c++/11/bits/stl_iterator_base_types.h \
  /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
  /usr/include/c++/11/bits/concept_check.h \
@@ -39,7 +41,7 @@ CMakeFiles/PROJ.dir/Classes/Gestao.cpp.o: \
  /usr/include/c++/11/bits/alloc_traits.h \
  /usr/include/c++/11/bits/stl_construct.h \
  /usr/include/c++/11/ext/aligned_buffer.h \
- /usr/include/c++/11/bits/stl_set.h /usr/include/c++/11/initializer_list \
+ /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
  /usr/include/c++/11/bits/range_access.h \
  /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/queue \
@@ -164,16 +166,15 @@ CMakeFiles/PROJ.dir/Classes/Gestao.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/sstream \
  /usr/include/c++/11/bits/sstream.tcc \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Aula.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/tuple /usr/include/c++/11/utility \
- /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/array \
+ /usr/include/c++/11/tuple /usr/include/c++/11/array \
  /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Turma.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Turma.h \
  /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Estudante.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Pedido.h
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Estudante.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Pedido.h

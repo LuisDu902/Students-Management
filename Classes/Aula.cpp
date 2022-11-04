@@ -17,6 +17,9 @@ Aula::Aula(std::string codigo_turma, std::string codigo_uc,std::string dia_seman
     this->duracao = duracao;
     this->tipo = std::move(tipo);
 }
+
+std::string Aula::get_tipo() const {return tipo;}
+
 /**
  * Obtém o código_turma da aula\n
  * Complexidade: O(1)
@@ -46,7 +49,8 @@ std::string Aula::get_dia_semana() const { return dia_semana; }
  */
 bool Aula::cmp(Aula* lhs, Aula* rhs){
     return (dias[lhs->dia_semana] < dias[rhs->dia_semana]) ||
-    ((dias[lhs->dia_semana] == dias[rhs->dia_semana]) && (lhs->hora_inicio < rhs->hora_inicio));
+    ((dias[lhs->dia_semana] == dias[rhs->dia_semana]) && (lhs->hora_inicio < rhs->hora_inicio)) ||
+    ((dias[lhs->dia_semana] == dias[rhs->dia_semana]) && (lhs->hora_inicio == rhs->hora_inicio) && lhs->tipo < rhs->tipo);
 }
 
 /**

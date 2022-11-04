@@ -1,7 +1,7 @@
 CMakeFiles/PROJ.dir/Classes/Aula.cpp.o: \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.cpp \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Aula.cpp \
  /usr/include/stdc-predef.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Aula.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -148,11 +148,11 @@ CMakeFiles/PROJ.dir/Classes/Aula.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/map \
+ /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/utility \
+ /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/map \
  /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/bits/stl_map.h /usr/include/c++/11/tuple \
- /usr/include/c++/11/utility /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/stl_multimap.h \

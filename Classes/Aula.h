@@ -15,6 +15,7 @@ public:
 
     Aula(std::string, std::string,std::string, double, double, std::string);
 
+    std::string get_tipo()const;
     std::string get_codigo_turma() const;
     std::string get_codigo_uc() const;
     std::string get_dia_semana() const;

@@ -1,7 +1,7 @@
 CMakeFiles/PROJ.dir/Classes/Estudante.cpp.o: \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Estudante.cpp \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Estudante.cpp \
  /usr/include/stdc-predef.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Estudante.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Estudante.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -127,24 +127,24 @@ CMakeFiles/PROJ.dir/Classes/Estudante.cpp.o: \
  /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/functional_hash.h \
  /usr/include/c++/11/bits/hash_bytes.h \
- /usr/include/c++/11/bits/basic_string.tcc /usr/include/c++/11/set \
+ /usr/include/c++/11/bits/basic_string.tcc /usr/include/c++/11/utility \
+ /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/set \
  /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
  /usr/include/c++/11/bits/erase_if.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Turma.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Turma.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/algorithm \
- /usr/include/c++/11/utility /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/du/CLionProjects/Projeto_AED-erro-run/Classes/Aula.h \
+ /home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Aula.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/exception \
  /usr/include/c++/11/bits/exception_ptr.h \
