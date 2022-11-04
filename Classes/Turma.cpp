@@ -1,6 +1,4 @@
 #include "Turma.h"
-
-#include <utility>
 #include "Menu.h"
 /**
  * Construtor da classe Turma
@@ -11,6 +9,10 @@ Turma::Turma(std::string codigo_uc,std::string codigo_turma){
     this->codigo_turma = std::move(codigo_turma);
     this->codigo_uc = std::move(codigo_uc);
 }
+
+void Turma::set_capacidade_maxima(int x) {capacidade_maxima = x;}
+
+int Turma::capacidade_maxima = 30;
 
 /**
  * Obtém o código_uc da turma\n
@@ -102,6 +104,8 @@ void Turma::show() const{
 /**
  * Mostra todos os estudantes pertencentes à turma\n
  * Complexidade: O(n log(n)), n -> tamanho da BST de estudantes
+ * @param ordem (1) ordem alfabética / (2) ordem numérica
+ * @param ordem_c (1) ordem crescente / (2) ordem decrescente
  */
 void Turma::show_estudantes(int ordem, int ordem_c) const{
     if (ordem == 2){
@@ -133,7 +137,3 @@ void Turma::show_horario_turma() {
         std::cout << '\n';
     }
 }
-
-
-
-

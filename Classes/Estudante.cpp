@@ -34,15 +34,19 @@ std::vector<Turma *> Estudante::get_turmas() const{return turmas;}
 /**
  * Remove o estudante da turma t\n
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
- * @param turma pointer para a turma a ser removida
+ * @param t pointer para a turma a ser removida
  */
 void Estudante::remover_da_turma(Turma* t){
+    int i = 0;
     for (auto it = turmas.begin();it != turmas.end();it++){
         if ((*it)->get_codigo_turma() == t->get_codigo_turma() && (*it)->get_codigo_uc() == t->get_codigo_uc()){
+            Turma* turma = *it;
+
+            turma->remover_estudante(this);
             turmas.erase(it);
-            (*it)->remover_estudante(this);
             return;
         }
+        i++;
     }
 }
 
@@ -64,7 +68,7 @@ std::vector<Aula*> Estudante::horario(){
 /**
  * Verifica se o horário da turma é compatível com o horário do estudante\n
  * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
- * @param turma pointer para a turma
+ * @param t pointer para a turma
  * @return true se o horário da turma é compatível com o horário do estudante, caso contrário false
  */
 bool Estudante::compativel(Turma* t){
@@ -81,7 +85,7 @@ bool Estudante::compativel(Turma* t){
 /**
  * Adicionar a turma no fim do vetor de turmas do estudante\n
  * Complexidade: O(log(n)), n -> tamanho da BST de estudantes da turma t
- * @param turma pointer para a turma a adicionar
+ * @param t pointer para a turma a adicionar
  */
 void Estudante::adicionar_turma(Turma* t){
     t->adicionar_estudante(this);
@@ -90,7 +94,7 @@ void Estudante::adicionar_turma(Turma* t){
 /**
  * Altera o estudante para a turma t de uma mesma UC\n
  * Complexidade: O(n) -> tamanho do vetor das turmas do estudante
- * @param turma pointer para a turma que o estudante vai
+ * @param t pointer para a turma que o estudante vai
  */
 void Estudante::alterar_turma(Turma* t){
     for (Turma* turma: turmas){
@@ -109,7 +113,13 @@ void Estudante::alterar_turma(Turma* t){
  * @param estudante_troca pointer para estudante com o qual se pretende trocar de turma
  */
 void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_troca) {
-
+    Turma* t1;
+    for (auto t: turmas){
+        if (t->get_codigo_uc() == turma1->get_codigo_uc()){
+            t1 = t;
+            break;
+        }
+    }
     Turma* turma2;
     for (auto t: estudante_troca->get_turmas()){
         if (t->get_codigo_uc() == turma1->get_codigo_uc() && t != turma1){
@@ -118,11 +128,11 @@ void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_t
         }
     }
 
-    remover_da_turma(turma1);
+    remover_da_turma(t1);
     estudante_troca->remover_da_turma(turma2);
 
     adicionar_turma(turma2);
-    estudante_troca->adicionar_turma(turma1);
+    estudante_troca->adicionar_turma(t1);
 }
 
 /**
@@ -152,7 +162,7 @@ void Estudante::show_horario(){
             std::cout << Aula::portugues[aula->get_dia_semana()] << ":\n";
         }
         aula->show();
-        std::cout << '\n';
+        std::cout << " | " << aula->get_codigo_uc() << " | " << aula->get_codigo_turma() << '\n';
     }
 }
 
@@ -161,9 +171,22 @@ void Estudante::show_horario(){
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
  */
 void Estudante::show_turmas() const{
-    std::cout << nome << " está nas turmas: \n";
     for (auto turma: turmas){
-        std::cout << "\t";
         turma->show();
     }
+}
+
+/**
+ * Obtém a turma do estudante com codigo_uc igual a cod\n
+ * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
+ * @param cod codigo_uc
+ * @return pointer para a turma procurada / Nullpointer caso não encontre
+ */
+Turma* Estudante::procura_turma(std::string cod){
+    for (auto x: turmas){
+        if (x->get_codigo_uc() == cod){
+            return x;
+        }
+    }
+    return nullptr;
 }

@@ -3,7 +3,7 @@
 #define PROJ_MENU_H
 
 #include <iostream>
-#include "Estudante.h"
+#include <climits>
 #include "Gestao.h"
 
 class Menu {
@@ -11,7 +11,7 @@ public:
     Menu();
     void init();
     template <typename T>
-    static void show_ordem_c(T es, int ordem, int ordem_c);
+    static void show_ordem_c(T es, int ordem, int ordem_c,int=0);
 private:
     Gestao* g;
     void ver_estatisticas();
@@ -22,12 +22,13 @@ private:
     void fazer_pedido();
     void cancelar_pedido();
     void fim();
-
+    void extra();
     void show_uc(const std::vector<Turma*>& uc, int ordem, int ordem_c);
     void show_ano(char ano, int ordem, int ordem_c);
-    void show_estudantes_mais_que_n_ucs(int n, int ordem, int ordem_c);
+    void show_estudantes_mais_de_n_ucs(int n, int ordem, int ordem_c);
     void show_horario_uc(const std::vector<Turma*>& uc);
     void show_pedidos(int ordem);
+    void configuracoes();
 
 
     std::string validar_codigo_uc();

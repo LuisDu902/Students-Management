@@ -1,4 +1,3 @@
-#include <climits>
 #include "Menu.h"
 /**
  * Construtor da classe Menu
@@ -8,13 +7,16 @@ Menu::Menu(){
                  "[Pressione -1 sempre que tencione voltar para trás]\n";
 
     std::ifstream myfile;
-    myfile.open ("C:/AED/Projeto_AED-master/CSV files/new_students_classes.csv");
-    if (myfile.is_open()){
+    myfile.open ("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/new_students_classes.csv");
+    int n = 1, m = 2;
+    if (myfile.is_open()) {
         myfile.close();
-        int n = validar_opcao("\nPretende utilizar os dados do ficheiro:\n[1] Inicial\n[2] Atualizado\n");
-        g = new Gestao(n);
+        n = validar_opcao("\nPretende utilizar os dados do ficheiro:\n[1] Inicial\n[2] Atualizado\n");
+        if (n == 2) {
+            m = validar_opcao("\nPretende restaurar os pedidos falhados do dia anterior?\n[1] Sim\n[2] Não\n");
+        }
     }
-    else g = new Gestao(1);
+    g = new Gestao(n,m);
 }
 /**
  * Menu principal\n
@@ -29,11 +31,12 @@ void Menu::init() {
                      "[2] Visualizar conteúdos\n"
                      "[3] Realizar pedido\n"
                      "[4] Cancelar pedido\n"
-                     "[5] Terminar\n";
+                     "[5] Configurações\n"
+                     "[6] Terminar\n";
         std::cin >> input;
         switch (input) {
             case -1: {
-                std::cout << "Ainda não encontramos a máquina do tempo :(\n";
+                std::cout << "\nAinda não encontramos a máquina do tempo :(\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -61,6 +64,10 @@ void Menu::init() {
                 break;
             }
             case 5: {
+                configuracoes();
+                break;
+            }
+            case 6: {
                 int opcao = validar_opcao("Tem a certeza que pretende terminar? [A sua ação é irreversível]\n[1] Sim\n[2] Não\n");
                 if (opcao == 1) {
                     fim();
@@ -89,7 +96,7 @@ void Menu::cancelar_pedido(){
 
     while(std::cin.fail() || n < 1 || n > g->get_pedidos().size()) {
         if (n == -1) return;
-        std::cout << "Input inválido" << std::endl;
+        std::cout << "Input inválido" << '\n';
         std::cout << "Qual o número do pedido que pretende cancelar?";
         std::cin.clear();
         std::cin.ignore(INT_MAX, '\n');
@@ -123,7 +130,8 @@ void Menu::ver_estatisticas(){
                 std::string cod_turma = validar_codigo_turma(cod_uc);
                 if (cod_turma == "-1") break;
                 Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
-                std::cout<< "Estão inscritos " << turma->get_estudantes().size() << " alunos nesta turma\n";
+                if (turma->get_estudantes().size() == 1) std::cout <<  "\nEstá inscrito 1 aluno nesta turma\n";
+                else std::cout<< "\nEstão inscritos " << turma->get_estudantes().size() << " alunos nesta turma\n";
                 break;
             }
             case 2: {
@@ -131,14 +139,15 @@ void Menu::ver_estatisticas(){
                 if (cod_uc == "-1") break;
                 std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
                 int total_alunos = 0;
-                for (auto turma: uc){
+                for (Turma* turma: uc){
                     total_alunos += turma->get_estudantes().size();
                 }
-                std::cout<< "Estão inscritos " << total_alunos << " alunos nesta UC\n";
+                if (total_alunos == 1) std::cout <<  "\nEstá inscrito 1 aluno nesta UC\n";
+                else std::cout<< "\nEstão inscritos " << total_alunos << " alunos nesta UC\n";
                 break;
             }
             case 3: {
-                int ano = validar_numero("Insira o ano:");
+                int ano = validar_numero("Insira o ano: ");
                 if (ano == -1) break;
                 char a = ano + '0';
                 int total_alunos = 0;
@@ -150,25 +159,25 @@ void Menu::ver_estatisticas(){
                         }
                     }
                 }
-
-                std::cout<< "Estão inscritos " << total_alunos << " alunos no " << ano <<"º ano\n";
+                if (total_alunos == 1) std::cout <<  "\nEstá inscrito 1 aluno no " << ano << "º ano\n";
+                else std::cout<< "\nEstão inscritos " << total_alunos << " alunos no " << ano <<"º ano\n";
                 break;
             }
             case 4: {
-                std::cout<< "Estão inscritos " << g->get_estudantes().size() << " alunos na L.EIC\n";
+                std::cout<< "\nEstão inscritos " << g->get_estudantes().size() << " alunos na L.EIC\n";
                 break;
             }
             case 5: {
                 std::string cod_uc = validar_codigo_uc();
                 if (cod_uc == "-1") break;
                 std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
-                std::cout<< "Existem " << uc.size() << " turmas nesta UC\n";
+                std::cout<< "\nExistem " << uc.size() << " turmas nesta UC\n";
                 break;
             }
             case 6: {
                 int numero = g->get_pedidos().size();
-                if (numero == 1) std::cout<< "Foi efetuado " << numero << " pedido\n";
-                else std::cout<< "Foram efetuados " << numero << " pedidos\n";
+                if (numero == 1) std::cout<< "\nFoi efetuado " << numero << " pedido\n";
+                else std::cout<< "\nForam efetuados " << numero << " pedidos\n";
                 break;
             }
             case -1: {
@@ -261,13 +270,15 @@ void Menu::ver_horarios(){
                 std::string cod_uc = validar_codigo_uc();
                 if (cod_uc == "-1") break;
                 std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
+                std::cout << '\n';
                 show_horario_uc(uc);
                 break;
             }
             case 3: {
-                std::string cod_estudante = validar_numero_estudante("Insira o número up:");
+                std::string cod_estudante = validar_numero_estudante("Selecione um estudante (número up): ");
                 if (cod_estudante == "-1") break;
                 Estudante* estudante = g->pesquisa_estudante(cod_estudante);
+                std::cout << '\n';
                 estudante->show_horario();
                 break;
             }
@@ -313,6 +324,7 @@ void Menu::ver_estudantes(){
                 int ordem_c = validar_opcao("Escolha o método de ordenação:\n[1] Crescente\n[2] Decrescente\n");
                 if (ordem_c == -1) break;
                 Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
+                std::cout << '\n';
                 turma->show_estudantes(ordem,ordem_c);
                 std::cout << '\n';
                 break;
@@ -327,12 +339,13 @@ void Menu::ver_estudantes(){
                 if (ordem == -1) break;
                 int ordem_c = validar_opcao("Escolha o método de ordenação:\n[1] Crescente\n[2] Decrescente\n");
                 if (ordem_c == -1) break;
+                std::cout << '\n';
                 show_uc(uc, ordem,ordem_c);
                 std::cout << '\n';
                 break;
             }
             case 3: {
-                int ano = validar_numero("Insira o ano:");
+                int ano = validar_numero("Insira o ano: ");
                 if (ano == -1) break;
                 char a = ano+'0';
                 int ordem = validar_opcao("\nPor que ordem prefere ver os estudantes?\n"
@@ -341,6 +354,7 @@ void Menu::ver_estudantes(){
                 if (ordem == -1) break;
                 int ordem_c = validar_opcao("Escolha o método de ordenação:\n[1] Crescente\n[2] Decrescente\n");
                 if (ordem_c == -1) break;
+                std::cout << '\n';
                 show_ano(a, ordem, ordem_c);
                 std::cout << '\n';
                 break;
@@ -352,6 +366,7 @@ void Menu::ver_estudantes(){
                 if (ordem == -1) break;
                 int ordem_c = validar_opcao("Escolha o método de ordenação:\n[1] Crescente\n[2] Decrescente\n");
                 if (ordem_c == -1) break;
+                std::cout << '\n';
                 if (ordem == 1){
                     std::set<Estudante*,Turma::cmp_nome> estudantes;
                     for (Estudante* es:g->get_estudantes()) {
@@ -367,12 +382,12 @@ void Menu::ver_estudantes(){
             }
             case 5:{
                 int n;
-                std::cout << "Insira o n:";
+                std::cout << "Insira o n: ";
                 std::cin >> n;
                 if (n == -1) break;
                 while(std::cin.fail() || (n < 0)) {
                     std::cout << "Input inválido" << "\n";
-                    std::cout << "Insira o n:";
+                    std::cout << "Insira o n: ";
                     std::cin.clear();
                     std::cin.ignore(INT_MAX, '\n');
                     std::cin >> n;
@@ -380,11 +395,12 @@ void Menu::ver_estudantes(){
                 int ordem = validar_numero("\nPor que ordem prefere ver os estudantes?\n"
                                           "[1] Alfabética\n"
                                           "[2] Numérica\n"
-                                          "[3] Número de UC's\n")-'0';
+                                          "[3] Número de UC's\n");
                 if (ordem == -1) break;
                 int ordem_c = validar_opcao("Escolha o método de ordenação:\n[1] Crescente\n[2] Decrescente\n");
                 if (ordem_c == -1) break;
-                show_estudantes_mais_que_n_ucs(n, ordem,ordem_c);
+                std::cout << '\n';
+                show_estudantes_mais_de_n_ucs(n, ordem,ordem_c);
                 std::cout << '\n';
                 break;
             }
@@ -416,11 +432,10 @@ void Menu::ver_turmas(){
 
         switch (input) {
             case 1: {
-                std::string numero = validar_numero_estudante("Selecione um estudante:");
+                std::string numero = validar_numero_estudante("Selecione um estudante (número up): ");
                 if (numero == "-1") break;
                 Estudante* estudante = g->pesquisa_estudante(numero);
                 estudante->show_turmas();
-                std::cout << '\n';
                 break;
             }
             case 2: {
@@ -450,8 +465,9 @@ void Menu::ver_turmas(){
  */
 void Menu::fazer_pedido(){
     std::cout << "\n============ Realizar Pedido ============\n";
-    std::string numero = validar_numero_estudante("Selecione um estudante:");
+    std::string numero = validar_numero_estudante("Selecione um estudante (número up): ");
     if (numero == "-1") return;
+    Estudante* estudante = g->pesquisa_estudante(numero);
     while(true) {
         std::cout
                 << "Que pedido pretende fazer:\n"
@@ -462,7 +478,7 @@ void Menu::fazer_pedido(){
                    "[-1] Voltar atrás\n";
         int input;
         std::cin >> input;
-        Estudante* estudante = g->pesquisa_estudante(numero);
+
         switch (input) {
             case 1: {
 
@@ -471,12 +487,24 @@ void Menu::fazer_pedido(){
                 std::string cod_turma = validar_codigo_turma(cod_uc);
                 if (cod_turma == "-1") break;
                 Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
+                bool flag = true;
+                for (auto turmss: estudante->get_turmas()){
+                    if (turma == turmss) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    Pedido *pedido = new Pedido(input, turma, estudante);
+                    g->adicionar_pedido(pedido);
 
-                Pedido *pedido = new Pedido(input, turma, estudante);
-                g->adicionar_pedido(pedido);
-
-                std::cout << "\nPedido adicionado à fila\n";
-
+                    std::cout << "\nPedido adicionado à fila\n\n";
+                    }
+                else{
+                    std::cout << "\nERRO: O estudante já está nesta turma\n\n";
+                }
+                int v = validar_opcao("Pretende fazer outro pedido para o mesmo estudante?\n[1] Sim\n[2] Não\n");
+                if (v == 1) continue;
                 return;
             }
             case 2: {
@@ -484,18 +512,24 @@ void Menu::fazer_pedido(){
                 if (cod_uc == "-1") break;
                 Turma* turma = nullptr;
 
-                for (auto y : estudante->get_turmas()){
+                for (Turma* y : estudante->get_turmas()){
                     if (y->get_codigo_uc() == cod_uc){
                         turma = y;
                         break;
                     }
                 }
                 if (turma == nullptr){
-                    std::cout << "\nERRO: O estudante não está inscrito nesta UC\n";}
+                    std::cout << "\nERRO: O estudante não está inscrito nesta UC\n\n";
+                    continue;
+                }
                 else {
                     Pedido *pedido = new Pedido(2, turma, estudante);
                     g->adicionar_pedido(pedido);
-                    std::cout << "\nPedido adicinado à fila\n";
+                    std::cout << "\nPedido adicinado à fila\n\n";
+                    int v = validar_opcao("Pretende fazer outro pedido para o mesmo estudante?\n[1] Sim\n[2] Não\n");
+                    if (v == 1){
+                        continue;
+                    }
                 }
                 return;
 
@@ -509,27 +543,55 @@ void Menu::fazer_pedido(){
                 Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
 
                 Pedido *pedido = new Pedido(input, turma, estudante);
-                    g->adicionar_pedido(pedido);
-                    std::cout << "\nPedido adicionado à fila\n";
+                g->adicionar_pedido(pedido);
+                std::cout << "\nPedido adicionado à fila\n\n";
+                int v = validar_opcao("Pretende fazer outro pedido para o mesmo estudante?\n[1] Sim\n[2] Não\n");
+                if (v == 1){
+                    continue;
+                }
                 return;
             }
             case 4: {
-                std::string numero_troca = validar_numero_estudante("Selecione o estudante com quem pretende trocar:\n");
+                std::string numero_troca = validar_numero_estudante("Selecione o estudante com quem pretende trocar: ");
                 if (numero_troca == "-1") break;
                 Estudante *estudante_troca = g->pesquisa_estudante(numero_troca);
                 if(estudante_troca == estudante){
-                    std::cout << "\nERRO: Não pode trocar de turma com o mesmo estudante\n";
-                    return;
+                    std::cout << "\nERRO: Não pode trocar de turma com o mesmo estudante\n\n";
+                    continue;
                 }
                 std::string cod_uc = validar_codigo_uc();
-
-                std::string cod_turma = validar_codigo_turma(cod_uc);
-                if (cod_turma == "-1") break;
-                Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
-
-                Pedido *pedido = new Pedido(input, turma, estudante, estudante_troca);
+                if (cod_uc == "-1") break;
+                //Turma* turma1 = nullptr;
+                Turma* turma2 = nullptr;
+                /*for (Turma* y : estudante->get_turmas()){
+                    if (y->get_codigo_uc() == cod_uc){
+                        turma1 = y;
+                        break;
+                    }
+                }*/
+                /*
+                if (turma1 == nullptr){
+                    std::cout << "\nERRO: O estudante 1 não está inscrito nesta UC\n\n";
+                    continue;
+                }*/
+                for (Turma* y : estudante_troca->get_turmas()){
+                    if (y->get_codigo_uc() == cod_uc){
+                        turma2 = y;
+                        break;
+                    }
+                }
+                if (turma2 == nullptr){
+                    std::cout << "\nERRO: O estudante 2 não está inscrito nesta UC\n\n";
+                    continue;
+                }
+                Turma* ptr = new Turma(cod_uc);
+                Pedido *pedido = new Pedido(input, ptr, estudante, estudante_troca);
                 g->adicionar_pedido(pedido);
-                std::cout << "\nPedido adicionado à fila\n";
+                std::cout << "\nPedido adicionado à fila\n\n";
+                int v = validar_opcao("Pretende fazer outro pedido para o mesmo estudante?\n[1] Sim\n[2] Não\n");
+                if (v == 1){
+                    continue;
+                }
                 return;
             }
             case -1: {
@@ -555,7 +617,10 @@ void Menu::fim(){
     if (!g->get_pedidos().empty()){
         g->gerir_pedidos();
         if (g->get_pedidos_falhados().empty()) std::cout << "Todos os pedidos foram efetuados com sucesso!\n\n";
-        else std::cout << "Pedidos por realizar: " << g->get_pedidos_falhados().size() << "\n\n";
+        else {
+            std::cout << "Pedidos por realizar: " << g->get_pedidos_falhados().size() << "\n\n";
+            extra();
+        }
         int opcao = validar_opcao("Pretende guardar permanentemente as suas alterações?\n[1] Sim\n[2] Não\n");
         while (opcao == -1){
             std::cout << "Nem sempre se pode voltar atrás :(\n";
@@ -563,9 +628,62 @@ void Menu::fim(){
         }
         if (opcao == 1) {
             g->atualiza_estudantes();
-            if (!g->get_pedidos_falhados().empty()) g->arquivo_pedidos();
+            g->arquivo_pedidos();
         }
     }
+}
+/**
+ * extra
+ * Complexidade: O()
+ */
+void Menu::extra(){
+
+    std::list<Pedido*> pedidos_desequilibro;
+    for (Pedido* p: g->get_pedidos_falhados()){
+        if (p->get_tipo() == 1){
+            if(g->pode_adicionar_turma(p->get_estudante1(), p->get_turma()) && g->erro_desequilibrio(p)){
+                pedidos_desequilibro.push_back(p);
+                g->remover_pedido_falhado(p);}
+        }
+        else if (p->get_tipo() == 3){
+            if(g->pode_alterar_turma(p->get_estudante1(), p->get_turma()) && g->erro_desequilibrio(p)){
+                pedidos_desequilibro.push_back(p);
+                g->remover_pedido_falhado(p);}
+        }
+    }
+
+    if (pedidos_desequilibro.empty()) return;
+    if (pedidos_desequilibro.size() == 1){
+        std::cout << "O seguinte pedido não foi satisfeito devido ao limite de desequilíbrio definido entre as turmas:\n";
+    }
+    else  std::cout << "Os seguintes pedidos não foram satisfeitos devido ao limite de desequilíbrio definido entre as turmas:\n";
+    for (Pedido* pedido: pedidos_desequilibro){
+        std::cout << Pedido::tipos[pedido->get_tipo()] << ": " ;
+        if (pedido->get_tipo() == 4){
+            pedido->get_estudante1()->show(1);
+            std::cout << " | " ;
+            pedido->get_estudante2()->show(1);
+            std::cout << " -> " << pedido->get_turma()->get_codigo_uc() << '\n';
+        }
+        else {
+            pedido->get_estudante1()->show(1);
+            std::cout << " -> " << pedido->get_turma()->get_codigo_uc() << " | "
+                      << pedido->get_turma()->get_codigo_turma() << '\n';
+        }
+    }
+    std::cout << '\n';
+    int x = validar_opcao("Deseja mudar as configurações e tentar novamente?\n[1] Sim\n[2] Não\n");
+    if (x == 1){
+       configuracoes();
+        for(Pedido* pedido: pedidos_desequilibro){
+            g->processar_pedido(pedido);
+        }
+        if (g->get_pedidos_falhados().empty()) std::cout << "Todos os pedidos foram efetuados com sucesso!\n\n";
+        else {
+            std::cout << "Pedidos por realizar após ter alterado as configurações: " << g->get_pedidos_falhados().size() << "\n\n";
+        }
+    }
+
 }
 
 /**
@@ -584,7 +702,11 @@ void Menu::show_uc(const std::vector<Turma*>& uc, int ordem, int ordem_c){
         show_ordem_c(estudantes,ordem,ordem_c);
     }
     else {
-        show_ordem_c(g->get_estudantes(),ordem,ordem_c);
+        std::set<Estudante*,Turma::cmp_codigo> estudantes;
+        for (Turma* turma: uc) {
+            for (Estudante* es: turma->get_estudantes()) estudantes.insert(es);
+        }
+        show_ordem_c(estudantes,ordem,ordem_c);
     }
 }
 
@@ -628,7 +750,7 @@ void Menu::show_ano(char a, int ordem, int ordem_c){
  * @param ordem (1) alfabética / (2) numérica / (3) nº de ucs
  * @param ordem_c (1) crescente / (2) decrescente
  */
-void Menu::show_estudantes_mais_que_n_ucs(int n, int ordem, int ordem_c){
+void Menu::show_estudantes_mais_de_n_ucs(int n, int ordem, int ordem_c){
     switch (ordem) {
         case 1: {
             std::set<Estudante*, Turma::cmp_nome> es;
@@ -637,7 +759,11 @@ void Menu::show_estudantes_mais_que_n_ucs(int n, int ordem, int ordem_c){
                     es.insert(estudante);
                 }
             }
-            show_ordem_c(es,ordem,ordem_c);
+            if (es.empty()){
+                std::cout << "Não existem estudantes com mais de " << n << " UC's\n";
+                break;
+            }
+            show_ordem_c(es,ordem,ordem_c,1);
             break;
         }
         case 2:{
@@ -647,7 +773,11 @@ void Menu::show_estudantes_mais_que_n_ucs(int n, int ordem, int ordem_c){
                     es.insert(estudante);
                 }
             }
-            show_ordem_c(es,ordem,ordem_c);
+            if (es.empty()){
+                std::cout << "Não existem estudantes com mais de " << n << " UC's\n";
+                break;
+            }
+            show_ordem_c(es,ordem,ordem_c,1);
             break;
         }
         case 3:{
@@ -657,11 +787,14 @@ void Menu::show_estudantes_mais_que_n_ucs(int n, int ordem, int ordem_c){
                     es.insert(estudante);
                 }
             }
-            show_ordem_c(es,ordem,ordem_c);
+            if (es.empty()){
+                std::cout << "Não existem estudantes com mais de " << n << " UC's\n";
+                break;
+            }
+            show_ordem_c(es,ordem,ordem_c,1);
             break;
         }
     }
-
 }
 
 /**
@@ -695,7 +828,7 @@ void Menu::show_pedidos(int ordem){
     if (ordem == 2) {
         sort(v_pedidos.begin(), v_pedidos.end(), Pedido::cmp);
         auto it = v_pedidos.begin();
-        auto tipo_atual = (*it)->get_tipo();
+        int tipo_atual = (*it)->get_tipo();
         std::cout << Pedido::tipos[(*it)->get_tipo()] << ":\n";
         while (it != v_pedidos.end()){
             if ((*it)->get_tipo() == tipo_atual){
@@ -735,26 +868,38 @@ void Menu::show_pedidos(int ordem){
  * Complexidade: O(n*m*log(n*m)), n-> nª de turmas da uc, m -> nª de aulas da turma
  * @param uc
  */
-void Menu::show_horario_uc(const std::vector<Turma*>& uc){
-
-    std::set<Aula*,Aula::cmp_aula> aulas;
-    for (Turma* turma: uc){
-        for (Aula* aula: turma->get_aulas()){
-            aulas.insert(aula);
+void Menu::show_horario_uc(const std::vector<Turma*>& uc) {
+    std::vector<Aula *> aulas;
+    for (Turma *turma: uc) {
+        for (Aula *aula: turma->get_aulas()) {
+            aulas.push_back(aula);
         }
     }
-    auto it = aulas.begin();
-    int dia_atual = Aula::dias[(*it)->get_dia_semana()];
-    std::cout << Aula::portugues[(*it)->get_dia_semana()] << ":\n";
-    while (it != aulas.end()){
-        if (Aula::dias[(*it)->get_dia_semana()] != dia_atual) {
-            dia_atual = Aula::dias[(*it)->get_dia_semana()];
-            std::cout << Aula::portugues[(*it)->get_dia_semana()] << ":\n";
+    sort(aulas.begin(), aulas.end(), Aula::cmp);
+
+    int dia_atual = 0;
+    std::string tipo_atual = "";
+    double hora = 0;
+    for (Aula* aula: aulas){
+        Aula* x = aula;
+        if (Aula::dias[aula->get_dia_semana()] != dia_atual){
+            dia_atual = Aula::dias[aula->get_dia_semana()];
+            std::cout << '\n' << Aula::portugues[aula->get_dia_semana()] << ":";
+            tipo_atual = "";
+            hora = 0;
         }
-        (*it)->show();
-        std::cout << " | " << (*it)->get_codigo_turma() << '\n';
-        it++;
+        if (aula->get_hora_inicio() != hora || aula->get_tipo() != tipo_atual){
+            tipo_atual = aula->get_tipo();
+            hora = aula->get_hora_inicio();
+            std::cout << '\n';
+            aula->show();
+            std::cout << " | " << aula->get_codigo_turma();
         }
+        else {
+            std::cout << " | " << aula->get_codigo_turma() ;
+        }
+    }
+        std::cout << '\n';
     }
 
 /**
@@ -767,9 +912,9 @@ std::string Menu::validar_codigo_uc(){
     std::cout<< "Insira o código da UC:";
     std::cin >> cod_uc;
 
-    while(std::cin.fail() || g->pesquisa_uc(cod_uc).empty()) {
+    while(std::cin.fail() || cod_uc.size() != 8 || g->pesquisa_uc(cod_uc).empty()) {
         if (cod_uc == "-1") return cod_uc;
-        std::cout << "Input inválido" << std::endl;
+        std::cout << "Input inválido" << '\n';
         std::cout << "Insira o código da UC:";
         std::cin.clear();
         std::cin.ignore(INT_MAX, '\n');
@@ -789,9 +934,9 @@ std::string Menu::validar_codigo_turma(const std::string& cod_uc){
     std::cout<< "Insira o código da turma:";
     std::cin >> cod_turma;
 
-    while(std::cin.fail() || g->pesquisa_turma(cod_uc,cod_turma) == nullptr) {
+    while(std::cin.fail() || cod_turma.size() != 7 || g->pesquisa_turma(cod_uc,cod_turma) == nullptr) {
         if (cod_turma == "-1") return cod_turma;
-        std::cout << "Input inválido" << std::endl;
+        std::cout << "Input inválido" << '\n';
         std::cout << "Insira o código da turma:";
         std::cin.clear();
         std::cin.ignore(INT_MAX, '\n');
@@ -812,7 +957,7 @@ std::string Menu::validar_numero_estudante(const std::string& mensagem){
 
     while(std::cin.fail() || g->pesquisa_estudante(numero) == nullptr) {
         if (numero == "-1") return numero;
-        std::cout << "Input inválido" << std::endl;
+        std::cout << "Input inválido" << '\n';
         std::cout << mensagem;
         std::cin.clear();
         std::cin.ignore(INT_MAX, '\n');
@@ -870,19 +1015,86 @@ int Menu::validar_opcao(const std::string& mensagem){
  * @param es BST de estudantes
  * @param ordem (1) alfabética / (2) numérica
  * @param ordem_c (1) crescente / (2) decrescente
+ * @param n_ucs (1) mostra o nº de UC's do estudante
  */
 template <typename T>
-void Menu::show_ordem_c(T es, int ordem, int ordem_c){
+void Menu::show_ordem_c(T es, int ordem, int ordem_c, int n_ucs){
+
     if (ordem_c == 1) {
         for (Estudante* estudante: es) {
             estudante->show(ordem);
-            std::cout << std::endl;
+            if (n_ucs==1) std::cout << " -> nº de UC's: " << estudante->get_turmas().size();
+            std::cout << '\n';
         }
     }
     else{
         for (auto it = es.rbegin(); it !=es.rend(); it++){
             (*it)->show(ordem);
-            std::cout << std::endl;
+            if (n_ucs==1) std::cout << " -> nº de UC's: " << (*it)->get_turmas().size();
+            std::cout << '\n';
+        }
+    }
+    }
+
+void Menu::configuracoes(){
+    int input;
+    while (true){
+        std::cout <<
+        "\n============ Configurações ============\n"
+        "[1] Alterar capacidade máxima de estudantes por turma\n"
+        "[2] Alterar desequilíbrio(maior diferença do nº de estudantes) entre turmas de uma UC\n"
+        "[-1] Voltar atrás\n";
+        std::cin >> input;
+
+        switch (input) {
+            case 1: {
+                int nova_cap_max;
+                std::cout << "Capacidade máxima atual: " << Turma::capacidade_maxima;
+                std::cout << "\nNova capacidade máxima: ";
+                std::cin >> nova_cap_max;
+                while(std::cin.fail() || (nova_cap_max < 0)) {
+                    if (nova_cap_max == -1) return;
+                    std::cout << "Input inválido" << '\n';
+                    std::cout << "Nova capacidade máxima: ";
+                    std::cin.clear();
+                    std::cin.ignore(INT_MAX, '\n');
+                    std::cin >> nova_cap_max;
+                }
+
+                Turma::set_capacidade_maxima(nova_cap_max);
+                std::cout << "\n";
+
+                break;
+            }
+            case 2: {
+
+                int novo_desequilibrio;
+                std::cout << "Desequilíbrio atual: " << Gestao::desequilibrio;
+                std::cout << "\nNovo desequilibrio: ";
+                std::cin >> novo_desequilibrio;
+                while(std::cin.fail() || (novo_desequilibrio < 0)) {
+                    if (novo_desequilibrio == -1) return;
+                    std::cout << "Input inválido" << '\n';
+                    std::cout << "Novo desequilibrio: ";
+                    std::cin.clear();
+                    std::cin.ignore(INT_MAX, '\n');
+                    std::cin >> novo_desequilibrio;
+                }
+
+                g->set_desequilibrio(novo_desequilibrio);
+                std::cout << "\n";
+
+                break;
+            }
+            case -1: {
+                return;
+            }
+            default: {
+                std::cout << "Caractere Inválido\n";
+                std::cin.clear();
+                std::cin.ignore(INT_MAX, '\n');
+                break;
+            }
         }
     }
 }

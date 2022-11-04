@@ -17,7 +17,10 @@
 
 class Gestao {
 public:
-    Gestao(int);
+    Gestao(int,int);
+    static int desequilibrio;
+    static void set_desequilibrio(int);
+    void remover_pedido_falhado(Pedido*);
 
     Turma* pesquisa_turma(const std::string&, const std::string&) const;
     std::vector<Turma*> pesquisa_uc(const std::string&);
@@ -35,7 +38,7 @@ public:
     std::vector<std::vector<Turma*>> get_ucs() const;
     std::queue<Pedido*> get_pedidos() const;
     std::list<Pedido*> get_pedidos_falhados() const;
-
+    bool erro_desequilibrio(Pedido*);
     void adicionar_pedido(Pedido*);
     void arquivo_pedidos();
     void atualiza_estudantes();
@@ -45,6 +48,7 @@ public:
     void processar_pedido(Pedido*);
 
 private:
+    void leitura_pedidos();
     void criacao_aulas();
     void criacao_turmas();
     void criacao_estudantes(int);

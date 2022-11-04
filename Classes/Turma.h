@@ -12,9 +12,9 @@ class Turma {
 
 
 public:
-    static const int capacidade_maxima = 30;
-
-    Turma(std::string codigo_uc,std::string codigo_turma);
+    static int capacidade_maxima;
+    static void set_capacidade_maxima(int);
+    Turma(std::string,std::string="-");
 
     struct cmp_nome{bool operator()(const Estudante*, const Estudante*) const;};
     struct cmp_codigo{bool operator()(const Estudante*, const Estudante*) const;};

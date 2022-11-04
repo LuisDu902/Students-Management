@@ -18,7 +18,7 @@ class Estudante {
         void remover_da_turma(Turma*);
         void alterar_turma(Turma*);
         void trocar_turma_com_estudante(Turma*, Estudante*);
-
+        Turma* procura_turma(std::string codigo_uc);
         bool compativel(Turma*);
         std::vector<Aula*> horario();
 

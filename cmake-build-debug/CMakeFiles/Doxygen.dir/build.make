@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\AED\Projeto_AED-master
+CMAKE_SOURCE_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\AED\Projeto_AED-master\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug"
 
 # Utility rule file for Doxygen.
 
@@ -66,8 +66,8 @@ include CMakeFiles/Doxygen.dir/compiler_depend.make
 include CMakeFiles/Doxygen.dir/progress.make
 
 CMakeFiles/Doxygen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:\AED\Projeto_AED-master\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating API documentation with Doxygen"
-	"C:\Program Files\doxygen\bin\doxygen.exe" C:/AED/Projeto_AED-master/cmake-build-debug/Doxyfile
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Generating API documentation with Doxygen"
+	C:\Users\luisd\Downloads\mingw64\bin\doxygen.exe "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/cmake-build-debug/Doxyfile"
 
 Doxygen: CMakeFiles/Doxygen
 Doxygen: CMakeFiles/Doxygen.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/Doxygen.dir/clean:
 .PHONY : CMakeFiles/Doxygen.dir/clean
 
 CMakeFiles/Doxygen.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\AED\Projeto_AED-master C:\AED\Projeto_AED-master C:\AED\Projeto_AED-master\cmake-build-debug C:\AED\Projeto_AED-master\cmake-build-debug C:\AED\Projeto_AED-master\cmake-build-debug\CMakeFiles\Doxygen.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug" "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug\CMakeFiles\Doxygen.dir\DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/Doxygen.dir/depend
 
