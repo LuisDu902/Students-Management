@@ -8,13 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Aula.cpp" "CMakeFiles/PROJ.dir/Classes/Aula.cpp.o" "gcc" "CMakeFiles/PROJ.dir/Classes/Aula.cpp.o.d"
-  "/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Estudante.cpp" "CMakeFiles/PROJ.dir/Classes/Estudante.cpp.o" "gcc" "CMakeFiles/PROJ.dir/Classes/Estudante.cpp.o.d"
-  "/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Gestao.cpp" "CMakeFiles/PROJ.dir/Classes/Gestao.cpp.o" "gcc" "CMakeFiles/PROJ.dir/Classes/Gestao.cpp.o.d"
-  "/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Menu.cpp" "CMakeFiles/PROJ.dir/Classes/Menu.cpp.o" "gcc" "CMakeFiles/PROJ.dir/Classes/Menu.cpp.o.d"
-  "/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Pedido.cpp" "CMakeFiles/PROJ.dir/Classes/Pedido.cpp.o" "gcc" "CMakeFiles/PROJ.dir/Classes/Pedido.cpp.o.d"
-  "/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/Classes/Turma.cpp" "CMakeFiles/PROJ.dir/Classes/Turma.cpp.o" "gcc" "CMakeFiles/PROJ.dir/Classes/Turma.cpp.o.d"
-  "/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/main.cpp" "CMakeFiles/PROJ.dir/main.cpp.o" "gcc" "CMakeFiles/PROJ.dir/main.cpp.o.d"
+  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/Classes/Aula.cpp" "CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj.d"
+  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/Classes/Estudante.cpp" "CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Estudante.cpp.obj.d"
+  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/Classes/Gestao.cpp" "CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Gestao.cpp.obj.d"
+  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/Classes/Menu.cpp" "CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Menu.cpp.obj.d"
+  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/Classes/Pedido.cpp" "CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Pedido.cpp.obj.d"
+  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/Classes/Turma.cpp" "CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj.d"
+  "C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/main.cpp" "CMakeFiles/PROJ.dir/main.cpp.obj" "gcc" "CMakeFiles/PROJ.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.

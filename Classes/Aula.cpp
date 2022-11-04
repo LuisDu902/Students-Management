@@ -54,19 +54,6 @@ bool Aula::cmp(Aula* lhs, Aula* rhs){
 }
 
 /**
- * Método de comparação entre duas aulas de acordo com o dia da semana\n
- * Se as aulas forem no mesmo dia, a comparação é feita tendo em conta a hora de início\n
- * Nota: Usado com sets\n
- * Complexidade: O(1)
- * @param lhs pointer para a aula 1
- * @param rhs pointer para a aula 2
- * @return true se a aula 1 for antes da aula 2, caso contrário false
- */
-bool Aula::cmp_aula::operator()(Aula* lhs, Aula* rhs) const{
-    return (dias[lhs->dia_semana] < dias[rhs->dia_semana]) ||
-           ((dias[lhs->dia_semana] == dias[rhs->dia_semana]) && (lhs->hora_inicio < rhs->hora_inicio));
-}
-/**
  * Verifica se duas aulas ocorrem em simultâneo\n
  * Complexidade: O(1)
  * @param aula pointer para a aula a ser comparada

@@ -25,7 +25,7 @@ private:
     void extra();
     void show_uc(const std::vector<Turma*>& uc, int ordem, int ordem_c);
     void show_ano(char ano, int ordem, int ordem_c);
-    void show_estudantes_mais_que_n_ucs(int n, int ordem, int ordem_c);
+    void show_estudantes_mais_de_n_ucs(int n, int ordem, int ordem_c);
     void show_horario_uc(const std::vector<Turma*>& uc);
     void show_pedidos(int ordem);
 

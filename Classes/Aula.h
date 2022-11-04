@@ -21,7 +21,6 @@ public:
     std::string get_dia_semana() const;
 
     static bool cmp(Aula*, Aula*);
-    struct cmp_aula{bool operator()(Aula*, Aula*) const;};
     bool sobrepoe(Aula*) const;
 
     void show() const;

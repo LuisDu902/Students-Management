@@ -1,6 +1,6 @@
 CMakeFiles/PROJ.dir/Classes/Aula.cpp.obj: \
- C:\Users\luisd\OneDrive\Ambiente\ de\ Trabalho\Projeto_AED-master\Classes\Aula.cpp \
- C:\Users\luisd\OneDrive\Ambiente\ de\ Trabalho\Projeto_AED-master\Classes\Aula.h \
+ C:\Users\luisd\OneDrive\Ambiente\ de\ Trabalho\Projeto_AED-erro-pedido-troca\Classes\Aula.cpp \
+ C:\Users\luisd\OneDrive\Ambiente\ de\ Trabalho\Projeto_AED-erro-pedido-troca\Classes\Aula.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \

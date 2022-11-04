@@ -113,7 +113,13 @@ void Estudante::alterar_turma(Turma* t){
  * @param estudante_troca pointer para estudante com o qual se pretende trocar de turma
  */
 void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_troca) {
-
+    Turma* t1;
+    for (auto t: turmas){
+        if (t->get_codigo_uc() == turma1->get_codigo_uc()){
+            t1 = t;
+            break;
+        }
+    }
     Turma* turma2;
     for (auto t: estudante_troca->get_turmas()){
         if (t->get_codigo_uc() == turma1->get_codigo_uc() && t != turma1){
@@ -122,11 +128,11 @@ void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_t
         }
     }
 
-    remover_da_turma(turma1);
+    remover_da_turma(t1);
     estudante_troca->remover_da_turma(turma2);
 
     adicionar_turma(turma2);
-    estudante_troca->adicionar_turma(turma1);
+    estudante_troca->adicionar_turma(t1);
 }
 
 /**
@@ -165,9 +171,16 @@ void Estudante::show_horario(){
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
  */
 void Estudante::show_turmas() const{
-    std::cout << nome << " está nas turmas: \n";
     for (auto turma: turmas){
-        std::cout << "\t";
         turma->show();
     }
+}
+
+Turma* Estudante::procura_turma(std::string codigo_uc){
+    for (auto x: turmas){
+        if (x->get_codigo_uc() == codigo_uc){
+            return x;
+        }
+    }
+    return nullptr;
 }

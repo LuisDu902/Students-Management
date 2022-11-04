@@ -38,7 +38,7 @@ public:
     std::vector<std::vector<Turma*>> get_ucs() const;
     std::queue<Pedido*> get_pedidos() const;
     std::list<Pedido*> get_pedidos_falhados() const;
-
+    bool erro_desequilibrio(Pedido*);
     void adicionar_pedido(Pedido*);
     void arquivo_pedidos();
     void atualiza_estudantes();

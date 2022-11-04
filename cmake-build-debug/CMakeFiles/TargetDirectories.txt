@@ -1,4 +1,4 @@
-/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/cmake-build-debug/CMakeFiles/Doxygen.dir
-/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/cmake-build-debug/CMakeFiles/PROJ.dir
-/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/du/CLionProjects/Projeto_AED-erro-pedido-troca/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/cmake-build-debug/CMakeFiles/Doxygen.dir
+C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/cmake-build-debug/CMakeFiles/PROJ.dir
+C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/cmake-build-debug/CMakeFiles/rebuild_cache.dir
