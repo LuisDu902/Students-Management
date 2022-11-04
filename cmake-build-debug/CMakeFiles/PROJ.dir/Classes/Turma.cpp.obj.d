@@ -162,6 +162,7 @@ CMakeFiles/PROJ.dir/Classes/Turma.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_set.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_multiset.h \
  C:\Users\luisd\OneDrive\Ambiente\ de\ Trabalho\Projeto_AED-erro-pedido-troca\Classes\Menu.h \
+ C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/climits \
  C:\Users\luisd\OneDrive\Ambiente\ de\ Trabalho\Projeto_AED-erro-pedido-troca\Classes\Gestao.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/queue \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/deque \

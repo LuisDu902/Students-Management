@@ -118,7 +118,7 @@ bool Gestao::pode_remover_turma(Estudante* es, Turma* t){
 bool Gestao::pode_alterar_turma(Estudante* es, Turma* t){
     bool flag = false;
     Turma* turma_com_mesmo_uc = es->procura_turma(t->get_codigo_uc());
-    if (turma_com_mesmo_uc == nullptr || turma_com_mesmo_uc == t){
+    if (turma_com_mesmo_uc == nullptr){
         return false;
     }
     es->remover_da_turma(turma_com_mesmo_uc);
@@ -332,7 +332,7 @@ void Gestao::arquivo_pedidos(){
     myfile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/arquivo.csv");
 
     if (pedidos_falhados.empty()){
-        myfile << "Não tem pedidos falhados :)\n";
+        myfile << "Não tem pedidos falhados (づ｡◕‿‿◕｡)づ\n";
         myfile.close();
         return;
     }
@@ -499,6 +499,11 @@ void Gestao::remover_pedido_falhado(Pedido* p){
         }
     }
 }
+/**
+ *
+ * @param pedido
+ * @return
+ */
 bool Gestao::erro_desequilibrio(Pedido* pedido){
     Turma* t = pedido->get_turma();
     Estudante* es = pedido->get_estudante1();
@@ -513,6 +518,7 @@ bool Gestao::erro_desequilibrio(Pedido* pedido){
     }
     else{
         Turma* turma_inicial = es->procura_turma(t->get_codigo_uc());
+        if (turma_inicial == t) return false;
         turma_inicial->remover_estudante(es);
         t->adicionar_estudante(es);
         if (max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= desequilibrio){

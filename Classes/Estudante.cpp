@@ -34,7 +34,7 @@ std::vector<Turma *> Estudante::get_turmas() const{return turmas;}
 /**
  * Remove o estudante da turma t\n
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
- * @param turma pointer para a turma a ser removida
+ * @param t pointer para a turma a ser removida
  */
 void Estudante::remover_da_turma(Turma* t){
     int i = 0;
@@ -68,7 +68,7 @@ std::vector<Aula*> Estudante::horario(){
 /**
  * Verifica se o horário da turma é compatível com o horário do estudante\n
  * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
- * @param turma pointer para a turma
+ * @param t pointer para a turma
  * @return true se o horário da turma é compatível com o horário do estudante, caso contrário false
  */
 bool Estudante::compativel(Turma* t){
@@ -85,7 +85,7 @@ bool Estudante::compativel(Turma* t){
 /**
  * Adicionar a turma no fim do vetor de turmas do estudante\n
  * Complexidade: O(log(n)), n -> tamanho da BST de estudantes da turma t
- * @param turma pointer para a turma a adicionar
+ * @param t pointer para a turma a adicionar
  */
 void Estudante::adicionar_turma(Turma* t){
     t->adicionar_estudante(this);
@@ -94,7 +94,7 @@ void Estudante::adicionar_turma(Turma* t){
 /**
  * Altera o estudante para a turma t de uma mesma UC\n
  * Complexidade: O(n) -> tamanho do vetor das turmas do estudante
- * @param turma pointer para a turma que o estudante vai
+ * @param t pointer para a turma que o estudante vai
  */
 void Estudante::alterar_turma(Turma* t){
     for (Turma* turma: turmas){
@@ -176,9 +176,15 @@ void Estudante::show_turmas() const{
     }
 }
 
-Turma* Estudante::procura_turma(std::string codigo_uc){
+/**
+ * Obtém a turma do estudante com codigo_uc igual a cod\n
+ * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
+ * @param cod codigo_uc
+ * @return pointer para a turma procurada / Nullpointer caso não encontre
+ */
+Turma* Estudante::procura_turma(std::string cod){
     for (auto x: turmas){
-        if (x->get_codigo_uc() == codigo_uc){
+        if (x->get_codigo_uc() == cod){
             return x;
         }
     }

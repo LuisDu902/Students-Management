@@ -3,7 +3,7 @@
 #define PROJ_MENU_H
 
 #include <iostream>
-#include "Estudante.h"
+#include <climits>
 #include "Gestao.h"
 
 class Menu {
@@ -11,7 +11,7 @@ public:
     Menu();
     void init();
     template <typename T>
-    static void show_ordem_c(T es, int ordem, int ordem_c);
+    static void show_ordem_c(T es, int ordem, int ordem_c,int=0);
 private:
     Gestao* g;
     void ver_estatisticas();

@@ -17,7 +17,11 @@ Aula::Aula(std::string codigo_turma, std::string codigo_uc,std::string dia_seman
     this->duracao = duracao;
     this->tipo = std::move(tipo);
 }
-
+/**
+ * Obtém o tipo da aula T / TP / PL\n
+ * Complexidade: O(1)
+ * @return tipo da aula T / TP / PL
+ */
 std::string Aula::get_tipo() const {return tipo;}
 
 /**
@@ -50,7 +54,8 @@ std::string Aula::get_dia_semana() const { return dia_semana; }
 bool Aula::cmp(Aula* lhs, Aula* rhs){
     return (dias[lhs->dia_semana] < dias[rhs->dia_semana]) ||
     ((dias[lhs->dia_semana] == dias[rhs->dia_semana]) && (lhs->hora_inicio < rhs->hora_inicio)) ||
-    ((dias[lhs->dia_semana] == dias[rhs->dia_semana]) && (lhs->hora_inicio == rhs->hora_inicio) && lhs->tipo < rhs->tipo);
+    ((dias[lhs->dia_semana] == dias[rhs->dia_semana]) && (lhs->hora_inicio == rhs->hora_inicio) && lhs->tipo < rhs->tipo) ||
+    ((dias[lhs->dia_semana] == dias[rhs->dia_semana]) && (lhs->hora_inicio == rhs->hora_inicio) && (lhs->tipo == rhs->tipo) && (lhs->codigo_turma < rhs->codigo_turma));
 }
 
 /**
@@ -80,3 +85,10 @@ Aula::Days Aula::dias = dias_semana();
  * Dicionário de conversão entre dias da semana (inglês para português)
  */
 Aula::Conversion Aula::portugues= para_portugues();
+
+/**
+ * Obtém a hora de início da aula\n
+ * Complexidade: O(1)
+ * @return hora de início
+ */
+double Aula::get_hora_inicio() const {return hora_inicio;}

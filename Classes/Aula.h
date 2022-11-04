@@ -19,6 +19,7 @@ public:
     std::string get_codigo_turma() const;
     std::string get_codigo_uc() const;
     std::string get_dia_semana() const;
+    double get_hora_inicio() const;
 
     static bool cmp(Aula*, Aula*);
     bool sobrepoe(Aula*) const;

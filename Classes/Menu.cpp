@@ -1,4 +1,3 @@
-#include <climits>
 #include "Menu.h"
 /**
  * Construtor da classe Menu
@@ -123,7 +122,8 @@ void Menu::ver_estatisticas(){
                 std::string cod_turma = validar_codigo_turma(cod_uc);
                 if (cod_turma == "-1") break;
                 Turma* turma = g->pesquisa_turma(cod_uc, cod_turma);
-                std::cout<< "\nEstão inscritos " << turma->get_estudantes().size() << " alunos nesta turma\n";
+                if (turma->get_estudantes().size() == 1) std::cout <<  "\nEstá inscrito 1 aluno nesta turma\n";
+                else std::cout<< "\nEstão inscritos " << turma->get_estudantes().size() << " alunos nesta turma\n";
                 break;
             }
             case 2: {
@@ -134,7 +134,8 @@ void Menu::ver_estatisticas(){
                 for (Turma* turma: uc){
                     total_alunos += turma->get_estudantes().size();
                 }
-                std::cout<< "\nEstão inscritos " << total_alunos << " alunos nesta UC\n";
+                if (total_alunos == 1) std::cout <<  "\nEstá inscrito 1 aluno nesta UC\n";
+                else std::cout<< "\nEstão inscritos " << total_alunos << " alunos nesta UC\n";
                 break;
             }
             case 3: {
@@ -150,8 +151,8 @@ void Menu::ver_estatisticas(){
                         }
                     }
                 }
-
-                std::cout<< "\nEstão inscritos " << total_alunos << " alunos no " << ano <<"º ano\n";
+                if (total_alunos == 1) std::cout <<  "\nEstá inscrito 1 aluno no " << ano << "º ano\n";
+                else std::cout<< "\nEstão inscritos " << total_alunos << " alunos no " << ano <<"º ano\n";
                 break;
             }
             case 4: {
@@ -254,7 +255,6 @@ void Menu::ver_horarios(){
                 std::string cod_turma = validar_codigo_turma(cod_uc);
                 if (cod_turma == "-1") break;
                 Turma* turma = g->pesquisa_turma(cod_uc,cod_turma);
-                std::cout << '\n';
                 turma->show_horario_turma();
                 break;
             }
@@ -707,7 +707,11 @@ void Menu::show_uc(const std::vector<Turma*>& uc, int ordem, int ordem_c){
         show_ordem_c(estudantes,ordem,ordem_c);
     }
     else {
-        show_ordem_c(g->get_estudantes(),ordem,ordem_c);
+        std::set<Estudante*,Turma::cmp_codigo> estudantes;
+        for (Turma* turma: uc) {
+            for (Estudante* es: turma->get_estudantes()) estudantes.insert(es);
+        }
+        show_ordem_c(estudantes,ordem,ordem_c);
     }
 }
 
@@ -764,7 +768,7 @@ void Menu::show_estudantes_mais_de_n_ucs(int n, int ordem, int ordem_c){
                 std::cout << "Não existem estudantes com mais de " << n << " UC's\n";
                 break;
             }
-            show_ordem_c(es,ordem,ordem_c);
+            show_ordem_c(es,ordem,ordem_c,1);
             break;
         }
         case 2:{
@@ -778,7 +782,7 @@ void Menu::show_estudantes_mais_de_n_ucs(int n, int ordem, int ordem_c){
                 std::cout << "Não existem estudantes com mais de " << n << " UC's\n";
                 break;
             }
-            show_ordem_c(es,ordem,ordem_c);
+            show_ordem_c(es,ordem,ordem_c,1);
             break;
         }
         case 3:{
@@ -792,11 +796,10 @@ void Menu::show_estudantes_mais_de_n_ucs(int n, int ordem, int ordem_c){
                 std::cout << "Não existem estudantes com mais de " << n << " UC's\n";
                 break;
             }
-            show_ordem_c(es,ordem,ordem_c);
+            show_ordem_c(es,ordem,ordem_c,1);
             break;
         }
     }
-
 }
 
 /**
@@ -870,54 +873,39 @@ void Menu::show_pedidos(int ordem){
  * Complexidade: O(n*m*log(n*m)), n-> nª de turmas da uc, m -> nª de aulas da turma
  * @param uc
  */
-void Menu::show_horario_uc(const std::vector<Turma*>& uc){
-    std::vector<Aula*> aulas;
-    for (Turma* turma: uc){
-        for (Aula* aula: turma->get_aulas()){
+void Menu::show_horario_uc(const std::vector<Turma*>& uc) {
+    std::vector<Aula *> aulas;
+    for (Turma *turma: uc) {
+        for (Aula *aula: turma->get_aulas()) {
             aulas.push_back(aula);
         }
     }
-    sort(aulas.begin(),aulas.end(),Aula::cmp);
+    sort(aulas.begin(), aulas.end(), Aula::cmp);
 
     int dia_atual = 0;
     std::string tipo_atual = "";
+    double hora = 0;
     for (Aula* aula: aulas){
+        Aula* x = aula;
         if (Aula::dias[aula->get_dia_semana()] != dia_atual){
             dia_atual = Aula::dias[aula->get_dia_semana()];
             std::cout << '\n' << Aula::portugues[aula->get_dia_semana()] << ":";
             tipo_atual = "";
+            hora = 0;
         }
-        if (aula->get_tipo() != tipo_atual){
+        if (aula->get_hora_inicio() != hora || aula->get_tipo() != tipo_atual){
             tipo_atual = aula->get_tipo();
+            hora = aula->get_hora_inicio();
             std::cout << '\n';
             aula->show();
+            std::cout << " | " << aula->get_codigo_turma();
         }
         else {
-            std::cout << " | " <<aula->get_codigo_turma() ;
+            std::cout << " | " << aula->get_codigo_turma() ;
         }
     }
         std::cout << '\n';
     }
-    /*
-    std::set<Aula*,Aula::cmp_aula> aulas;
-    for (Turma* turma: uc){
-        for (Aula* aula: turma->get_aulas()){
-            aulas.insert(aula);
-        }
-    }
-    auto it = aulas.begin();
-    int dia_atual = Aula::dias[(*it)->get_dia_semana()];
-    std::cout << Aula::portugues[(*it)->get_dia_semana()] << ":\n";
-    while (it != aulas.end()){
-        if (Aula::dias[(*it)->get_dia_semana()] != dia_atual) {
-            dia_atual = Aula::dias[(*it)->get_dia_semana()];
-            std::cout << Aula::portugues[(*it)->get_dia_semana()] << ":\n";
-        }
-        (*it)->show();
-        std::cout << " |\t" << (*it)->get_codigo_turma() << '\n';
-        it++;
-        }
-    }*/
 
 /**
  * Valida o código_uc dado como input\n
@@ -1032,18 +1020,22 @@ int Menu::validar_opcao(const std::string& mensagem){
  * @param es BST de estudantes
  * @param ordem (1) alfabética / (2) numérica
  * @param ordem_c (1) crescente / (2) decrescente
+ * @param n_ucs (1) mostra o nº de UC's do estudante
  */
 template <typename T>
-void Menu::show_ordem_c(T es, int ordem, int ordem_c){
+void Menu::show_ordem_c(T es, int ordem, int ordem_c, int n_ucs){
+
     if (ordem_c == 1) {
         for (Estudante* estudante: es) {
             estudante->show(ordem);
+            if (n_ucs==1) std::cout << " -> nº de UC's: " << estudante->get_turmas().size();
             std::cout << '\n';
         }
     }
     else{
         for (auto it = es.rbegin(); it !=es.rend(); it++){
             (*it)->show(ordem);
+            if (n_ucs==1) std::cout << " -> nº de UC's: " << (*it)->get_turmas().size();
             std::cout << '\n';
         }
     }

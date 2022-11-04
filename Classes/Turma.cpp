@@ -1,6 +1,4 @@
 #include "Turma.h"
-
-#include <utility>
 #include "Menu.h"
 /**
  * Construtor da classe Turma
@@ -102,6 +100,8 @@ void Turma::show() const{
 /**
  * Mostra todos os estudantes pertencentes à turma\n
  * Complexidade: O(n log(n)), n -> tamanho da BST de estudantes
+ * @param ordem (1) ordem alfabética / (2) ordem numérica
+ * @param ordem_c (1) ordem crescente / (2) ordem decrescente
  */
 void Turma::show_estudantes(int ordem, int ordem_c) const{
     if (ordem == 2){
