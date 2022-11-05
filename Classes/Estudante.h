@@ -6,6 +6,7 @@
 #include <set>
 #include "Turma.h"
 
+class Turma;
 class Estudante {
 public:
     Estudante(std::string , std::string = "");

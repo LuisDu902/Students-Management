@@ -21,7 +21,7 @@ public:
     std::vector<Aula*> get_aulas() const;
     std::string get_codigo_uc() const;
     std::string get_codigo_turma() const;
-    std::set<Estudante*,cmp_nome> get_estudantes() const;
+    std::set<Estudante*,cmp_codigo> get_estudantes() const;
 
     void adicionar_aula(Aula*);
     void remover_estudante(Estudante*);
@@ -35,7 +35,7 @@ private:
     std::string codigo_uc;
     std::string codigo_turma;
     std::vector<Aula*> aulas;
-    std::set<Estudante*,cmp_nome> estudantes;
+    std::set<Estudante*,cmp_codigo> estudantes;
 };
 
 #endif //TRABALHO1_TURMA_H

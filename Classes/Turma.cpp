@@ -49,7 +49,7 @@ std::vector<Aula*> Turma::get_aulas() const{return aulas;}
  * Complexidade: O(1)
  * @return BST de todos os estudantes da turma
  */
-std::set<Estudante*,Turma::cmp_nome> Turma::get_estudantes() const{return estudantes;}
+std::set<Estudante*,Turma::cmp_codigo> Turma::get_estudantes() const{return estudantes;}
 
 /**
  * Adiciona a aula no fim do vetor de aulas da turma\n

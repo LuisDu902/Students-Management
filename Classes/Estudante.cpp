@@ -105,19 +105,19 @@ void Estudante::alterar_turma(Turma* t){
 /**
  * Troca dois estudantes de turma um com o outro\n
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante com mais turmas
- * @param turma pointer para a turma
+ * @param turma1 pointer para a turma
  * @param estudante_troca pointer para estudante com o qual se pretende trocar de turma
  */
 void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_troca) {
     Turma* t1;
-    for (auto t: turmas){
+    for (Turma* t: turmas){
         if (t->get_codigo_uc() == turma1->get_codigo_uc()){
             t1 = t;
             break;
         }
     }
     Turma* turma2;
-    for (auto t: estudante_troca->get_turmas()){
+    for (Turma* t: estudante_troca->get_turmas()){
         if (t->get_codigo_uc() == turma1->get_codigo_uc() && t != turma1){
             turma2 = t;
             break;
@@ -138,7 +138,7 @@ void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_t
  * @return pointer para a turma procurada / Nullpointer caso não encontre
  */
 Turma* Estudante::procura_turma(const std::string& cod){
-    for (auto x: turmas){
+    for (Turma* x: turmas){
         if (x->get_codigo_uc() == cod) return x;
     }
     return nullptr;

@@ -1,7 +1,5 @@
 #include "Gestao.h"
 
-#include <utility>
-
 /**
  * Construtor da classe Gestao\n
  * Criação dos vetores aulas, turmas, uc e da BST estudantes\n
@@ -104,7 +102,7 @@ bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
  * Verifica se o estudante está na turma t\n
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
  * @param es pointer para o estudante
- * @param turma pointer para a turma
+ * @param t pointer para a turma
  * @return true se o estudante está na turma t, caso contrário false
  */
 bool Gestao::pode_remover_turma(Estudante* es, Turma* t){
@@ -118,7 +116,7 @@ bool Gestao::pode_remover_turma(Estudante* es, Turma* t){
  * Verifica se o estudante es pode alterar para a turma t dentro de uma UC\n
  * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
  * @param es pointer para o estudante
- * @param turma pointer para a turma
+ * @param t pointer para a turma
  * @return true se o estudante es pode alterar para a turma t, caso contrário false
  */
 bool Gestao::pode_alterar_turma(Estudante* es, Turma* t){
@@ -143,7 +141,7 @@ bool Gestao::pode_alterar_turma(Estudante* es, Turma* t){
  * @param es1  pointer para o estudante 1
  * @param turma1 pointer para a turma do estudante 1
  * @param es2  pointer para o estudante 2
- * @return
+ * @return true se o estudante es1 pode trocar de turma com o estudante es2 na UC da turma1, caso contrário false
  */
 bool Gestao::pode_trocar_turma(Estudante* es1, Turma* turma1, Estudante* es2){
 
@@ -481,7 +479,7 @@ void Gestao::criacao_uc(){
 
 /**
  * Remove o pedido p da lista de pedidos falhados
- * Complexidade: O()
+ * Complexidade: O(n), n -> tamanho da lista de pedidos falhados
  * @param p pointer para o pedido a ser removido
  */
 void Gestao::remover_pedido_falhado(Pedido* p){
@@ -496,7 +494,7 @@ void Gestao::remover_pedido_falhado(Pedido* p){
 
 /**
  * Verifica se o pedido causa desequilíbrio no nº de estudantes nas turmas de uma UC
- * Complexidade: O()
+ * Complexidade: O(n), n -> nº de turmas na UC
  * @param pedido pointer para pedido a ser testado
  * @return true se causar desequilíbrio, caso contrário false
  */
@@ -530,7 +528,8 @@ bool Gestao::erro_desequilibrio(Pedido* pedido){
 }
 
 /**
- * Leitura
+ * Leitura do ficheiro arquivo.csv e criação dos pedidos falhados, armazenando-os na lista pedidos_falhados
+ * Complexidade: O(n): n -> nº de linhas do ficheiro arquivo.csv
  */
 void Gestao::leitura_pedidos(){
     std::ifstream myFile;

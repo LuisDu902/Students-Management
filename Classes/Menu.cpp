@@ -20,8 +20,7 @@ Menu::Menu(){
 }
 
 /**
- * Menu principal\n
- * Complexidade: O(n*m*l*k), n -> nº total de pedidos, m -> nº de pedidos falhados, l -> tamanho do vetor das aulas do estudante, k -> tamanho do vetor das aulas da turma
+ * Menu principal
  */
 void Menu::init() {
     int input;
@@ -32,7 +31,7 @@ void Menu::init() {
                      "[2] Visualizar conteúdos\n"
                      "[3] Realizar pedido\n"
                      "[4] Cancelar pedido\n"
-                     "[5] Configurações\n"
+                     "[5] Alterar configurações\n"
                      "[6] Terminar\n";
         std::cin >> input;
         switch (input) {
@@ -88,8 +87,7 @@ void Menu::init() {
 }
 
 /**
- * Cancela pedidos\n
- * Complexidade: O(m + n), m -> nº inputs, n -> nº de pedidos por processar
+ * Cancela pedido de adição/remoção/alteração/troca de turma
  */
 void Menu::cancelar_pedido(){
     int n;
@@ -109,8 +107,7 @@ void Menu::cancelar_pedido(){
 }
 
 /**
- * Apresenta ao utilizador as opções de estatísticas que podem ser visualizados\n
- * Complexidade: O(m*n), m -> nº de estudantes, n -> nº de turmas de cada estudante
+ * Apresenta ao utilizador as opções de estatísticas que podem ser visualizadas
  */
 void Menu::ver_estatisticas(){
     int input;
@@ -197,8 +194,7 @@ void Menu::ver_estatisticas(){
 }
 
 /**
- * Apresenta ao utilizador as opções de conteúdos que podem ser visualizados\n
- * Complexidade: O(n*m*log(n*m)), n-> nª de turmas da uc, m -> nª de aulas da turma
+ * Apresenta ao utilizador as opções de conteúdos que podem ser visualizados
  */
 void Menu::ver_conteudos(){
     int input;
@@ -251,8 +247,7 @@ void Menu::ver_conteudos(){
 }
 
 /**
- * Mostra os horários conforme o input do utilizador\n
- * Complexidade: O(n*m*log(n*m)), n-> nª de turmas da uc, m -> nª de aulas da turma
+ * Mostra o horário de uma entidade, conforme o input do utilizador
  */
 void Menu::ver_horarios(){
     int input;
@@ -301,8 +296,7 @@ void Menu::ver_horarios(){
 }
 
 /**
- * Mostra os estudantes conforme o input do utilizador\n
- * Complexidade: O(m * n * log(n)), m -> nº de inputs, n -> nº de estudantes da L.EIC
+ * Mostra os estudantes de uma entidade conforme o input do utilizador
  */
 void Menu::ver_estudantes(){
     int input;
@@ -424,8 +418,7 @@ void Menu::ver_estudantes(){
 }
 
 /**
- * Mostra as Turmas conforme o input do utilizador\n
- * Complexidade: O(m*n), m -> número de inputs, n -> nº turmas de uma uc
+ * Mostra as turmas de uma entidade conforme o input do utilizador
  */
 void Menu::ver_turmas(){
     int input;
@@ -468,8 +461,7 @@ void Menu::ver_turmas(){
 }
 
 /**
- * Realiza pedido\n
- * Complexidade: O(m log(n)), m -> número de inputs, n -> nº de estudantes
+ * Realiza pedido de adição/remoção/alteração/troca de turma
  */
 void Menu::fazer_pedido(){
     std::cout << "\n============ Realizar Pedido ============\n";
@@ -569,29 +561,6 @@ void Menu::fazer_pedido(){
                 }
                 std::string cod_uc = validar_codigo_uc();
                 if (cod_uc == "-1") break;
-                //Turma* turma1 = nullptr;
-                Turma* turma2 = nullptr;
-                /*for (Turma* y : estudante->get_turmas()){
-                    if (y->get_codigo_uc() == cod_uc){
-                        turma1 = y;
-                        break;
-                    }
-                }*/
-                /*
-                if (turma1 == nullptr){
-                    std::cout << "\nERRO: O estudante 1 não está inscrito nesta UC\n\n";
-                    continue;
-                }*/
-                for (Turma* y : estudante_troca->get_turmas()){
-                    if (y->get_codigo_uc() == cod_uc){
-                        turma2 = y;
-                        break;
-                    }
-                }
-                if (turma2 == nullptr){
-                    std::cout << "\nERRO: O estudante 2 não está inscrito nesta UC\n\n";
-                    continue;
-                }
                 Turma* ptr = new Turma(cod_uc);
                 Pedido *pedido = new Pedido(input, ptr, estudante, estudante_troca);
                 g->adicionar_pedido(pedido);
@@ -613,12 +582,10 @@ void Menu::fazer_pedido(){
             }
         }
     }
-
 }
 
 /**
- * Terminar execução\n
- * Complexidade: O(n*m*l*k), n -> nº total de pedidos, m -> nº de pedidos falhados, l -> tamanho do vetor das aulas do estudante, k -> tamanho do vetor das aulas da turma
+ * Termina a execução
  */
 void Menu::fim(){
     std::cout << "\n============ Terminar ============\n";
@@ -627,7 +594,7 @@ void Menu::fim(){
         if (g->get_pedidos_falhados().empty()) std::cout << "Todos os pedidos foram efetuados com sucesso!\n\n";
         else {
             std::cout << "Pedidos por realizar: " << g->get_pedidos_falhados().size() << "\n\n";
-            extra();
+            oportunidade();
         }
         int opcao = validar_opcao("Pretende guardar permanentemente as suas alterações?\n[1] Sim\n[2] Não\n");
         while (opcao == -1){
@@ -642,10 +609,9 @@ void Menu::fim(){
 }
 
 /**
- * extra
- * Complexidade: O()
+ * Dá a oportunidade ao utlizador de alterar as configurações antes de terminar a execução
  */
-void Menu::extra(){
+void Menu::oportunidade(){
     std::list<Pedido*> lista_original = g->get_pedidos_falhados();
     std::list<Pedido*> pedidos_desequilibro;
     for (Pedido* p: g->get_pedidos_falhados()){
@@ -699,8 +665,7 @@ void Menu::extra(){
 }
 
 /**
- * Mostra os estudantes inscritos numa uc\n
- * Complexidade: O(n*m*log(l)), n -> nº de turmas da uc, m -> nº de estudantes de cada turma, l -> nº de estudantes da uc
+ * Mostra os estudantes inscritos numa uc
  * @param uc
  * @param ordem (1) alfabética / (2) numérica
  * @param ordem_c (1) crescente / (2) decrescente
@@ -723,8 +688,7 @@ void Menu::show_uc(const std::vector<Turma*>& uc, int ordem, int ordem_c){
 }
 
 /**
- * Mostra os estudantes inscritos num ano\n
- * Complexidade: O(n*m*log(l)), n -> nº de estudantes, m -> nº de turmas de cada estudantes, l -> nº de estudantes do ano a
+ * Mostra os estudantes inscritos num ano
  * @param ano (1) / (2) / (3)
  * @param ordem (1) alfabética / (2) numérica
  * @param ordem_c (1) crescente / (2) decrescente
@@ -757,8 +721,7 @@ void Menu::show_ano(char a, int ordem, int ordem_c){
 }
 
 /**
- * Mostra os estudantes com mais que n ucs\n
- * Complexidade: O(n log(m)), n -> nº de estudantes, m -> nº de estudantes com mais que n ucs
+ * Mostra os estudantes com mais que n ucs
  * @param n nº de ucs
  * @param ordem (1) alfabética / (2) numérica / (3) nº de ucs
  * @param ordem_c (1) crescente / (2) decrescente
@@ -811,8 +774,7 @@ void Menu::show_estudantes_mais_de_n_ucs(int n, int ordem, int ordem_c){
 }
 
 /**
- * Mostra os pedidos por processar\n
- * Complexidade: O(n log(n)), n -> nº de pedidos
+ * Mostra os pedidos por processar
  * @param ordem (1) Ordem de entrada / (2) Tipo de pedido
  */
 void Menu::show_pedidos(int ordem){
@@ -877,8 +839,7 @@ void Menu::show_pedidos(int ordem){
 }
 
 /**
- * Mostra o horário da uc\n
- * Complexidade: O(n*m*log(n*m)), n-> nª de turmas da uc, m -> nª de aulas da turma
+ * Mostra o horário da uc
  * @param uc
  */
 void Menu::show_horario_uc(const std::vector<Turma*>& uc) {
@@ -916,8 +877,7 @@ void Menu::show_horario_uc(const std::vector<Turma*>& uc) {
     }
 
 /**
- * Valida o código_uc dado como input\n
- * Complexidade: O(m log(n)), n-> tamanho do vetor das ucs, m-> nº de inputs
+ * Valida o código_uc dado como input
  * @return o código_uc de uma uc
  */
 std::string Menu::validar_codigo_uc(){
@@ -925,7 +885,7 @@ std::string Menu::validar_codigo_uc(){
     std::cout<< "Insira o código da UC:";
     std::cin >> cod_uc;
 
-    while(std::cin.fail() || cod_uc.size() != 8 || g->pesquisa_uc(cod_uc).empty()) {
+    while(std::cin.fail() || (cod_uc != "UP001" && cod_uc.size() != 8) || g->pesquisa_uc(cod_uc).empty()) {
         if (cod_uc == "-1") return cod_uc;
         std::cout << "Input inválido" << '\n';
         std::cout << "Insira o código da UC:";
@@ -937,8 +897,7 @@ std::string Menu::validar_codigo_uc(){
 }
 
 /**
- * Valida o código_turma dado como input\n
- * Complexidade: O(m log(n)), n-> tamanho do vetor das turmas, m-> nº de inputs
+ * Valida o código_turma dado como input
  * @param cod_uc codigo_uc da turma a validar
  * @return o código_turma de uma turma da uc
  */
@@ -959,8 +918,7 @@ std::string Menu::validar_codigo_turma(const std::string& cod_uc){
 }
 
 /**
- * Valida o número de estudante dado como input\n
- * Complexidade: O(m log(n)), n-> tamanho da BST de estudantes, m-> nº de inputs
+ * Valida o número de estudante dado como input
  * @param mensagem mensagem a mostrar
  * @return o número de um estudante
  */
@@ -981,8 +939,7 @@ std::string Menu::validar_numero_estudante(const std::string& mensagem){
 }
 
 /**
- * Valida o número dado como input\n
- * Complexidade: O(n), n -> nº de inputs
+ * Valida o número dado como input
  * @param mensagem mensagem a mostrar
  * @return opção escolhida (-1) / (1) / (2) / (3)
  */
@@ -1003,8 +960,7 @@ int Menu::validar_numero(const std::string& mensagem){
 }
 
 /**
- * Valida a opção dada como input\n
- * Complexidade: O(n), n -> nº de inputs
+ * Valida a opção dada como input
  * @param mensagem mensagem a mostrar
  * @return opção escolhida (-1) / (1) / (2)
  */
@@ -1025,8 +981,7 @@ int Menu::validar_opcao(const std::string& mensagem){
 }
 
 /**
- * Mostra os estudantes ordenados\n
- * Complexidade: O(n), n -> tamanho da estrutura T
+ * Mostra os estudantes ordenados
  * @tparam T BST de estudantes
  * @param es BST de estudantes
  * @param ordem (1) alfabética / (2) numérica
@@ -1053,15 +1008,16 @@ void Menu::show_ordem_c(T es, int ordem, int ordem_c, int n_ucs){
     }
 
 /**
- *
+ * Permite que o utilizador altere as configurações de capacidade e desequilíbrio entre turmas
  */
 void Menu::configuracoes(){
     int input;
     while (true){
         std::cout <<
-        "\n============ Configurações ============\n"
-        "[1] Alterar capacidade máxima de estudantes por turma\n"
-        "[2] Alterar desequilíbrio(maior diferença do nº de estudantes) entre turmas de uma UC\n"
+        "\n============ Alterar Configurações ============\n"
+        "O que pretende alterar?"
+        "[1] Capacidade máxima de estudantes por turma\n"
+        "[2] Desequilíbrio (maior diferença do nº de estudantes) entre turmas de uma UC\n"
         "[-1] Voltar atrás\n";
         std::cin >> input;
 
