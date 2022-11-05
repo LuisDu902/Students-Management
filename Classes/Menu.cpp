@@ -18,6 +18,7 @@ Menu::Menu(){
     }
     g = new Gestao(n,m);
 }
+
 /**
  * Menu principal\n
  * Complexidade: O(n*m*l*k), n -> nº total de pedidos, m -> nº de pedidos falhados, l -> tamanho do vetor das aulas do estudante, k -> tamanho do vetor das aulas da turma
@@ -85,6 +86,7 @@ void Menu::init() {
         }
     }
 }
+
 /**
  * Cancela pedidos\n
  * Complexidade: O(m + n), m -> nº inputs, n -> nº de pedidos por processar
@@ -105,6 +107,7 @@ void Menu::cancelar_pedido(){
     g->cancelar_pedido(n);
     std::cout << "Pedido cancelado com sucesso\n";
 }
+
 /**
  * Apresenta ao utilizador as opções de estatísticas que podem ser visualizados\n
  * Complexidade: O(m*n), m -> nº de estudantes, n -> nº de turmas de cada estudante
@@ -138,7 +141,7 @@ void Menu::ver_estatisticas(){
                 std::string cod_uc = validar_codigo_uc();
                 if (cod_uc == "-1") break;
                 std::vector<Turma*> uc = g->pesquisa_uc(cod_uc);
-                int total_alunos = 0;
+                size_t total_alunos = 0;
                 for (Turma* turma: uc){
                     total_alunos += turma->get_estudantes().size();
                 }
@@ -175,7 +178,7 @@ void Menu::ver_estatisticas(){
                 break;
             }
             case 6: {
-                int numero = g->get_pedidos().size();
+                size_t numero = g->get_pedidos().size();
                 if (numero == 1) std::cout<< "\nFoi efetuado " << numero << " pedido\n";
                 else std::cout<< "\nForam efetuados " << numero << " pedidos\n";
                 break;
@@ -192,6 +195,7 @@ void Menu::ver_estatisticas(){
         }
     }
 }
+
 /**
  * Apresenta ao utilizador as opções de conteúdos que podem ser visualizados\n
  * Complexidade: O(n*m*log(n*m)), n-> nª de turmas da uc, m -> nª de aulas da turma
@@ -245,6 +249,7 @@ void Menu::ver_conteudos(){
         }
     }
 }
+
 /**
  * Mostra os horários conforme o input do utilizador\n
  * Complexidade: O(n*m*log(n*m)), n-> nª de turmas da uc, m -> nª de aulas da turma
@@ -294,6 +299,7 @@ void Menu::ver_horarios(){
         }
     }
 }
+
 /**
  * Mostra os estudantes conforme o input do utilizador\n
  * Complexidade: O(m * n * log(n)), m -> nº de inputs, n -> nº de estudantes da L.EIC
@@ -416,6 +422,7 @@ void Menu::ver_estudantes(){
         }
     }
 }
+
 /**
  * Mostra as Turmas conforme o input do utilizador\n
  * Complexidade: O(m*n), m -> número de inputs, n -> nº turmas de uma uc
@@ -459,6 +466,7 @@ void Menu::ver_turmas(){
         }
     }
 }
+
 /**
  * Realiza pedido\n
  * Complexidade: O(m log(n)), m -> número de inputs, n -> nº de estudantes
@@ -632,12 +640,13 @@ void Menu::fim(){
         }
     }
 }
+
 /**
  * extra
  * Complexidade: O()
  */
 void Menu::extra(){
-
+    std::list<Pedido*> lista_original = g->get_pedidos_falhados();
     std::list<Pedido*> pedidos_desequilibro;
     for (Pedido* p: g->get_pedidos_falhados()){
         if (p->get_tipo() == 1){
@@ -682,6 +691,9 @@ void Menu::extra(){
         else {
             std::cout << "Pedidos por realizar após ter alterado as configurações: " << g->get_pedidos_falhados().size() << "\n\n";
         }
+    }
+    else{
+        g->set_pedidos_falhados(lista_original);
     }
 
 }
@@ -743,6 +755,7 @@ void Menu::show_ano(char a, int ordem, int ordem_c){
         show_ordem_c(estudantes,ordem,ordem_c);
     }
 }
+
 /**
  * Mostra os estudantes com mais que n ucs\n
  * Complexidade: O(n log(m)), n -> nº de estudantes, m -> nº de estudantes com mais que n ucs
@@ -878,7 +891,7 @@ void Menu::show_horario_uc(const std::vector<Turma*>& uc) {
     sort(aulas.begin(), aulas.end(), Aula::cmp);
 
     int dia_atual = 0;
-    std::string tipo_atual = "";
+    std::string tipo_atual;
     double hora = 0;
     for (Aula* aula: aulas){
         Aula* x = aula;
@@ -944,6 +957,7 @@ std::string Menu::validar_codigo_turma(const std::string& cod_uc){
     }
     return cod_turma;
 }
+
 /**
  * Valida o número de estudante dado como input\n
  * Complexidade: O(m log(n)), n-> tamanho da BST de estudantes, m-> nº de inputs
@@ -965,6 +979,7 @@ std::string Menu::validar_numero_estudante(const std::string& mensagem){
     }
     return numero;
 }
+
 /**
  * Valida o número dado como input\n
  * Complexidade: O(n), n -> nº de inputs
@@ -986,6 +1001,7 @@ int Menu::validar_numero(const std::string& mensagem){
     }
     return numero;
 }
+
 /**
  * Valida a opção dada como input\n
  * Complexidade: O(n), n -> nº de inputs
@@ -1036,6 +1052,9 @@ void Menu::show_ordem_c(T es, int ordem, int ordem_c, int n_ucs){
     }
     }
 
+/**
+ *
+ */
 void Menu::configuracoes(){
     int input;
     while (true){
@@ -1081,9 +1100,8 @@ void Menu::configuracoes(){
                     std::cin >> novo_desequilibrio;
                 }
 
-                g->set_desequilibrio(novo_desequilibrio);
+                Gestao::set_desequilibrio(novo_desequilibrio);
                 std::cout << "\n";
-
                 break;
             }
             case -1: {

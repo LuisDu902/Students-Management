@@ -37,16 +37,13 @@ std::vector<Turma *> Estudante::get_turmas() const{return turmas;}
  * @param t pointer para a turma a ser removida
  */
 void Estudante::remover_da_turma(Turma* t){
-    int i = 0;
     for (auto it = turmas.begin();it != turmas.end();it++){
         if ((*it)->get_codigo_turma() == t->get_codigo_turma() && (*it)->get_codigo_uc() == t->get_codigo_uc()){
-            Turma* turma = *it;
-
-            turma->remover_estudante(this);
+            Turma* t1 = *it;
+            t1->remover_estudante(this);
             turmas.erase(it);
             return;
         }
-        i++;
     }
 }
 
@@ -58,9 +55,8 @@ void Estudante::remover_da_turma(Turma* t){
 std::vector<Aula*> Estudante::horario(){
     std::vector<Aula*> a;
     for (Turma* turma: turmas){
-        for (Aula* aula : turma->get_aulas()){
+        for (Aula* aula : turma->get_aulas())
             a.push_back(aula);
-        }
     }
     return a;
 }
@@ -75,13 +71,12 @@ bool Estudante::compativel(Turma* t){
     std::vector<Aula*> h = horario();
     for (Aula* aula_turma : t->get_aulas()){
         for (Aula* aula_estudante: h){
-            if (aula_turma->sobrepoe(aula_estudante)) {
-                return false;
-            }
+            if (aula_turma->sobrepoe(aula_estudante)) return false;
         }
     }
     return true;
 }
+
 /**
  * Adicionar a turma no fim do vetor de turmas do estudante\n
  * Complexidade: O(log(n)), n -> tamanho da BST de estudantes da turma t
@@ -91,6 +86,7 @@ void Estudante::adicionar_turma(Turma* t){
     t->adicionar_estudante(this);
     turmas.push_back(t);
 }
+
 /**
  * Altera o estudante para a turma t de uma mesma UC\n
  * Complexidade: O(n) -> tamanho do vetor das turmas do estudante
@@ -136,6 +132,19 @@ void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_t
 }
 
 /**
+ * Obtém a turma do estudante com codigo_uc igual a cod\n
+ * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
+ * @param cod codigo_uc
+ * @return pointer para a turma procurada / Nullpointer caso não encontre
+ */
+Turma* Estudante::procura_turma(const std::string& cod){
+    for (auto x: turmas){
+        if (x->get_codigo_uc() == cod) return x;
+    }
+    return nullptr;
+}
+
+/**
   * Mostra o nome e o código do estudante\n
   * Complexidade: O(1)
   * @param ordem (1) nome - número  / (2) número - nome
@@ -171,22 +180,5 @@ void Estudante::show_horario(){
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
  */
 void Estudante::show_turmas() const{
-    for (auto turma: turmas){
-        turma->show();
-    }
-}
-
-/**
- * Obtém a turma do estudante com codigo_uc igual a cod\n
- * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
- * @param cod codigo_uc
- * @return pointer para a turma procurada / Nullpointer caso não encontre
- */
-Turma* Estudante::procura_turma(std::string cod){
-    for (auto x: turmas){
-        if (x->get_codigo_uc() == cod){
-            return x;
-        }
-    }
-    return nullptr;
+    for (auto turma: turmas) turma->show();
 }

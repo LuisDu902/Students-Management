@@ -9,8 +9,6 @@
 
 class Estudante;
 class Turma {
-
-
 public:
     static int capacidade_maxima;
     static void set_capacidade_maxima(int);

@@ -30,7 +30,6 @@ public:
     bool pode_remover_turma(Estudante*, Turma*);
     bool pode_alterar_turma(Estudante*, Turma*);
     bool pode_trocar_turma(Estudante*, Turma*, Estudante*);
-    bool verifica_mesma_uc(Estudante*, Estudante*, std::vector<Turma*>);
 
     size_t max_diferenca(std::vector<Turma*>);
 
@@ -42,7 +41,7 @@ public:
     void adicionar_pedido(Pedido*);
     void arquivo_pedidos();
     void atualiza_estudantes();
-
+    void set_pedidos_falhados(std::list<Pedido*>);
     void cancelar_pedido(int);
     void gerir_pedidos();
     void processar_pedido(Pedido*);

@@ -24,13 +24,13 @@ private:
     int tipo;
 
     static OpMap init_map(){
-        std::map<int, std::string> tipos = {
+        std::map<int, std::string> tipo = {
                 std::pair<int, std::string> (1,"Adicionar"),
                 std::pair<int, std::string> (2,"Remover"),
                 std::pair<int, std::string> (3,"Alterar"),
                 std::pair<int, std::string> (4,"Trocar"),
         };
-        return tipos;
+        return tipo;
     }
 
 

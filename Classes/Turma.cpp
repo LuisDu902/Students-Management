@@ -1,5 +1,6 @@
 #include "Turma.h"
 #include "Menu.h"
+
 /**
  * Construtor da classe Turma
  * @param codigo_uc _L.EIC0__ / UP001
@@ -10,8 +11,16 @@ Turma::Turma(std::string codigo_uc,std::string codigo_turma){
     this->codigo_uc = std::move(codigo_uc);
 }
 
+/**
+ * Modifica a capacidade máxima de uma turma para x
+ * Complexidade: O(1)
+ * @param x
+ */
 void Turma::set_capacidade_maxima(int x) {capacidade_maxima = x;}
 
+/**
+ * Capacidade máxima de uma turma
+ */
 int Turma::capacidade_maxima = 30;
 
 /**
@@ -97,9 +106,7 @@ bool Turma::cmp_nr_uc::operator()(const Estudante* lhs, const Estudante* rhs) co
  * Mostra o codigo_uc e o codigo_turma da turma\n
  * Complexidade: O(1)
  */
-void Turma::show() const{
-    std::cout << codigo_uc << " | " << codigo_turma << '\n';
-}
+void Turma::show() const{std::cout << codigo_uc << " | " << codigo_turma << '\n';}
 
 /**
  * Mostra todos os estudantes pertencentes à turma\n
@@ -110,9 +117,7 @@ void Turma::show() const{
 void Turma::show_estudantes(int ordem, int ordem_c) const{
     if (ordem == 2){
         std::set<Estudante*, Turma::cmp_codigo> es;
-        for (Estudante* estudante: estudantes){
-            es.insert(estudante);
-        }
+        for (Estudante* estudante: estudantes) es.insert(estudante);
         Menu::show_ordem_c(es,ordem,ordem_c);
     }
     else Menu::show_ordem_c(estudantes,ordem,ordem_c);

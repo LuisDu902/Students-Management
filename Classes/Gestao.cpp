@@ -1,5 +1,7 @@
 #include "Gestao.h"
 
+#include <utility>
+
 /**
  * Construtor da classe Gestao\n
  * Criação dos vetores aulas, turmas, uc e da BST estudantes\n
@@ -14,7 +16,11 @@ Gestao::Gestao(int n,int m){
     if (m == 1) leitura_pedidos();
     }
 
+/**
+ * Limite de desequilíbrio entre as turmas de uma UC
+ */
 int Gestao::desequilibrio = 4;
+
 /**
  * Modifica o limite de desequilíbrio para x
  * Complexidade: O(1)
@@ -91,10 +97,8 @@ bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
     if (t->get_estudantes().size()+1 > Turma::capacidade_maxima){
         return false;
     }
-
     return es->compativel(t);
 }
-
 
 /**
  * Verifica se o estudante está na turma t\n
@@ -157,22 +161,6 @@ bool Gestao::pode_trocar_turma(Estudante* es1, Turma* turma1, Estudante* es2){
 }
 
 /**
- * Verifica se dois estudantes estão inscritos na mesma UC, mas não na mesma turma\n
- * Complexidade: O(n), n -> tamanho do vetor de turmas do estudante que está inscrito em mais turmas
- * @param es1 pointer para o estudante 1
- * @param es2 pointer para o estudante 2
- * @param uc L.EIC0__ / UP001
- * @return true se dois estudantes estão inscritos na mesma UC, mas não na mesma turma, caso contrário false
- */
-bool Gestao::verifica_mesma_uc(Estudante* es1, Estudante* es2, std::vector<Turma*> uc){
-
-    Turma* turma1 = es1->procura_turma(uc.front()->get_codigo_uc());
-    Turma* turma2 = es2->procura_turma(uc.front()->get_codigo_uc());
-
-    return (turma1 != nullptr) && (turma2 != nullptr) && (turma1 != turma2);
-}
-
-/**
  * Calcula a maior diferença entre o número de alunos das turmas de uma uc\n
  * Complexidade: O(n), n -> número de turmas no vetor uc
  * @param uc L.EIC0__ / UP001
@@ -216,8 +204,8 @@ void Gestao::gerir_pedidos() {
  * Complexidade: O(n*m*l), n -> nº de pedidos falhados, m -> tamanho do vetor das aulas do estudante, l -> tamanho do vetor das aulas da turma
  */
 void Gestao::gerir_pedidos_falhados(){
-    int size = pedidos_falhados.size();
-    int i = 0;
+    size_t size = pedidos_falhados.size();
+    size_t i = 0;
     while (i < size){
         processar_pedido(pedidos_falhados.front());
         pedidos_falhados.pop_front();
@@ -325,6 +313,7 @@ void Gestao::atualiza_estudantes(){
     myfile.close();
 
 }
+
 /**
  * Escreve no ficheiro arquivo.csv os pedidos falhados no final da execução\n
  * Complexidade: O(n), n -> nº de pedidos falhados
@@ -412,6 +401,7 @@ void Gestao::criacao_turmas(){
     }
 
 }
+
 /**
  * Leitura do ficheiro students_classes.csv e criação dos estudantes, armazenando-os na BST estudantes.\n
  * Atribuição das turmas a cada estudante.\n
@@ -449,8 +439,8 @@ void Gestao::criacao_estudantes(int n){
         if (codigo_turma.back() == '\r') codigo_turma.pop_back();
 
         if (codigo == estudante_atual->get_codigo()){
-            Turma* turma = pesquisa_turma(codigo_uc,codigo_turma);
-            estudante_atual->adicionar_turma(turma);
+            Turma* t = pesquisa_turma(codigo_uc,codigo_turma);
+            estudante_atual->adicionar_turma(t);
         }
 
         else{
@@ -459,8 +449,8 @@ void Gestao::criacao_estudantes(int n){
             Estudante* estudante_novo = new Estudante(codigo,nome);
             estudante_atual = estudante_novo;
 
-            Turma* turma = pesquisa_turma(codigo_uc, codigo_turma);
-            estudante_novo->adicionar_turma(turma);
+            Turma* t = pesquisa_turma(codigo_uc, codigo_turma);
+            estudante_novo->adicionar_turma(t);
         }
 
     }
@@ -488,6 +478,7 @@ void Gestao::criacao_uc(){
     }
     ucs.push_back(uc);
 }
+
 /**
  * Remove o pedido p da lista de pedidos falhados
  * Complexidade: O()
@@ -502,10 +493,12 @@ void Gestao::remover_pedido_falhado(Pedido* p){
         }
     }
 }
+
 /**
- *
- * @param pedido
- * @return
+ * Verifica se o pedido causa desequilíbrio no nº de estudantes nas turmas de uma UC
+ * Complexidade: O()
+ * @param pedido pointer para pedido a ser testado
+ * @return true se causar desequilíbrio, caso contrário false
  */
 bool Gestao::erro_desequilibrio(Pedido* pedido){
     Turma* t = pedido->get_turma();
@@ -536,6 +529,9 @@ bool Gestao::erro_desequilibrio(Pedido* pedido){
 
 }
 
+/**
+ * Leitura
+ */
 void Gestao::leitura_pedidos(){
     std::ifstream myFile;
     std::string CurrentLine, t, es1_up, es2_up, codigo_uc, codigo_turma;
@@ -563,3 +559,10 @@ void Gestao::leitura_pedidos(){
         pedidos_falhados.push_back(ptr);
     }
 }
+
+/**
+ * Modifica a lista de pedidos falhados para l
+ * Complexidade: O(1)
+ * @param l lista de pedidos
+ */
+void Gestao::set_pedidos_falhados(std::list<Pedido*> l){pedidos_falhados = std::move(l);}
