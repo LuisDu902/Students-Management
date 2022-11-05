@@ -1,3 +1,0 @@
-# Projeto_AED
-
-PROJETOOOOOO
