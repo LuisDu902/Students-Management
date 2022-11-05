@@ -1015,7 +1015,7 @@ void Menu::configuracoes(){
     while (true){
         std::cout <<
         "\n============ Alterar Configurações ============\n"
-        "O que pretende alterar?"
+        "O que pretende alterar?\n"
         "[1] Capacidade máxima de estudantes por turma\n"
         "[2] Desequilíbrio (maior diferença do nº de estudantes) entre turmas de uma UC\n"
         "[-1] Voltar atrás\n";
