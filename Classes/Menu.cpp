@@ -68,10 +68,10 @@ void Menu::init() {
                 break;
             }
             case 6: {
-                int opcao = validar_opcao("Tem a certeza que pretende terminar? [A sua ação é irreversível]\n[1] Sim\n[2] Não\n");
+                int opcao = validar_opcao("Tem a certeza que pretende terminar? [Esta ação é irreversível]\n[1] Sim\n[2] Não\n");
                 if (opcao == 1) {
                     fim();
-                    std::cout << "Até à próxima!\nAss: G67";
+                    std::cout << "Até à próxima!\nAss: G67\n";
                     return;
                 }
                 break;
