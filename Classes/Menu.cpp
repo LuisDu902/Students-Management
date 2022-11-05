@@ -77,7 +77,7 @@ void Menu::init() {
                 break;
             }
             default: {
-                std::cout << "Caractere Inválido\n";
+                std::cout << "Input Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -184,7 +184,7 @@ void Menu::ver_estatisticas(){
                 return;
             }
             default: {
-                std::cout << "Caractere Inválido\n";
+                std::cout << "Input Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -237,7 +237,7 @@ void Menu::ver_conteudos(){
                 return;
             }
             default: {
-                std::cout << "Caractere Inválido\n";
+                std::cout << "Input Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -286,7 +286,7 @@ void Menu::ver_horarios(){
                 return;
             }
             default: {
-                std::cout << "Caractere Inválido\n";
+                std::cout << "Input Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -408,7 +408,7 @@ void Menu::ver_estudantes(){
                 return;
             }
             default: {
-                std::cout << "Caractere Inválido\n";
+                std::cout << "Input Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -451,7 +451,7 @@ void Menu::ver_turmas(){
                 return;
             }
             default: {
-                std::cout << "Caractere Inválido\n";
+                std::cout << "Input Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -575,7 +575,7 @@ void Menu::fazer_pedido(){
                 return;
             }
             default: {
-                std::cout << "Caractere Inválido\n";
+                std::cout << "Input Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
@@ -1064,7 +1064,7 @@ void Menu::configuracoes(){
                 return;
             }
             default: {
-                std::cout << "Caractere Inválido\n";
+                std::cout << "Input Inválido\n";
                 std::cin.clear();
                 std::cin.ignore(INT_MAX, '\n');
                 break;
