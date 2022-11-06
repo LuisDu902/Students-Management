@@ -12,35 +12,35 @@ Gestao::Gestao(int n,int m){
     criacao_estudantes(n);
     criacao_uc();
     if (m == 1) leitura_pedidos();
-    }
+}
 
 /**
  * Obtém a BST de estudantes\n
  * Complexidade: O(1)
  * @return BST de estudantes
  */
-std::set<Estudante*,Estudante::cmp_codigo> Gestao::get_estudantes() const{ return estudantes; }
+std::set<Estudante*,Estudante::cmp_codigo> Gestao::get_estudantes() const { return estudantes; }
 
 /**
  * Obtém o vetor de todas as ucs\n
  * Complexidade: O(1)
  * @return vetor de todas as ucs
  */
-std::vector<std::vector<Turma*>> Gestao::get_ucs() const{ return ucs;}
+std::vector<std::vector<Turma*>> Gestao::get_ucs() const { return ucs; }
 
 /**
  * Obtém a fila de todos os pedidos por processar\n
  * Complexidade: O(1)
  * @return fila de todos os pedidos por processar
  */
-std::queue<Pedido*> Gestao::get_pedidos() const{return pedidos;}
+std::queue<Pedido*> Gestao::get_pedidos() const { return pedidos; }
 
 /**
  * Obtém a lista de todos os pedidos falhados\n
  * Complexidade: O(1)
  * @return lista de todos os pedidos falhados
  */
-std::list<Pedido*> Gestao::get_pedidos_falhados() const{return pedidos_falhados;}
+std::list<Pedido*> Gestao::get_pedidos_falhados() const { return pedidos_falhados; }
 
 /**
  * Procura no vetor turmas a turma que apresenta código_uc e código_turma \n
@@ -51,17 +51,16 @@ std::list<Pedido*> Gestao::get_pedidos_falhados() const{return pedidos_falhados;
  */
 Turma* Gestao::pesquisa_turma(const std::string& codigo_uc, const std::string& codigo_turma) const{
     unsigned long long primeiro = 0, ultimo = turmas.size()-1;
-    std::string chave = codigo_uc+codigo_turma;
+    std::string chave = codigo_uc + codigo_turma;
     while(primeiro <= ultimo){
-        unsigned long long middle = primeiro + (ultimo-primeiro)/2;
+        unsigned long long middle = primeiro + (ultimo - primeiro)/2;
         Turma* turma = turmas.at(middle);
-        std::string c = turma->get_codigo_uc()+turma->get_codigo_turma();
+        std::string c = turma->get_codigo_uc() + turma->get_codigo_turma();
         if (c == chave)  return turma;
         else if (c.compare(chave) < 0) primeiro = middle+1;
         else ultimo = middle - 1;
     }
     return nullptr;
-
 }
 
 /**
@@ -73,7 +72,7 @@ Turma* Gestao::pesquisa_turma(const std::string& codigo_uc, const std::string& c
 std::vector<Turma*> Gestao::pesquisa_uc(const std::string& codigo) {
     unsigned long long primeiro = 0, ultimo = ucs.size()-1;
     while(primeiro <= ultimo){
-        unsigned long long middle = primeiro + (ultimo-primeiro)/2;
+        unsigned long long middle = primeiro + (ultimo - primeiro)/2;
         std::vector<Turma*> uc = ucs.at(middle);
         std::string c = uc.front()->get_codigo_uc();
         if (c == codigo)  return uc;
@@ -104,12 +103,8 @@ Estudante* Gestao::pesquisa_estudante(std::string numero) {
  * @return true se der para adicionar a turma t ao estudante es, caso contrário false
  */
 bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
-    for (Turma* x: es->get_turmas()){
-        if (x->get_codigo_uc() == t->get_codigo_uc()) return false;
-    }
-    if (t->get_estudantes().size()+1 > Turma::capacidade_maxima){
-        return false;
-    }
+    if (es->procura_turma(t->get_codigo_uc()) != nullptr) return false;
+    if (t->get_estudantes().size()+1 > Turma::capacidade_maxima) return false;
     return es->compativel(t);
 }
 
@@ -121,9 +116,7 @@ bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
  * @return true se o estudante está na turma t, caso contrário false
  */
 bool Gestao::pode_remover_turma(Estudante* es, Turma* t){
-    for (Turma* turma:es->get_turmas()){
-        if (t == turma) return true;
-    }
+    if (es->procura_turma(t->get_codigo_uc()) == t) return true;
     return false;
 }
 
@@ -137,15 +130,13 @@ bool Gestao::pode_remover_turma(Estudante* es, Turma* t){
 bool Gestao::pode_alterar_turma(Estudante* es, Turma* t){
     bool flag = false;
     Turma* turma_com_mesmo_uc = es->procura_turma(t->get_codigo_uc());
-    if (turma_com_mesmo_uc == nullptr){
-        return false;
-    }
+    if (turma_com_mesmo_uc == nullptr) return false;
+
     es->remover_da_turma(turma_com_mesmo_uc);
-    if(es->compativel(t)) flag = true;
+    if (es->compativel(t)) flag = true;
     es->adicionar_turma(turma_com_mesmo_uc);
-    if (t->get_estudantes().size()+1 > Turma::capacidade_maxima){
-        return false;
-    }
+
+    if (t->get_estudantes().size()+1 > Turma::capacidade_maxima) return false;
 
     return flag;
 }
@@ -290,7 +281,7 @@ void Gestao::processar_pedido(Pedido* pedido){
  * Complexidade: O(1)
  * @param pedido pointer para o pedido
  */
-void Gestao::adicionar_pedido(Pedido* pedido) {pedidos.push(pedido);}
+void Gestao::adicionar_pedido(Pedido* pedido) { pedidos.push(pedido); }
 
 /**
  * Cancela o pedido nº n\n
@@ -328,7 +319,7 @@ void Gestao::remover_pedido_falhado(Pedido* p){
  * Complexidade: O(1)
  * @param l lista de pedidos
  */
-void Gestao::set_pedidos_falhados(std::list<Pedido*> l){pedidos_falhados = std::move(l);}
+void Gestao::set_pedidos_falhados(std::list<Pedido*> l) { pedidos_falhados = std::move(l); }
 
 /**
  * Escreve no ficheiro new_students_classes.csv o conteúdo do ficheiro students_classes.csv atualizado, ou seja, depois de processados todos os pedidos do dia\n
@@ -336,7 +327,7 @@ void Gestao::set_pedidos_falhados(std::list<Pedido*> l){pedidos_falhados = std::
  */
 void Gestao::atualiza_estudantes(){
     std::ofstream myfile;
-    myfile.open ("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/new_students_classes.csv");
+    myfile.open ("/home/du/CLionProjects/Projeto_AED/CSV files/new_students_classes.csv");
     myfile << "StudentCode,StudentName,UcCode,ClassCode\n";
     for (Estudante* es: estudantes){
         std::string StudentCode = es->get_codigo();
@@ -358,26 +349,29 @@ void Gestao::atualiza_estudantes(){
  */
 void Gestao::arquivo_pedidos(){
     std::ofstream myfile;
-    myfile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/arquivo.csv");
+    myfile.open("/home/du/CLionProjects/Projeto_AED/CSV files/arquivo.csv");
 
     if (pedidos_falhados.empty()){
         myfile << "Não tem pedidos falhados (づ｡◕‿‿◕｡)づ\n";
         myfile.close();
         return;
     }
+
+    std::string nome_tipo, cod1, cod2, Codigo_UC, Codigo_turma;
+    int num_tipo;
+
     myfile << "Tipo,NumTipo,Estudante1,Estudante2,CodigoUC,CodigoTurma\n";
     for (Pedido* pedido: pedidos_falhados){
-        std::string nome_tipo = Pedido::tipos[pedido->get_tipo()];
-        int num_tipo = pedido->get_tipo();
+        nome_tipo = Pedido::tipos[pedido->get_tipo()];
+        num_tipo = pedido->get_tipo();
         Estudante* es1 = pedido->get_estudante1();
-        std::string n1 = es1->get_codigo();
+        cod1 = es1->get_codigo();
         Estudante* es2 = pedido->get_estudante2();
-        std::string n2;
-        if (es2 == nullptr) n2 = "-";
-        else n2 = es2->get_codigo();
-        std::string Codigo_UC = pedido->get_turma()->get_codigo_uc();
-        std::string Codigo_turma = pedido->get_turma()->get_codigo_turma();
-        myfile << nome_tipo << "," << num_tipo << "," << n1 << "," << n2 << "," << Codigo_UC << "," << Codigo_turma<< '\n';
+        if (es2 == nullptr) cod2 = "-";
+        else cod2 = es2->get_codigo();
+        Codigo_UC = pedido->get_turma()->get_codigo_uc();
+        Codigo_turma = pedido->get_turma()->get_codigo_turma();
+        myfile << nome_tipo << "," << num_tipo << "," << cod1 << "," << cod2 << "," << Codigo_UC << "," << Codigo_turma<< '\n';
     }
     myfile.close();
 }
@@ -392,7 +386,7 @@ void Gestao::criacao_aulas(){
     double hora_inicio, duracao;
     std::ifstream myFile;
 
-    myFile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/classes.csv");
+    myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/classes.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -420,7 +414,7 @@ void Gestao::criacao_turmas(){
     std::string CurrentLine, codigo_uc, codigo_turma;
     std::ifstream myFile;
 
-    myFile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/classes_per_uc.csv");
+    myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/classes_per_uc.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -433,11 +427,11 @@ void Gestao::criacao_turmas(){
         Turma* ptr = new Turma(codigo_uc,codigo_turma);
         turmas.push_back(ptr);
     }
+
     for (Aula* aula : aulas){
         Turma* turma = pesquisa_turma(aula->get_codigo_uc(),aula->get_codigo_turma());
         turma->adicionar_aula(aula);
     }
-
 }
 
 /**
@@ -449,8 +443,8 @@ void Gestao::criacao_turmas(){
 void Gestao::criacao_estudantes(int n){
     std::ifstream myFile;
     std::string CurrentLine, codigo, nome, codigo_uc, codigo_turma;
-    if (n == 2) myFile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/new_students_classes.csv");
-    else myFile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/students_classes.csv");
+    if (n == 2) myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/new_students_classes.csv");
+    else myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/students_classes.csv");
     getline(myFile,CurrentLine);
     getline(myFile,CurrentLine);
     std::istringstream iss(CurrentLine);
@@ -458,8 +452,7 @@ void Gestao::criacao_estudantes(int n){
     getline(iss,codigo,',');
     getline(iss,nome,',');
     getline(iss,codigo_uc,',');
-    getline(iss,codigo_turma,',');
-    if (codigo_turma.back() == '\r') codigo_turma.pop_back();
+    getline(iss,codigo_turma,',');   if (codigo_turma.back() == '\r') codigo_turma.pop_back();
 
     Estudante* estudante_atual = new Estudante(codigo,nome);
 
@@ -473,8 +466,7 @@ void Gestao::criacao_estudantes(int n){
         getline(iss1,codigo,',');
         getline(iss1,nome,',');
         getline(iss1,codigo_uc,',');
-        getline(iss1,codigo_turma,',');
-        if (codigo_turma.back() == '\r') codigo_turma.pop_back();
+        getline(iss1,codigo_turma,',');  if (codigo_turma.back() == '\r') codigo_turma.pop_back();
 
         if (codigo == estudante_atual->get_codigo()){
             Turma* t = pesquisa_turma(codigo_uc,codigo_turma);
@@ -528,10 +520,14 @@ void Gestao::leitura_pedidos(){
     Estudante* estudante1;
     Estudante* estudante2;
     Turma* turma;
-    myFile.open("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/arquivo.csv");
+
+    myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/arquivo.csv");
     getline(myFile,CurrentLine);
+
     while (getline(myFile,CurrentLine)){
+
         std::istringstream iss(CurrentLine);
+
         getline(iss,t,',');
         getline(iss,t,','); tipo = stoi(t);
         getline(iss,es1_up,','); estudante1 = pesquisa_estudante(es1_up);

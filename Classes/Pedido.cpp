@@ -54,5 +54,5 @@ Pedido::OpMap Pedido::tipos = init_map();
  * @param pedido2 pointer para o pedido 2
  * @return true se o tipo do pedido 1 for menor que o tipo do pedido 2, caso contrário false
  */
-bool Pedido::cmp(Pedido* pedido1, Pedido* pedido2){return (pedido1->tipo < pedido2->tipo);}
+bool Pedido::cmp(Pedido* pedido1, Pedido* pedido2) {return (pedido1->tipo < pedido2->tipo);}
 

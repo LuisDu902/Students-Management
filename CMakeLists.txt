@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.21.1)
-project(PROJ)
+cmake_minimum_required(VERSION 3.23)
+project(Projeto_AED)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -25,5 +25,4 @@ else(DOXYGEN_FOUND)
     message("Doxygen needs to be installed to generate the documentation.")
 endif(DOXYGEN_FOUND)
 
-
-add_executable(PROJ main.cpp Classes/Turma.cpp Classes/Estudante.cpp Classes/Aula.cpp Classes/Menu.cpp Classes/Gestao.cpp Classes/Pedido.cpp)
+add_executable(Projeto_AED main.cpp Classes/Turma.cpp Classes/Estudante.cpp Classes/Aula.cpp Classes/Menu.cpp Classes/Gestao.cpp Classes/Pedido.cpp)

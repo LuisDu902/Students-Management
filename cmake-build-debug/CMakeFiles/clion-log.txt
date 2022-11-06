@@ -1,5 +1,6 @@
-"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca" -B "C:\Users\luisd\OneDrive\Ambiente de Trabalho\Projeto_AED-erro-pedido-troca\cmake-build-debug"
+/snap/clion/209/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/209/bin/ninja/linux/ninja -G Ninja -S /home/du/CLionProjects/Projeto_AED -B /home/du/CLionProjects/Projeto_AED/cmake-build-debug
+-- Found Doxygen: /usr/local/bin/doxygen (found version "1.9.5 (2f6875a5ca481a69a6f32650c77a667f87d25e88)") found components: doxygen missing components: dot
 Doxygen build started
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/cmake-build-debug
+-- Build files have been written to: /home/du/CLionProjects/Projeto_AED/cmake-build-debug

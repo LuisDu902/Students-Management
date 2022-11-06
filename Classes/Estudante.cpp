@@ -15,7 +15,7 @@ Estudante::Estudante(std::string codigo, std::string nome) {
  * Complexidade: O(1)
  * @return nome do estudante
  */
-std::string Estudante::get_nome() const{return nome;}
+std::string Estudante::get_nome() const {return nome;}
 
 /**
  * Obtém o número up do estudante\n
@@ -29,7 +29,7 @@ std::string Estudante::get_codigo() const {return codigo;}
  * Complexidade: O(1)
  * @return vetor de todas as turmas do estudante
  */
-std::vector<Turma *> Estudante::get_turmas() const{return turmas;}
+std::vector<Turma *> Estudante::get_turmas() const {return turmas;}
 
 /**
  * Método de comparação entre dois estudantes pela ordem alfabética\n
@@ -38,7 +38,7 @@ std::vector<Turma *> Estudante::get_turmas() const{return turmas;}
  * @param rhs pointer para estudante 2
  * @return true se o nome do estudante 1 for anterior ao nome do estudante 2, caso contrário false
  */
-bool Estudante::cmp_nome::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->get_nome() < rhs->get_nome();}
+bool Estudante::cmp_nome::operator()(const Estudante* lhs, const Estudante* rhs) const { return lhs->get_nome() < rhs->get_nome();}
 
 /**
  * Método de comparação entre dois estudantes de acordo com o código do estudante\n
@@ -47,7 +47,7 @@ bool Estudante::cmp_nome::operator()(const Estudante* lhs, const Estudante* rhs)
  * @param rhs pointer para estudante 2
  * @return true se o código do estudante 1 for menor que o do estudante 2, caso contrário false
  */
-bool Estudante::cmp_codigo::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->get_codigo() < rhs->get_codigo();}
+bool Estudante::cmp_codigo::operator()(const Estudante* lhs, const Estudante* rhs) const { return lhs->get_codigo() < rhs->get_codigo();}
 
 /**
  * Método de comparação entre dois estudantes de acordo com o número de ucs que frequenta.\n
@@ -94,7 +94,7 @@ void Estudante::remover_da_turma(Turma* t){
  */
 void Estudante::alterar_turma(Turma* t){
     for (Turma* turma: turmas){
-        if ((turma)->get_codigo_uc() == t->get_codigo_uc()){
+        if (turma->get_codigo_uc() == t->get_codigo_uc()){
             remover_da_turma(turma);
             break;
         }
@@ -109,13 +109,8 @@ void Estudante::alterar_turma(Turma* t){
  * @param estudante_troca pointer para estudante com o qual se pretende trocar de turma
  */
 void Estudante::trocar_turma_com_estudante(Turma *turma1, Estudante *estudante_troca) {
-    Turma* t1;
-    for (Turma* t: turmas){
-        if (t->get_codigo_uc() == turma1->get_codigo_uc()){
-            t1 = t;
-            break;
-        }
-    }
+    Turma* t1 = procura_turma(turma1->get_codigo_uc());
+
     Turma* turma2;
     for (Turma* t: estudante_troca->get_turmas()){
         if (t->get_codigo_uc() == turma1->get_codigo_uc() && t != turma1){
@@ -189,19 +184,28 @@ void Estudante::show(int ordem) const{
  * Complexidade: O(n log(n)), n -> tamanho do vetor das aulas do estudante
  */
 void Estudante::show_horario(){
-    std::vector<Aula*> aulas = Estudante::horario();
+    std::vector<Aula*> aulas = horario();
 
     sort(aulas.begin(),aulas.end(),Aula::cmp);
 
     int dia_atual = 0;
+    std::string tipo_atual;
+    double hora = 0;
 
     for (Aula* aula: aulas){
         if (Aula::dias[aula->get_dia_semana()] != dia_atual){
             dia_atual = Aula::dias[aula->get_dia_semana()];
-            std::cout << Aula::portugues[aula->get_dia_semana()] << ":\n";
+            std::cout << '\n' << Aula::portugues[aula->get_dia_semana()] << ":";
+            tipo_atual = "";
+            hora = 0;
         }
-        aula->show();
-        std::cout << " | " << aula->get_codigo_uc() << " | " << aula->get_codigo_turma() << '\n';
+        if (aula->get_hora_inicio() != hora || aula->get_tipo() != tipo_atual) {
+            tipo_atual = aula->get_tipo();
+            hora = aula->get_hora_inicio();
+            std::cout << '\n';
+            aula->show();
+            std::cout << " | " << aula->get_codigo_uc() << " | " << aula->get_codigo_turma();
+        }
     }
 }
 

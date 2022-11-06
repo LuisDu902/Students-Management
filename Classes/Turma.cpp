@@ -55,21 +55,21 @@ void Turma::set_capacidade_maxima(int x) {capacidade_maxima = x;}
  * Complexidade: O(1)
  * @param aula pointer para a aula a adicionar
  */
-void Turma::adicionar_aula(Aula* aula){aulas.push_back(aula);}
+void Turma::adicionar_aula(Aula* aula) {aulas.push_back(aula);}
 
 /**
  * Adiciona um estudante à BST de estudantes da turma\n
  * Complexidade: O(log(n)), n -> tamanho da BST de estudantes
  * @param estudante pointer para o estudante a adicionar
  */
-void Turma::adicionar_estudante(Estudante* estudante){estudantes.insert(estudante);}
+void Turma::adicionar_estudante(Estudante* estudante) {estudantes.insert(estudante);}
 
 /**
  * Remove um estudante da BST de estudantes da turma\n
  * Complexidade: O(log(n)), n -> tamanho da BST de estudantes
  * @param estudante pointer para o estudante a remover
  */
-void Turma::remover_estudante(Estudante* estudante){estudantes.erase(estudantes.find(estudante));}
+void Turma::remover_estudante(Estudante* estudante) {estudantes.erase(estudantes.find(estudante));}
 
 /**
  * Mostra o codigo_uc e o codigo_turma da turma\n
