@@ -11,29 +11,41 @@ Turma::Turma(std::string codigo_uc,std::string codigo_turma){
 }
 
 /**
- * Obtém o código_uc da turma\n
- * Complexidade: O(1)
+ * Obtém o código_uc da turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @return codigo_uc da turma
  */
 std::string Turma::get_codigo_uc() const {return codigo_uc;}
 
 /**
- * Obtém o código_turma da turma\n
- * Complexidade: O(1)
+ * Obtém o código_turma da turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @return código_turma da turma
  */
 std::string Turma::get_codigo_turma() const {return codigo_turma;}
 
 /**
- * Obtém o vetor de todas as aulas associadas à turma\n
- * Complexidade: O(1)
+ * Obtém o vetor de todas as aulas associadas à turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @return vetor de aulas da turma
  */
 std::vector<Aula*> Turma::get_aulas() const{return aulas;}
 
 /**
- * Obtém a BST de todos os estudantes da turma\n
- * Complexidade: O(1)
+ * Obtém a BST de todos os estudantes da turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @return BST de todos os estudantes da turma
  */
 std::set<Estudante*> Turma::get_estudantes() const{return estudantes;}
@@ -44,42 +56,60 @@ std::set<Estudante*> Turma::get_estudantes() const{return estudantes;}
 int Turma::capacidade_maxima = 30;
 
 /**
- * Modifica a capacidade máxima de uma turma para x
- * Complexidade: O(1)
+ * Modifica a capacidade máxima de uma turma para x \n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @param x
  */
 void Turma::set_capacidade_maxima(int x) {capacidade_maxima = x;}
 
 /**
- * Adiciona a aula no fim do vetor de aulas da turma\n
- * Complexidade: O(1)
+ * Adiciona a aula no fim do vetor de aulas da turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @param aula pointer para a aula a adicionar
  */
 void Turma::adicionar_aula(Aula* aula) {aulas.push_back(aula);}
 
 /**
- * Adiciona um estudante à BST de estudantes da turma\n
- * Complexidade: O(log(n)), n -> tamanho da BST de estudantes
+ * Adiciona um estudante à BST de estudantes da turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(log(n))</b>, n -> tamanho da BST de estudantes
+ * </pre>
  * @param estudante pointer para o estudante a adicionar
  */
 void Turma::adicionar_estudante(Estudante* estudante) {estudantes.insert(estudante);}
 
 /**
- * Remove um estudante da BST de estudantes da turma\n
- * Complexidade: O(log(n)), n -> tamanho da BST de estudantes
+ * Remove um estudante da BST de estudantes da turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(log(n))</b>, n -> tamanho da BST de estudantes
+ * </pre>
  * @param estudante pointer para o estudante a remover
  */
 void Turma::remover_estudante(Estudante* estudante) {estudantes.erase(estudantes.find(estudante));}
 
 /**
- * Mostra o codigo_uc e o codigo_turma da turma\n
- * Complexidade: O(1)
+ * Mostra o codigo_uc e o codigo_turma da turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  */
 void Turma::show() const{std::cout << codigo_uc << " | " << codigo_turma << '\n';}
 
 /**
- * Mostra todos os estudantes pertencentes à turma\n
- * Complexidade: O(n log(n)), n -> tamanho da BST de estudantes
+ * Mostra todos os estudantes pertencentes à turma\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n log(n))</b>, n -> tamanho da BST de estudantes
+ * </pre>
  * @param ordem (1) ordem alfabética / (2) ordem numérica
  * @param ordem_c (1) ordem crescente / (2) ordem decrescente
  */
@@ -119,8 +149,11 @@ void Turma::show_estudantes(int ordem, int ordem_c) const{
 }
 
 /**
- * Mostra todas as aulas associadas à turma em ordem cronológica\n
- * Complexidade: O(n log(n)), n-> tamanho do vetor das aulas da turma
+ * Mostra todas as aulas associadas à turma em ordem cronológica\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n log(n))</b>, n -> tamanho do vetor das aulas da turma
+ * </pre>
  */
 void Turma::show_horario_turma() {
 

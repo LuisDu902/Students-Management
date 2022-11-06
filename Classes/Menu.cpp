@@ -8,7 +8,7 @@ Menu::Menu(){
                  "[Pressione -1 sempre que tencione voltar para trás]\n";
 
     std::ifstream myfile;
-    myfile.open ("/home/du/CLionProjects/Projeto_AED/CSV files/new_students_classes.csv");
+    myfile.open ("../CSV files/new_students_classes.csv");
     int n = 1, m = 2;
     if (myfile.is_open()) {
         myfile.close();

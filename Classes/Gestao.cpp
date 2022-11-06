@@ -2,8 +2,11 @@
 
 /**
  * Construtor da classe Gestao\n
- * Criação dos vetores aulas, turmas, uc e da BST estudantes\n
- * Complexidade: O(m log(n)), n -> tamanho da BST estudantes, m -> número de linhas do ficheiro dos estudantes
+ * Criação dos vetores aulas, turmas, uc e da BST estudantes\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(m log(n))</b>, n -> tamanho da BST estudantes, m -> número de linhas do ficheiro dos estudantes
+ * </pre>
  * @param n (1) ficheiro inicial / (2) ficheiro atualizado
  */
 Gestao::Gestao(int n,int m){
@@ -15,36 +18,51 @@ Gestao::Gestao(int n,int m){
 }
 
 /**
- * Obtém a BST de estudantes\n
- * Complexidade: O(1)
+ * Obtém a BST de estudantes\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @return BST de estudantes
  */
 std::set<Estudante*,Estudante::cmp_codigo> Gestao::get_estudantes() const { return estudantes; }
 
 /**
- * Obtém o vetor de todas as ucs\n
- * Complexidade: O(1)
+ * Obtém o vetor de todas as ucs\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @return vetor de todas as ucs
  */
 std::vector<std::vector<Turma*>> Gestao::get_ucs() const { return ucs; }
 
 /**
- * Obtém a fila de todos os pedidos por processar\n
- * Complexidade: O(1)
+ * Obtém a fila de todos os pedidos por processar\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @return fila de todos os pedidos por processar
  */
 std::queue<Pedido*> Gestao::get_pedidos() const { return pedidos; }
 
 /**
- * Obtém a lista de todos os pedidos falhados\n
- * Complexidade: O(1)
+ * Obtém a lista de todos os pedidos falhados\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @return lista de todos os pedidos falhados
  */
 std::list<Pedido*> Gestao::get_pedidos_falhados() const { return pedidos_falhados; }
 
 /**
- * Procura no vetor turmas a turma que apresenta código_uc e código_turma \n
- * Complexidade: O(log(n)), n -> tamanho do vetor das turmas
+ * Procura no vetor turmas a turma que apresenta código_uc e código_turma \n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(log(n))</b>, n -> tamanho do vetor das turmas
+ * </pre>
  * @param codigo_uc L.EIC0__ / UP001
  * @param codigo_turma _LEIC__
  * @return pointer para turma / nullpointer caso a turma não exista
@@ -64,8 +82,11 @@ Turma* Gestao::pesquisa_turma(const std::string& codigo_uc, const std::string& c
 }
 
 /**
- * Procura no vetor ucs a uc com codigo_uc igual a codigo\n
- * Complexidade: O(log (n)), n -> tamanho do vetor das ucs
+ * Procura no vetor ucs a uc com codigo_uc igual a codigo\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(log(n))</b>, n -> tamanho do vetor das UC's
+ * </pre>
  * @param codigo L.EIC0__ / UP001
  * @return vetor de turmas da uc com codigo_uc igual a codigo / vetor vazio caso não encontre a uc
  */
@@ -83,8 +104,11 @@ std::vector<Turma*> Gestao::pesquisa_uc(const std::string& codigo) {
 }
 
 /**
- * Procura na BST estudantes o estudante com número up igual a numero\n
- * Complexidade: O(log(n)), n -> tamanho da BST de estudantes
+ * Procura na BST estudantes o estudante com número up igual a numero\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(log(n))</b>, n -> tamanho da BST de estudantes
+ * </pre>
  * @param numero número up do estudante
  * @return retorna um pointer para o estudante / nullpointer caso o estudante não exista
  */
@@ -96,8 +120,11 @@ Estudante* Gestao::pesquisa_estudante(std::string numero) {
 }
 
 /**
- * Verifica se se pode adicionar a turma t ao estudante es\n
- * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
+ * Verifica se se pode adicionar a turma t ao estudante es\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n*m)</b>, n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
+ * </pre>
  * @param es pointer para o estudante
  * @param t pointer para a turma
  * @return true se der para adicionar a turma t ao estudante es, caso contrário false
@@ -109,8 +136,11 @@ bool Gestao::pode_adicionar_turma(Estudante* es, Turma* t){
 }
 
 /**
- * Verifica se o estudante está na turma t\n
- * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
+ * Verifica se o estudante está na turma t\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> tamanho do vetor das turmas do estudante
+ * </pre>
  * @param es pointer para o estudante
  * @param t pointer para a turma
  * @return true se o estudante está na turma t, caso contrário false
@@ -121,8 +151,11 @@ bool Gestao::pode_remover_turma(Estudante* es, Turma* t){
 }
 
 /**
- * Verifica se o estudante es pode alterar para a turma t dentro de uma UC\n
- * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
+ * Verifica se o estudante es pode alterar para a turma t dentro de uma UC\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n*m)</b>, n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
+ * </pre>
  * @param es pointer para o estudante
  * @param t pointer para a turma
  * @return true se o estudante es pode alterar para a turma t, caso contrário false
@@ -142,8 +175,11 @@ bool Gestao::pode_alterar_turma(Estudante* es, Turma* t){
 }
 
 /**
- * Verifica se o estudante 1 pode trocar de turma com o estudante 2\n
- * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
+ * Verifica se o estudante 1 pode trocar de turma com o estudante 2\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n*m)</b>, n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
+ * </pre>
  * @param es1  pointer para o estudante 1
  * @param turma1 pointer para a turma do estudante 1
  * @param es2  pointer para o estudante 2
@@ -165,8 +201,11 @@ bool Gestao::pode_trocar_turma(Estudante* es1, Turma* turma1, Estudante* es2){
 }
 
 /**
- * Calcula a maior diferença entre o número de alunos das turmas de uma uc\n
- * Complexidade: O(n), n -> número de turmas no vetor uc
+ * Calcula a maior diferença entre o número de alunos das turmas de uma uc\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> número de turmas no vetor uc
+ * </pre>
  * @param uc L.EIC0__ / UP001
  * @return maior diferença entre o número de alunos das turmas de uma uc
  */
@@ -190,15 +229,21 @@ size_t Gestao::max_diferenca(std::vector<Turma*> uc){
 int Gestao::desequilibrio = 4;
 
 /**
- * Modifica o limite de desequilíbrio para x
- * Complexidade: O(1)
+ * Modifica o limite de desequilíbrio para x \n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @param x novo limite de desequilíbrio
  */
 void Gestao::set_desequilibrio(int x) {desequilibrio = x;}
 
 /**
- * Verifica se o pedido causa desequilíbrio no nº de estudantes nas turmas de uma UC
- * Complexidade: O(n), n -> nº de turmas na UC
+ * Verifica se o pedido causa desequilíbrio no nº de estudantes nas turmas de uma UC\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> nº de turmas na UC
+ * </pre>
  * @param pedido pointer para pedido a ser testado
  * @return true se causar desequilíbrio, caso contrário false
  */
@@ -232,8 +277,11 @@ bool Gestao::erro_desequilibrio(Pedido* pedido){
 }
 
 /**
- * Processa todos os pedidos da fila\n
- * Complexidade: O(n*m*l*k), n -> nº total de pedidos, m -> nº de pedidos falhados, l -> tamanho do vetor das aulas do estudante, k -> tamanho do vetor das aulas da turma
+ * Processa todos os pedidos da fila\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n*m*l*k)</b>, n -> nº total de pedidos, m -> nº de pedidos falhados, l -> tamanho do vetor das aulas do estudante, k -> tamanho do vetor das aulas da turma
+ * </pre>
  */
 void Gestao::gerir_pedidos() {
     while (!pedidos.empty()){
@@ -244,8 +292,11 @@ void Gestao::gerir_pedidos() {
 }
 
 /**
- * Processa o pedido: efetua o pedido se for válido, senão guarda-o na fila de pedidos falhados\n
- * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma
+ * Processa o pedido: efetua o pedido se for válido, senão guarda-o na fila de pedidos falhados\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n*m)</b>, n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma
+ * </pre>
  * @param pedido pointer para o pedido a ser processado
  */
 void Gestao::processar_pedido(Pedido* pedido){
@@ -277,15 +328,21 @@ void Gestao::processar_pedido(Pedido* pedido){
 }
 
 /**
- * Adiciona um pedido à fila de pedidos\n
- * Complexidade: O(1)
+ * Adiciona um pedido à fila de pedidos\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @param pedido pointer para o pedido
  */
 void Gestao::adicionar_pedido(Pedido* pedido) { pedidos.push(pedido); }
 
 /**
- * Cancela o pedido nº n\n
- * Complexidade: O(n), n -> nº de pedidos na fila
+ * Cancela o pedido nº n\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> nº de pedidos na fila
+ * </pre>
  * @param n número do pedido a cancelar
  */
 void Gestao::cancelar_pedido(int n) {
@@ -300,8 +357,11 @@ void Gestao::cancelar_pedido(int n) {
 }
 
 /**
- * Remove o pedido p da lista de pedidos falhados
- * Complexidade: O(n), n -> tamanho da lista de pedidos falhados
+ * Remove o pedido p da lista de pedidos falhados \n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> tamanho da lista de pedidos falhados
+ * </pre>
  * @param p pointer para o pedido a ser removido
  */
 void Gestao::remover_pedido_falhado(Pedido* p){
@@ -315,19 +375,25 @@ void Gestao::remover_pedido_falhado(Pedido* p){
 }
 
 /**
- * Modifica a lista de pedidos falhados para l
- * Complexidade: O(1)
+ * Modifica a lista de pedidos falhados para l \n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(1)</b>
+ * </pre>
  * @param l lista de pedidos
  */
 void Gestao::set_pedidos_falhados(std::list<Pedido*> l) { pedidos_falhados = std::move(l); }
 
 /**
- * Escreve no ficheiro new_students_classes.csv o conteúdo do ficheiro students_classes.csv atualizado, ou seja, depois de processados todos os pedidos do dia\n
- * Complexidade: O(n*m), n -> tamanho da BST de estudantes, m -> nº de turmas de cada estudante
+ * Escreve no ficheiro new_students_classes.csv o conteúdo do ficheiro students_classes.csv atualizado, ou seja, depois de processados todos os pedidos do dia\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n*m)</b>, n -> tamanho da BST de estudantes, m -> nº de turmas de cada estudante
+ * </pre>
  */
 void Gestao::atualiza_estudantes(){
     std::ofstream myfile;
-    myfile.open ("/home/du/CLionProjects/Projeto_AED/CSV files/new_students_classes.csv");
+    myfile.open ("../CSV files/new_students_classes.csv");
     myfile << "StudentCode,StudentName,UcCode,ClassCode\n";
     for (Estudante* es: estudantes){
         std::string StudentCode = es->get_codigo();
@@ -344,12 +410,15 @@ void Gestao::atualiza_estudantes(){
 }
 
 /**
- * Escreve no ficheiro arquivo.csv os pedidos falhados no final da execução\n
- * Complexidade: O(n), n -> nº de pedidos falhados
+ * Escreve no ficheiro arquivo.csv os pedidos falhados no final da execução\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> nº de pedidos falhados
+ * </pre>
  */
 void Gestao::arquivo_pedidos(){
     std::ofstream myfile;
-    myfile.open("/home/du/CLionProjects/Projeto_AED/CSV files/arquivo.csv");
+    myfile.open("../CSV files/arquivo.csv");
 
     if (pedidos_falhados.empty()){
         myfile << "Não tem pedidos falhados (づ｡◕‿‿◕｡)づ\n";
@@ -377,8 +446,11 @@ void Gestao::arquivo_pedidos(){
 }
 
 /**
- * Leitura do ficheiro classes.csv e criação das aulas, armazenando-os no vetor aulas\n
- * Complexidade: O(n), n -> número de linhas do ficheiro classes.csv
+ * Leitura do ficheiro classes.csv e criação das aulas, armazenando-os no vetor aulas\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> número de linhas do ficheiro classes.csv
+ * </pre>
  */
 void Gestao::criacao_aulas(){
 
@@ -386,7 +458,7 @@ void Gestao::criacao_aulas(){
     double hora_inicio, duracao;
     std::ifstream myFile;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/classes.csv");
+    myFile.open("../CSV files/classes.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -407,14 +479,17 @@ void Gestao::criacao_aulas(){
 
 /**
  * Leitura do ficheiro classes_per_uc.csv e criação das turmas, armazenando-os no vetor turmas.\n
- * Atribuição das aulas à sua respetiva turma.
- * Complexidade: O(n log(m)), n -> tamanho do vetor aulas, m -> tamanho do vetor turmas
+ * Atribuição das aulas à sua respetiva turma.\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n log(m))</b>, n -> tamanho do vetor aulas, m -> tamanho do vetor turmas
+ * </pre>
  */
 void Gestao::criacao_turmas(){
     std::string CurrentLine, codigo_uc, codigo_turma;
     std::ifstream myFile;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/classes_per_uc.csv");
+    myFile.open("../CSV files/classes_per_uc.csv");
     getline(myFile,CurrentLine);
 
     while(getline(myFile,CurrentLine)){
@@ -436,15 +511,18 @@ void Gestao::criacao_turmas(){
 
 /**
  * Leitura do ficheiro students_classes.csv e criação dos estudantes, armazenando-os na BST estudantes.\n
- * Atribuição das turmas a cada estudante.\n
- * Complexidade: O(m log(n)), n -> tamanho da BST estudantes, m -> número de linhas do ficheiro
+ * Atribuição das turmas a cada estudante.\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n log(m))</b>, n -> número de linha do ficheiro, m -> tamanho da BST estudantes
+ * </pre>
  * @param n (1) ficheiro inicial / (2) ficheiro atualizado
  */
 void Gestao::criacao_estudantes(int n){
     std::ifstream myFile;
     std::string CurrentLine, codigo, nome, codigo_uc, codigo_turma;
-    if (n == 2) myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/new_students_classes.csv");
-    else myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/students_classes.csv");
+    if (n == 2) myFile.open("../CSV files/new_students_classes.csv");
+    else myFile.open("../CSV files/students_classes.csv");
     getline(myFile,CurrentLine);
     getline(myFile,CurrentLine);
     std::istringstream iss(CurrentLine);
@@ -488,8 +566,11 @@ void Gestao::criacao_estudantes(int n){
 }
 
 /**
- * Criação de todas as ucs existentes\n
- * Complexidade: O(n), n -> nº de turmas
+ * Criação de todas as ucs existentes\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> nº de turmas
+ * </pre>
  */
 void Gestao::criacao_uc(){
 
@@ -510,8 +591,11 @@ void Gestao::criacao_uc(){
 }
 
 /**
- * Leitura do ficheiro arquivo.csv e criação dos pedidos falhados, armazenando-os na lista pedidos_falhados
- * Complexidade: O(n): n -> nº de linhas do ficheiro arquivo.csv
+ * Leitura do ficheiro arquivo.csv e criação dos pedidos falhados, armazenando-os na lista pedidos_falhados\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n)</b>, n -> nº de linhas do ficheiro arquivo.csv
+ * </pre>
  */
 void Gestao::leitura_pedidos(){
     std::ifstream myFile;
@@ -521,7 +605,7 @@ void Gestao::leitura_pedidos(){
     Estudante* estudante2;
     Turma* turma;
 
-    myFile.open("/home/du/CLionProjects/Projeto_AED/CSV files/arquivo.csv");
+    myFile.open("../CSV files/arquivo.csv");
     getline(myFile,CurrentLine);
 
     while (getline(myFile,CurrentLine)){
@@ -546,8 +630,11 @@ void Gestao::leitura_pedidos(){
 }
 
 /**
- * Processa todos os pedidos falhados até ao momento\n
- * Complexidade: O(n*m*l), n -> nº de pedidos falhados, m -> tamanho do vetor das aulas do estudante, l -> tamanho do vetor das aulas da turma
+ * Processa todos os pedidos falhados até ao momento\n \n
+ * <b>Complexidade\n</b>
+ * <pre>
+ *      <b>O(n*m*l)</b>, n -> nº de pedidos falhados, m -> tamanho do vetor das aulas do estudante, l -> tamanho do vetor das aulas da turma
+ * </pre>
  */
 void Gestao::gerir_pedidos_falhados(){
     size_t size = pedidos_falhados.size();
