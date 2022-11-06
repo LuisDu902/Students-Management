@@ -20,10 +20,8 @@ public:
     bool sobrepoe(Aula*) const;
     void show() const;
 
-    typedef std::map<std::string, int> Days;
-    typedef std::map<std::string, std::string> Conversion;
-    static Days dias;
-    static Conversion portugues;
+    typedef std::map<std::string, int> Days;  static Days dias;
+    typedef std::map<std::string, std::string> Conversion; static Conversion portugues;
 
 private:
     std::string codigo_turma;

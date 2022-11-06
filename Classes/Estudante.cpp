@@ -32,6 +32,46 @@ std::string Estudante::get_codigo() const {return codigo;}
 std::vector<Turma *> Estudante::get_turmas() const{return turmas;}
 
 /**
+ * Método de comparação entre dois estudantes pela ordem alfabética\n
+ * Complexidade: O(1)
+ * @param lhs pointer para estudante 1
+ * @param rhs pointer para estudante 2
+ * @return true se o nome do estudante 1 for anterior ao nome do estudante 2, caso contrário false
+ */
+bool Estudante::cmp_nome::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->get_nome() < rhs->get_nome();}
+
+/**
+ * Método de comparação entre dois estudantes de acordo com o código do estudante\n
+ * Complexidade: O(1)
+ * @param lhs pointer para estudante 1
+ * @param rhs pointer para estudante 2
+ * @return true se o código do estudante 1 for menor que o do estudante 2, caso contrário false
+ */
+bool Estudante::cmp_codigo::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->get_codigo() < rhs->get_codigo();}
+
+/**
+ * Método de comparação entre dois estudantes de acordo com o número de ucs que frequenta.\n
+ * Se os estudantes frequentarem o mesmo número de ucs, a comparação é feita alfabeticamente\n
+ * Complexidade: O(1)
+ * @param lhs pointer para estudante 1
+ * @param rhs pointer para estudante 2
+ * @return true se o estudante 1 estiver inscrito em menos uc's que o estudante 2, ou inscrito no mesmo número de uc's mas tiver nome anterior, caso contrário false
+ */
+bool Estudante::cmp_nr_uc::operator()(const Estudante* lhs, const Estudante* rhs) const  {
+    return (lhs->get_turmas().size() < rhs->get_turmas().size()) ||
+           (lhs->get_turmas().size() == rhs->get_turmas().size() && lhs->get_nome() < rhs->get_nome());}
+
+/**
+ * Adicionar a turma no fim do vetor de turmas do estudante\n
+ * Complexidade: O(log(n)), n -> tamanho da BST de estudantes da turma t
+ * @param t pointer para a turma a adicionar
+ */
+void Estudante::adicionar_turma(Turma* t){
+    t->adicionar_estudante(this);
+    turmas.push_back(t);
+}
+
+/**
  * Remove o estudante da turma t\n
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
  * @param t pointer para a turma a ser removida
@@ -45,46 +85,6 @@ void Estudante::remover_da_turma(Turma* t){
             return;
         }
     }
-}
-
-/**
- * Obtém o horário do estudante\n
- * Complexidade: O(n*m), n -> tamanho do vetor das turmas do estudante, m -> tamanho do vetor das aulas de cada turma
- * @return vetor de todas as aulas do estudante
- */
-std::vector<Aula*> Estudante::horario(){
-    std::vector<Aula*> a;
-    for (Turma* turma: turmas){
-        for (Aula* aula : turma->get_aulas())
-            a.push_back(aula);
-    }
-    return a;
-}
-
-/**
- * Verifica se o horário da turma é compatível com o horário do estudante\n
- * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
- * @param t pointer para a turma
- * @return true se o horário da turma é compatível com o horário do estudante, caso contrário false
- */
-bool Estudante::compativel(Turma* t){
-    std::vector<Aula*> h = horario();
-    for (Aula* aula_turma : t->get_aulas()){
-        for (Aula* aula_estudante: h){
-            if (aula_turma->sobrepoe(aula_estudante)) return false;
-        }
-    }
-    return true;
-}
-
-/**
- * Adicionar a turma no fim do vetor de turmas do estudante\n
- * Complexidade: O(log(n)), n -> tamanho da BST de estudantes da turma t
- * @param t pointer para a turma a adicionar
- */
-void Estudante::adicionar_turma(Turma* t){
-    t->adicionar_estudante(this);
-    turmas.push_back(t);
 }
 
 /**
@@ -145,6 +145,36 @@ Turma* Estudante::procura_turma(const std::string& cod){
 }
 
 /**
+ * Obtém o horário do estudante\n
+ * Complexidade: O(n*m), n -> tamanho do vetor das turmas do estudante, m -> tamanho do vetor das aulas de cada turma
+ * @return vetor de todas as aulas do estudante
+ */
+std::vector<Aula*> Estudante::horario(){
+    std::vector<Aula*> a;
+    for (Turma* turma: turmas){
+        for (Aula* aula : turma->get_aulas())
+            a.push_back(aula);
+    }
+    return a;
+}
+
+/**
+ * Verifica se o horário da turma é compatível com o horário do estudante\n
+ * Complexidade: O(n*m), n -> tamanho do vetor das aulas do estudante, m -> tamanho do vetor das aulas da turma t
+ * @param t pointer para a turma
+ * @return true se o horário da turma é compatível com o horário do estudante, caso contrário false
+ */
+bool Estudante::compativel(Turma* t){
+    std::vector<Aula*> h = horario();
+    for (Aula* aula_turma : t->get_aulas()){
+        for (Aula* aula_estudante: h){
+            if (aula_turma->sobrepoe(aula_estudante)) return false;
+        }
+    }
+    return true;
+}
+
+/**
   * Mostra o nome e o código do estudante\n
   * Complexidade: O(1)
   * @param ordem (1) nome - número  / (2) número - nome
@@ -180,5 +210,5 @@ void Estudante::show_horario(){
  * Complexidade: O(n), n -> tamanho do vetor das turmas do estudante
  */
 void Estudante::show_turmas() const{
-    for (auto turma: turmas) turma->show();
+    for (Turma* turma: turmas) turma->show();
 }

@@ -7,15 +7,14 @@ class Pedido {
 public:
     Pedido(int, Turma*, Estudante*, Estudante* = nullptr);
 
-    typedef std::map<int, std::string> OpMap;
-    static OpMap tipos;
-
-    static bool cmp(Pedido*, Pedido*);
-
     int get_tipo() const;
     Estudante* get_estudante1() const;
     Estudante* get_estudante2() const;
     Turma* get_turma() const;
+
+    typedef std::map<int, std::string> OpMap; static OpMap tipos;
+
+    static bool cmp(Pedido*, Pedido*);
 
 private:
     Estudante* estudante1;
@@ -32,7 +31,5 @@ private:
         };
         return tipo;
     }
-
-
 };
 #endif

@@ -1,5 +1,4 @@
 #include "Turma.h"
-#include "Menu.h"
 
 /**
  * Construtor da classe Turma
@@ -10,18 +9,6 @@ Turma::Turma(std::string codigo_uc,std::string codigo_turma){
     this->codigo_turma = std::move(codigo_turma);
     this->codigo_uc = std::move(codigo_uc);
 }
-
-/**
- * Modifica a capacidade máxima de uma turma para x
- * Complexidade: O(1)
- * @param x
- */
-void Turma::set_capacidade_maxima(int x) {capacidade_maxima = x;}
-
-/**
- * Capacidade máxima de uma turma
- */
-int Turma::capacidade_maxima = 30;
 
 /**
  * Obtém o código_uc da turma\n
@@ -49,7 +36,19 @@ std::vector<Aula*> Turma::get_aulas() const{return aulas;}
  * Complexidade: O(1)
  * @return BST de todos os estudantes da turma
  */
-std::set<Estudante*,Turma::cmp_codigo> Turma::get_estudantes() const{return estudantes;}
+std::set<Estudante*> Turma::get_estudantes() const{return estudantes;}
+
+/**
+ * Capacidade máxima de uma turma
+ */
+int Turma::capacidade_maxima = 30;
+
+/**
+ * Modifica a capacidade máxima de uma turma para x
+ * Complexidade: O(1)
+ * @param x
+ */
+void Turma::set_capacidade_maxima(int x) {capacidade_maxima = x;}
 
 /**
  * Adiciona a aula no fim do vetor de aulas da turma\n
@@ -73,36 +72,6 @@ void Turma::adicionar_estudante(Estudante* estudante){estudantes.insert(estudant
 void Turma::remover_estudante(Estudante* estudante){estudantes.erase(estudantes.find(estudante));}
 
 /**
- * Método de comparação entre dois estudantes pela ordem alfabética\n
- * Complexidade: O(1)
- * @param lhs pointer para estudante 1
- * @param rhs pointer para estudante 2
- * @return true se o nome do estudante 1 for anterior ao nome do estudante 2, caso contrário false
- */
-bool Turma::cmp_nome::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->get_nome() < rhs->get_nome();}
-
-/**
- * Método de comparação entre dois estudantes de acordo com o código do estudante\n
- * Complexidade: O(1)
- * @param lhs pointer para estudante 1
- * @param rhs pointer para estudante 2
- * @return true se o código do estudante 1 for menor que o do estudante 2, caso contrário false
- */
-bool Turma::cmp_codigo::operator()(const Estudante* lhs, const Estudante* rhs) const  { return lhs->get_codigo() < rhs->get_codigo();}
-
-/**
- * Método de comparação entre dois estudantes de acordo com o número de ucs que frequenta.\n
- * Se os estudantes frequentarem o mesmo número de ucs, a comparação é feita alfabeticamente\n
- * Complexidade: O(1)
- * @param lhs pointer para estudante 1
- * @param rhs pointer para estudante 2
- * @return true se o estudante 1 estiver inscrito em menos uc's que o estudante 2, ou inscrito no mesmo número de uc's mas tiver nome anterior, caso contrário false
- */
-bool Turma::cmp_nr_uc::operator()(const Estudante* lhs, const Estudante* rhs) const  {
-    return (lhs->get_turmas().size() < rhs->get_turmas().size()) ||
-     (lhs->get_turmas().size() == rhs->get_turmas().size() && lhs->get_nome() < rhs->get_nome());}
-
-/**
  * Mostra o codigo_uc e o codigo_turma da turma\n
  * Complexidade: O(1)
  */
@@ -115,12 +84,38 @@ void Turma::show() const{std::cout << codigo_uc << " | " << codigo_turma << '\n'
  * @param ordem_c (1) ordem crescente / (2) ordem decrescente
  */
 void Turma::show_estudantes(int ordem, int ordem_c) const{
-    if (ordem == 2){
-        std::set<Estudante*, Turma::cmp_codigo> es;
+    if (ordem == 1){
+        std::set<Estudante*,Estudante::cmp_nome> es;
         for (Estudante* estudante: estudantes) es.insert(estudante);
-        Menu::show_ordem_c(es,ordem,ordem_c);
+        if (ordem_c == 1){
+            for (Estudante* estudante: es) {
+                estudante->show(ordem);
+                std::cout << '\n';
+            }
+        }
+        else{
+            for (auto it = es.rbegin(); it !=es.rend(); it++){
+                (*it)->show(ordem);
+                std::cout << '\n';
+            }
+        }
     }
-    else Menu::show_ordem_c(estudantes,ordem,ordem_c);
+    else{
+        std::set<Estudante*,Estudante::cmp_codigo> es;
+        for (Estudante* estudante: estudantes) es.insert(estudante);
+        if (ordem_c == 1){
+            for (Estudante* estudante: es) {
+                estudante->show(ordem);
+                std::cout << '\n';
+            }
+        }
+        else{
+            for (auto it = es.rbegin(); it !=es.rend(); it++){
+                (*it)->show(ordem);
+                std::cout << '\n';
+            }
+        }
+    }
 }
 
 /**

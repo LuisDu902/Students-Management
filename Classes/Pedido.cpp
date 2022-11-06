@@ -13,6 +13,7 @@ Pedido::Pedido(int tipo, Turma* turma, Estudante* estudante1, Estudante* estudan
     this->turma1 = turma;
     this->tipo = tipo;
 }
+
 /**
  * Obtém o tipo do pedido\n
  * Complexidade: O(1)
@@ -42,6 +43,11 @@ Estudante* Pedido::get_estudante2() const {return estudante2; }
 Turma* Pedido::get_turma() const {return turma1; }
 
 /**
+ * Dicionário de conversão entre número inteiro e tipo de pedido\n
+ */
+Pedido::OpMap Pedido::tipos = init_map();
+
+/**
  * Método de comparação entre dois pedidos de acordo com o seu tipo\n
  * Complexidade: O(1)
  * @param pedido1 pointer para o pedido 1
@@ -50,7 +56,3 @@ Turma* Pedido::get_turma() const {return turma1; }
  */
 bool Pedido::cmp(Pedido* pedido1, Pedido* pedido2){return (pedido1->tipo < pedido2->tipo);}
 
-/**
- * Dicionário de conversão entre número inteiro e tipo de pedido\n
- */
-Pedido::OpMap Pedido::tipos = init_map();

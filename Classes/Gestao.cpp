@@ -15,16 +15,32 @@ Gestao::Gestao(int n,int m){
     }
 
 /**
- * Limite de desequilíbrio entre as turmas de uma UC
+ * Obtém a BST de estudantes\n
+ * Complexidade: O(1)
+ * @return BST de estudantes
  */
-int Gestao::desequilibrio = 4;
+std::set<Estudante*,Estudante::cmp_codigo> Gestao::get_estudantes() const{ return estudantes; }
 
 /**
- * Modifica o limite de desequilíbrio para x
+ * Obtém o vetor de todas as ucs\n
  * Complexidade: O(1)
- * @param x novo limite de desequilíbrio
+ * @return vetor de todas as ucs
  */
-void Gestao::set_desequilibrio(int x) {desequilibrio = x;}
+std::vector<std::vector<Turma*>> Gestao::get_ucs() const{ return ucs;}
+
+/**
+ * Obtém a fila de todos os pedidos por processar\n
+ * Complexidade: O(1)
+ * @return fila de todos os pedidos por processar
+ */
+std::queue<Pedido*> Gestao::get_pedidos() const{return pedidos;}
+
+/**
+ * Obtém a lista de todos os pedidos falhados\n
+ * Complexidade: O(1)
+ * @return lista de todos os pedidos falhados
+ */
+std::list<Pedido*> Gestao::get_pedidos_falhados() const{return pedidos_falhados;}
 
 /**
  * Procura no vetor turmas a turma que apresenta código_uc e código_turma \n
@@ -34,7 +50,6 @@ void Gestao::set_desequilibrio(int x) {desequilibrio = x;}
  * @return pointer para turma / nullpointer caso a turma não exista
  */
 Turma* Gestao::pesquisa_turma(const std::string& codigo_uc, const std::string& codigo_turma) const{
-
     unsigned long long primeiro = 0, ultimo = turmas.size()-1;
     std::string chave = codigo_uc+codigo_turma;
     while(primeiro <= ultimo){
@@ -179,11 +194,51 @@ size_t Gestao::max_diferenca(std::vector<Turma*> uc){
 }
 
 /**
- * Adiciona um pedido à fila de pedidos\n
- * Complexidade: O(1)
- * @param pedido pointer para o pedido
+ * Limite de desequilíbrio entre as turmas de uma UC
  */
-void Gestao::adicionar_pedido(Pedido* pedido) {pedidos.push(pedido);}
+int Gestao::desequilibrio = 4;
+
+/**
+ * Modifica o limite de desequilíbrio para x
+ * Complexidade: O(1)
+ * @param x novo limite de desequilíbrio
+ */
+void Gestao::set_desequilibrio(int x) {desequilibrio = x;}
+
+/**
+ * Verifica se o pedido causa desequilíbrio no nº de estudantes nas turmas de uma UC
+ * Complexidade: O(n), n -> nº de turmas na UC
+ * @param pedido pointer para pedido a ser testado
+ * @return true se causar desequilíbrio, caso contrário false
+ */
+bool Gestao::erro_desequilibrio(Pedido* pedido){
+    Turma* t = pedido->get_turma();
+    Estudante* es = pedido->get_estudante1();
+    if (pedido->get_tipo() == 1){
+        t->adicionar_estudante(es);
+        if (max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= desequilibrio){
+            t->remover_estudante(es);
+            return true;
+        }
+        t->remover_estudante(es);
+        return false;
+    }
+    else{
+        Turma* turma_inicial = es->procura_turma(t->get_codigo_uc());
+        if (turma_inicial == t) return false;
+        turma_inicial->remover_estudante(es);
+        t->adicionar_estudante(es);
+        if (max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= desequilibrio){
+            t->remover_estudante(es);
+            turma_inicial->adicionar_estudante(es);
+            return true;
+        }
+        t->remover_estudante(es);
+        turma_inicial->adicionar_estudante(es);
+        return false;
+    }
+
+}
 
 /**
  * Processa todos os pedidos da fila\n
@@ -194,20 +249,6 @@ void Gestao::gerir_pedidos() {
         processar_pedido(pedidos.front());
         pedidos.pop();
         gerir_pedidos_falhados();
-    }
-}
-
-/**
- * Processa todos os pedidos falhados até ao momento\n
- * Complexidade: O(n*m*l), n -> nº de pedidos falhados, m -> tamanho do vetor das aulas do estudante, l -> tamanho do vetor das aulas da turma
- */
-void Gestao::gerir_pedidos_falhados(){
-    size_t size = pedidos_falhados.size();
-    size_t i = 0;
-    while (i < size){
-        processar_pedido(pedidos_falhados.front());
-        pedidos_falhados.pop_front();
-        i++;
     }
 }
 
@@ -245,6 +286,13 @@ void Gestao::processar_pedido(Pedido* pedido){
 }
 
 /**
+ * Adiciona um pedido à fila de pedidos\n
+ * Complexidade: O(1)
+ * @param pedido pointer para o pedido
+ */
+void Gestao::adicionar_pedido(Pedido* pedido) {pedidos.push(pedido);}
+
+/**
  * Cancela o pedido nº n\n
  * Complexidade: O(n), n -> nº de pedidos na fila
  * @param n número do pedido a cancelar
@@ -257,43 +305,36 @@ void Gestao::cancelar_pedido(int n) {
         pos ++;
         pedidos.pop();
     }
-   pedidos = fila_temp;
+    pedidos = fila_temp;
 }
 
 /**
- * Obtém a BST de estudantes\n
- * Complexidade: O(1)
- * @return BST de estudantes
+ * Remove o pedido p da lista de pedidos falhados
+ * Complexidade: O(n), n -> tamanho da lista de pedidos falhados
+ * @param p pointer para o pedido a ser removido
  */
-std::set<Estudante*,Turma::cmp_codigo> Gestao::get_estudantes() const{ return estudantes; }
+void Gestao::remover_pedido_falhado(Pedido* p){
+    for (auto it = pedidos_falhados.begin(); it != pedidos_falhados.end(); it++){
+        Pedido* pedido = (*it);
+        if (pedido == p) {
+            pedidos_falhados.erase(it);
+            return;
+        }
+    }
+}
 
 /**
- * Obtém o vetor de todas as ucs\n
+ * Modifica a lista de pedidos falhados para l
  * Complexidade: O(1)
- * @return vetor de todas as ucs
+ * @param l lista de pedidos
  */
-std::vector<std::vector<Turma*>> Gestao::get_ucs() const{ return ucs;}
-
-/**
- * Obtém a fila de todos os pedidos por processar\n
- * Complexidade: O(1)
- * @return fila de todos os pedidos por processar
- */
-std::queue<Pedido*> Gestao::get_pedidos() const{return pedidos;}
-
-/**
- * Obtém a lista de todos os pedidos falhados\n
- * Complexidade: O(1)
- * @return lista de todos os pedidos falhados
- */
-std::list<Pedido*> Gestao::get_pedidos_falhados() const{return pedidos_falhados;}
+void Gestao::set_pedidos_falhados(std::list<Pedido*> l){pedidos_falhados = std::move(l);}
 
 /**
  * Escreve no ficheiro new_students_classes.csv o conteúdo do ficheiro students_classes.csv atualizado, ou seja, depois de processados todos os pedidos do dia\n
  * Complexidade: O(n*m), n -> tamanho da BST de estudantes, m -> nº de turmas de cada estudante
  */
 void Gestao::atualiza_estudantes(){
-
     std::ofstream myfile;
     myfile.open ("C:/Users/luisd/OneDrive/Ambiente de Trabalho/Projeto_AED-erro-pedido-troca/CSV files/new_students_classes.csv");
     myfile << "StudentCode,StudentName,UcCode,ClassCode\n";
@@ -309,7 +350,6 @@ void Gestao::atualiza_estudantes(){
         }
     }
     myfile.close();
-
 }
 
 /**
@@ -478,56 +518,6 @@ void Gestao::criacao_uc(){
 }
 
 /**
- * Remove o pedido p da lista de pedidos falhados
- * Complexidade: O(n), n -> tamanho da lista de pedidos falhados
- * @param p pointer para o pedido a ser removido
- */
-void Gestao::remover_pedido_falhado(Pedido* p){
-    for (auto it = pedidos_falhados.begin(); it != pedidos_falhados.end(); it++){
-        Pedido* pedido = (*it);
-        if (pedido == p) {
-            pedidos_falhados.erase(it);
-            return;
-        }
-    }
-}
-
-/**
- * Verifica se o pedido causa desequilíbrio no nº de estudantes nas turmas de uma UC
- * Complexidade: O(n), n -> nº de turmas na UC
- * @param pedido pointer para pedido a ser testado
- * @return true se causar desequilíbrio, caso contrário false
- */
-bool Gestao::erro_desequilibrio(Pedido* pedido){
-    Turma* t = pedido->get_turma();
-    Estudante* es = pedido->get_estudante1();
-    if (pedido->get_tipo() == 1){
-        t->adicionar_estudante(es);
-        if (max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= desequilibrio){
-            t->remover_estudante(es);
-            return true;
-        }
-        t->remover_estudante(es);
-        return false;
-    }
-    else{
-        Turma* turma_inicial = es->procura_turma(t->get_codigo_uc());
-        if (turma_inicial == t) return false;
-        turma_inicial->remover_estudante(es);
-        t->adicionar_estudante(es);
-        if (max_diferenca(pesquisa_uc(t->get_codigo_uc())) >= desequilibrio){
-            t->remover_estudante(es);
-            turma_inicial->adicionar_estudante(es);
-            return true;
-        }
-        t->remover_estudante(es);
-        turma_inicial->adicionar_estudante(es);
-        return false;
-    }
-
-}
-
-/**
  * Leitura do ficheiro arquivo.csv e criação dos pedidos falhados, armazenando-os na lista pedidos_falhados
  * Complexidade: O(n): n -> nº de linhas do ficheiro arquivo.csv
  */
@@ -547,7 +537,7 @@ void Gestao::leitura_pedidos(){
         getline(iss,es1_up,','); estudante1 = pesquisa_estudante(es1_up);
         getline(iss,es2_up,',');
         if (es2_up == "-") estudante2 = nullptr;
-        else estudante2 = pesquisa_estudante(es1_up);
+        else estudante2 = pesquisa_estudante(es2_up);
         getline(iss,codigo_uc,',');
         getline(iss,codigo_turma,',');
 
@@ -560,8 +550,15 @@ void Gestao::leitura_pedidos(){
 }
 
 /**
- * Modifica a lista de pedidos falhados para l
- * Complexidade: O(1)
- * @param l lista de pedidos
+ * Processa todos os pedidos falhados até ao momento\n
+ * Complexidade: O(n*m*l), n -> nº de pedidos falhados, m -> tamanho do vetor das aulas do estudante, l -> tamanho do vetor das aulas da turma
  */
-void Gestao::set_pedidos_falhados(std::list<Pedido*> l){pedidos_falhados = std::move(l);}
+void Gestao::gerir_pedidos_falhados(){
+    size_t size = pedidos_falhados.size();
+    size_t i = 0;
+    while (i < size){
+        processar_pedido(pedidos_falhados.front());
+        pedidos_falhados.pop_front();
+        i++;
+    }
+}

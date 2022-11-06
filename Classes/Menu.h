@@ -10,8 +10,6 @@ class Menu {
 public:
     Menu();
     void init();
-    template <typename T>
-    static void show_ordem_c(T, int, int, int=0);
 private:
     Gestao* g;
     void ver_estatisticas();
@@ -24,11 +22,13 @@ private:
     void configuracoes();
     void fim();
     void oportunidade();
+
     void show_uc(const std::vector<Turma*>&, int, int);
     void show_ano(char, int, int);
     void show_estudantes_mais_de_n_ucs(int, int, int);
     void show_horario_uc(const std::vector<Turma*>&);
     void show_pedidos(int);
+    template <typename T> void show_ordem_c(T, int, int, int=0);
 
     std::string validar_codigo_uc();
     std::string validar_codigo_turma(const std::string&);
